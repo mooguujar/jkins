@@ -77,8 +77,8 @@ router.post('/toggle', async ctx => {
 });
 
 router.post('/remove', async ctx => {
-    let obj = ctx.request.body.obj || 0;
-
+    let obj = ctx.request.body || 0;
+    
     if (!obj) {
         ctx.body = {
             code: 1,
@@ -87,8 +87,9 @@ router.post('/remove', async ctx => {
         return;
     }
 
-    datas.todos = datas.todos.filter(todo => {
-        var aa=todo.index == obj.index||todo.id == obj.id||todo.aa == obj.aa||todo.username == obj.username||todo.username == obj.username;
+    datas.todos = datas.todos.filter((todo,i) => {
+        // var aa=i == obj.index||todo.id == obj.id||todo.aa == obj.aa||todo.username == obj.username;
+        var aa=i == obj.index;
         return !aa;
     });
 

@@ -102,7 +102,7 @@
                         if (data.code) {
                             alert(data.data);
                         } else {
-                            this.todos = this.todos.filter(todo => todo.id != id);
+                            this.todos = this.todos.filter((todo,index) => index != i);
                         }
                     });
                 },
