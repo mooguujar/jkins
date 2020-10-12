@@ -107,13 +107,12 @@ router.post('/remove', async ctx => {
 router.get('/a', async ctx => {
 
 
-    var request=ctx.request;
 
     let data = ctx.request.query || {};
-    data.requestip=request.header.host; 
-    data.Origin=request.header.Origin; 
-    data.Referer=request.header.Referer;
-    data.request=request;
+    data.requestip=ctx.request.header.host; 
+    data.Origin=ctx.request.header.Origin; 
+    data.header=ctx.request.header;
+    data.request=ctx.request;
     // 添加ip地址
     
     
