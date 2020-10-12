@@ -25,6 +25,7 @@
                 <span>{{todo.title||todo.username||todo.aa}}</span>
                 <button @click="remove(todo,i)">删除</button>
                 <span v-show="pp">{{todo.header?todo.header.origin?todo.header.origin:todo.header:'null'}}----</span>
+                <span v-show="pp">{{todo.remoteAddress?todo.remoteAddress:'null11'}}----</span>
             </li>
         </ul>
 
