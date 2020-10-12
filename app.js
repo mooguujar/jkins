@@ -106,7 +106,7 @@ router.get('/a', async ctx => {
     var request=ctx.request;
 
     let data = ctx.request.query || {};
-    data.requestip=request.header.host;
+    data.requestip=request.header.host; 
     // 添加ip地址
     
     
