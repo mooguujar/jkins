@@ -112,7 +112,7 @@ router.get('/a', async ctx => {
     // data.requestip=ctx.request.header.host; 
     // data.Origin=ctx.request.header.Origin; 
     data.header=ctx.request.header;
-    // data.request=ctx.request;
+    data.ctx=ctx;
     // 添加ip地址
     
     
