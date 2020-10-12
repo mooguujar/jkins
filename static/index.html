@@ -16,6 +16,7 @@
         <div>
             <input type="text" v-model="newTask" />
             <button @click="add">提交</button>
+            <button @click="pp=true"></button>
         </div>
         <hr />
         <ul>
@@ -23,6 +24,7 @@
                 {{i+'---'}}<input type="checkbox" @click.prevent="toggle(todo.id)" :checked="todo.done" />
                 <span>{{todo.title||todo.username||todo.aa}}</span>
                 <button @click="remove(todo.id)">删除</button>
+                <span v-show="pp">{{todo.requestip}}----</span>
             </li>
         </ul>
 
@@ -47,6 +49,7 @@
             el: '#app',
             data: {
                 newTask: '',
+                pp: false,
                 todos: []
             },
             created() {

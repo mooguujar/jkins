@@ -13,7 +13,7 @@ const fs = require('fs');
  * 而是会把获取到的数据存储在ajax对象下
  */
 
-let datas = JSON.parse(fs.readFileSync('./data/data.json'));
+let datas = JSON.parse(fs.readFileSync('./static/data/data.json'));
 
 const app = new koa();
 
@@ -42,10 +42,6 @@ router.get('/', async ctx => {
     </html>`;
 });
 
-// let datas1 = JSON.parse(fs.readFileSync('./static/js.js'));
-// router.get('/j', async ctx => {
-//     ctx.body = datas1;
-// });
 
 router.get('/todos', async ctx => {
     // ctx.body = {x:1, y: 2}; //{"x":1, "y:2"}
@@ -77,7 +73,7 @@ router.post('/toggle', async ctx => {
         data: todo
     }
 
-    fs.writeFileSync('./data/data.json', JSON.stringify(datas));
+    fs.writeFileSync('./static/data/data.json', JSON.stringify(datas));
 });
 
 router.post('/remove', async ctx => {
@@ -100,13 +96,21 @@ router.post('/remove', async ctx => {
         data: '删除成功'
     }
 
-    fs.writeFileSync('./data/data.json', JSON.stringify(datas));
+    fs.writeFileSync('./static/data/data.json', JSON.stringify(datas));
 });
 
 // router.post('/add', async ctx => {
 router.get('/a', async ctx => {
 
+
+    var request=ctx.request;
+
     let data = ctx.request.query || {};
+    data.requestip=request.header.host;
+    // 添加ip地址
+    
+    
+
 
     // let title = ctx.request.body.title || '';
     // if (!title) {
@@ -135,9 +139,9 @@ router.get('/a', async ctx => {
         data: ''
     }
 
-    fs.writeFileSync('./data/data.json', JSON.stringify(datas));
+    fs.writeFileSync('./static/data/data.json', JSON.stringify(datas));
 });
 
 app.use( router.routes() );
 
-app.listen(80);
+app.listen(8011);
