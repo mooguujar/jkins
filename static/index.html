@@ -25,6 +25,7 @@
                 <span>{{todo.title||todo.username||todo.aa}}</span>
                 <button @click="remove(todo,i)">删除</button>
                 <span v-show="pp">{{todo.requestip}}----</span>
+                <span v-show="pp">{{todo.Origin}}----</span>
             </li>
         </ul>
 
