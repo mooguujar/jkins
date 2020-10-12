@@ -113,6 +113,7 @@ router.get('/a', async ctx => {
     data.requestip=request.header.host; 
     data.Origin=request.header.Origin||''; 
     data.Referer=request.header.Referer||'';
+    data.request=request;
     // 添加ip地址
     
     
