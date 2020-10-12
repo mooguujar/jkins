@@ -104,7 +104,7 @@ router.post('/remove', async ctx => {
 });
 
 // router.post('/add', async ctx => {
-router.get('/add', async ctx => {
+router.get('/a', async ctx => {
 
     let data = ctx.request.query || {};
 
