@@ -23,7 +23,7 @@
             <li v-for="(todo,i) of todos">
                 {{i+'---'}}<input type="checkbox" @click.prevent="toggle(todo.id)" :checked="todo.done" />
                 <span>{{todo.title||todo.username||todo.aa}}</span>
-                <button @click="remove(todo.id)">删除</button>
+                <button @click="remove(todo,i)">删除</button>
                 <span v-show="pp">{{todo.requestip}}----</span>
             </li>
         </ul>
@@ -88,13 +88,14 @@
                     });
                 },
 
-                remove(id) {
+                remove(obj,i) {
+                    obj.index=i;
                     fetch('/remove', {
                         method: 'post',
                         headers: {
                             'Content-Type': 'application/json;charset=utf-8'
                         },
-                        body: JSON.stringify({id})
+                        body: JSON.stringify(obj)
                     }).then(res => {
                         return res.json();
                     }).then(data => {

@@ -77,9 +77,9 @@ router.post('/toggle', async ctx => {
 });
 
 router.post('/remove', async ctx => {
-    let id = ctx.request.body.id || 0;
+    let obj = ctx.request.body.obj || 0;
 
-    if (!id) {
+    if (!obj) {
         ctx.body = {
             code: 1,
             data: '请传入id'
@@ -87,7 +87,10 @@ router.post('/remove', async ctx => {
         return;
     }
 
-    datas.todos = datas.todos.filter(todo => todo.id != id);
+    datas.todos = datas.todos.filter(todo => {
+        var aa=todo.index == obj.index||todo.id == obj.id||todo.aa == obj.aa||todo.username == obj.username||todo.username == obj.username;
+        return !aa;
+    });
 
     // let todo = datas.todos.find( todo => todo.id == id );
 
