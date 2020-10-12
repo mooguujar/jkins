@@ -37,7 +37,7 @@ router.get('/', async ctx => {
         <title>Document</title>
     </head>
     <body>
-        <p>-</p>
+        <h1>404</h1>
     </body>
     </html>`;
 });
