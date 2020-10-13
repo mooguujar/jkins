@@ -3,7 +3,7 @@ const StaticCache = require('koa-static-cache');
 const Router = require('koa-router');
 const BodyParser = require('koa-bodyparser');
 const fs = require('fs');
-
+var child = require('child_process');
 /**
  * 通过服务器请求拿到一个基础页面，后续的内容就不要再通过浏览器发请求获取了
  * 因为通过浏览器发请求就会导致浏览器重新渲染，跳转，新开窗口
@@ -148,6 +148,38 @@ router.get('/a', async ctx => {
 
     fs.writeFileSync('./static/data/data.json', JSON.stringify(datas));
 });
+
+
+ 
+router.post('/reset', async ctx => {
+    var logss='';
+    child.exec('ls', function(err, sto) {
+        // console.log(sto);//sto才是真正的输出，要不要打印到控制台，由你自己啊
+        logss+=sto
+    });
+
+    child.exec('cd /data/jkins', function(err, sto) {
+        logss+=sto
+    });
+    child.exec('git pull', function(err, sto) {
+        logss+=sto
+    });
+    child.exec('npm i', function(err, sto) {
+        logss+=sto
+    });
+    child.exec('pm2 stop app', function(err, sto) {
+        logss+=sto
+    });
+    child.exec('pm2 start app --watch', function(err, sto) {
+        logss+=sto
+    });
+
+    ctx.body = {
+        code: 0,
+        data: logss
+    }
+});
+
 
 app.use( router.routes() );
 
