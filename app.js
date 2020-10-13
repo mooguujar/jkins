@@ -164,20 +164,40 @@ router.post('/reset', async ctx => {
     });
 
     child.exec('cd /data/jkins', function(err, sto) {
+        if (err) {
+            console.log(`exec error: ${err}`);
+            return;
+        }
         logss+=sto;
 
         child.exec('git pull', function(err, sto) {
+            if (err) {
+                console.log(`exec error: ${err}`);
+                return;
+            }
             logss+=sto;
 
             child.exec('npm i', function(err, sto) {
+                if (err) {
+                    console.log(`exec error: ${err}`);
+                    return;
+                }
                 logss+=sto;
 
                 child.exec('pm2 stop app', function(err, sto) {
+                    if (err) {
+                        console.log(`exec error: ${err}`);
+                        return;
+                    }
                     logss+=sto;
 
                     child.exec('pm2 start app --watch', function(err, sto) {
+                        if (err) {
+                            console.log(`exec error: ${err}`);
+                            return;
+                        }
                         logss+=sto;
-                        
+
                         console.log(logss);
                         
                         ctx.body = {
