@@ -159,25 +159,32 @@ router.post('/reset', async ctx => {
     });
 
     child.exec('cd /data/jkins', function(err, sto) {
-        logss+=sto
-    });
-    child.exec('git pull', function(err, sto) {
-        logss+=sto
-    });
-    child.exec('npm i', function(err, sto) {
-        logss+=sto
-    });
-    child.exec('pm2 stop app', function(err, sto) {
-        logss+=sto
-    });
-    child.exec('pm2 start app --watch', function(err, sto) {
-        logss+=sto
+        logss+=sto;
+
+        child.exec('git pull', function(err, sto) {
+            logss+=sto;
+
+            child.exec('npm i', function(err, sto) {
+                logss+=sto;
+
+                child.exec('pm2 stop app', function(err, sto) {
+                    logss+=sto;
+
+                    child.exec('pm2 start app --watch', function(err, sto) {
+                        logss+=sto;
+
+                        ctx.body = {
+                            code: 0,
+                            data: logss
+                        };
+                        
+                    });
+                });
+            });
+        });
     });
 
-    ctx.body = {
-        code: 0,
-        data: logss
-    }
+    
 });
 
 
