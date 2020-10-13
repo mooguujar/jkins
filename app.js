@@ -195,13 +195,13 @@ router.post('/reset', async ctx => {
                     }
                     logss+=sto;console.log(logss);
 
-                    child.exec('pm2 start app --watch', function(err, sto) {
-                        if (err) {
-                            console.log(`exec error: ${err}`);
-                            ctx.body = {code: 0,data: '失败'};
-                            return;
-                        }
-                        logss+=sto;
+                    // child.exec('pm2 start app --watch', function(err, sto) {
+                    //     if (err) {
+                    //         console.log(`exec error: ${err}`);
+                    //         ctx.body = {code: 0,data: '失败'};
+                    //         return;
+                    //     }
+                    //     logss+=sto;
 
                         console.log(logss);
                         
@@ -210,7 +210,7 @@ router.post('/reset', async ctx => {
                             data: logss
                         };
 
-                    });
+                    // });
                 });
             });
         });
