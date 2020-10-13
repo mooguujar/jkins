@@ -156,7 +156,7 @@ router.get('/a', async ctx => {
  
 router.post('/reset', async ctx => {
     var logss='';
-    console.log(current_time+'重新发布1');
+    console.log(current_time+'重新发布12');
     
     child.exec('ls', function(err, sto) {
         // console.log(sto);//sto才是真正的输出，要不要打印到控制台，由你自己啊
@@ -166,6 +166,7 @@ router.post('/reset', async ctx => {
     child.exec('cd /data/jkins', function(err, sto) {
         if (err) {
             console.log(`exec error: ${err}`);
+            ctx.body = {code: 0,data: '失败'};
             return;
         }
         logss+=sto;
@@ -173,6 +174,7 @@ router.post('/reset', async ctx => {
         child.exec('git pull', function(err, sto) {
             if (err) {
                 console.log(`exec error: ${err}`);
+                ctx.body = {code: 0,data: '失败'};
                 return;
             }
             logss+=sto;
@@ -180,6 +182,7 @@ router.post('/reset', async ctx => {
             child.exec('npm i', function(err, sto) {
                 if (err) {
                     console.log(`exec error: ${err}`);
+                    ctx.body = {code: 0,data: '失败'};
                     return;
                 }
                 logss+=sto;
@@ -187,6 +190,7 @@ router.post('/reset', async ctx => {
                 child.exec('pm2 stop app', function(err, sto) {
                     if (err) {
                         console.log(`exec error: ${err}`);
+                        ctx.body = {code: 0,data: '失败'};
                         return;
                     }
                     logss+=sto;
@@ -194,6 +198,7 @@ router.post('/reset', async ctx => {
                     child.exec('pm2 start app --watch', function(err, sto) {
                         if (err) {
                             console.log(`exec error: ${err}`);
+                            ctx.body = {code: 0,data: '失败'};
                             return;
                         }
                         logss+=sto;
@@ -217,11 +222,11 @@ router.post('/reset', async ctx => {
 
 app.use( router.routes() );
 
-app.listen(80);
+app.listen(8011);
 
 process.on('uncaughtException', function (err) {
     console.log('Caught exception: ' + err);
 })
 
-console.log(current_time+'--启动成功---!!测试11');
+console.log(current_time+'--启动成功---!!测试1122');
 
