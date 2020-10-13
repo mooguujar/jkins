@@ -5,7 +5,8 @@ const BodyParser = require('koa-bodyparser');
 const fs = require('fs');
 var child = require('child_process');
 var moment = require('moment');
-var current_time =  moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
+// var current_time =  moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
+var current_time=new Date().toLocaleString();
 
 /**
  * 通过服务器请求拿到一个基础页面，后续的内容就不要再通过浏览器发请求获取了
