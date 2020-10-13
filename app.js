@@ -155,14 +155,14 @@ router.get('/a', async ctx => {
 
  
 router.post('/reset', async ctx => {
-    var logss='';
+    var logss='fa';
     console.log(current_time+'重新发布12');
     
     child.exec('ls', function(err, sto) {
         // console.log(sto);//sto才是真正的输出，要不要打印到控制台，由你自己啊
         logss+=sto;console.log(logss);
     });
-
+    
     child.exec('cd /data/jkins', function(err, sto) {
         if (err) {
             console.log(`exec error: ${err}`);
@@ -195,28 +195,26 @@ router.post('/reset', async ctx => {
                     }
                     logss+=sto;console.log(logss);
 
-                    child.exec('pm2 start app ', function(err, sto) {
+                    child.exec('pm2 start app ', function(err, sto,tr) {
+                        console.log(tr);
                         if (err) {
                             console.log(`exec error: ${err}`);
                             ctx.body = {code: 0,data: '失败'};
                             return;
                         }
                         logss+=sto;
-
-                        console.log(logss);
                         
-                        ctx.body = {
-                            code: 0,
-                            data: logss
-                        };
-
                     });
                 });
             });
         });
     });
 
-    
+    console.log(logss);
+    ctx.body = {
+        code: 0,
+        data: logss
+    };
 });
 
 
