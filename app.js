@@ -160,7 +160,7 @@ router.post('/reset', async ctx => {
     
     child.exec('ls', function(err, sto) {
         // console.log(sto);//sto才是真正的输出，要不要打印到控制台，由你自己啊
-        logss+=sto
+        logss+=sto;console.log(logss);
     });
 
     child.exec('cd /data/jkins', function(err, sto) {
@@ -169,7 +169,7 @@ router.post('/reset', async ctx => {
             ctx.body = {code: 0,data: '失败'};
             return;
         }
-        logss+=sto;
+        logss+=sto;console.log(logss);
 
         child.exec('git pull', function(err, sto) {
             if (err) {
@@ -177,7 +177,7 @@ router.post('/reset', async ctx => {
                 ctx.body = {code: 0,data: '失败'};
                 return;
             }
-            logss+=sto;
+            logss+=sto;console.log(logss);
 
             child.exec('npm i', function(err, sto) {
                 if (err) {
@@ -185,7 +185,7 @@ router.post('/reset', async ctx => {
                     ctx.body = {code: 0,data: '失败'};
                     return;
                 }
-                logss+=sto;
+                logss+=sto;console.log(logss);
 
                 child.exec('pm2 stop app', function(err, sto) {
                     if (err) {
@@ -193,7 +193,7 @@ router.post('/reset', async ctx => {
                         ctx.body = {code: 0,data: '失败'};
                         return;
                     }
-                    logss+=sto;
+                    logss+=sto;console.log(logss);
 
                     child.exec('pm2 start app --watch', function(err, sto) {
                         if (err) {
@@ -222,11 +222,11 @@ router.post('/reset', async ctx => {
 
 app.use( router.routes() );
 
-app.listen(8011);
+app.listen(80);
 
 process.on('uncaughtException', function (err) {
     console.log('Caught exception: ' + err);
 })
 
-console.log(current_time+'--启动成功---!!测试1122');
+console.log(current_time+'--启动成功---!!测试112233');
 
