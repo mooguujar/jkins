@@ -152,3 +152,12 @@ router.get('/a', async ctx => {
 app.use( router.routes() );
 
 app.listen(80);
+
+process.on('uncaughtException', function (err) {
+    console.log('Caught exception: ' + err);
+})
+
+var moment = require('moment');
+var current_time =  moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
+console.log(current_time+'--启动成功');
+
