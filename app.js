@@ -191,5 +191,5 @@ process.on('uncaughtException', function (err) {
     console.log('Caught exception: ' + err);
 })
 
-console.log(current_time+'--启动成功---!!测试 666');
+console.log(current_time+'--启动成功---!!测试 777');
 
