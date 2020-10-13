@@ -4,6 +4,9 @@ const Router = require('koa-router');
 const BodyParser = require('koa-bodyparser');
 const fs = require('fs');
 var child = require('child_process');
+var moment = require('moment');
+var current_time =  moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
+
 /**
  * 通过服务器请求拿到一个基础页面，后续的内容就不要再通过浏览器发请求获取了
  * 因为通过浏览器发请求就会导致浏览器重新渲染，跳转，新开窗口
@@ -153,6 +156,8 @@ router.get('/a', async ctx => {
  
 router.post('/reset', async ctx => {
     var logss='';
+    console.log(current_time+'重新发布1');
+    
     child.exec('ls', function(err, sto) {
         // console.log(sto);//sto才是真正的输出，要不要打印到控制台，由你自己啊
         logss+=sto
@@ -172,7 +177,9 @@ router.post('/reset', async ctx => {
 
                     child.exec('pm2 start app --watch', function(err, sto) {
                         logss+=sto;
-
+                        
+                        console.log(logss);
+                        
                         ctx.body = {
                             code: 0,
                             data: logss
@@ -196,7 +203,5 @@ process.on('uncaughtException', function (err) {
     console.log('Caught exception: ' + err);
 })
 
-var moment = require('moment');
-var current_time =  moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
-console.log(current_time+'--启动成功---!!测试');
+console.log(current_time+'--启动成功---!!测试11');
 
