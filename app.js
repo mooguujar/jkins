@@ -5,8 +5,34 @@ const BodyParser = require('koa-bodyparser');
 const fs = require('fs');
 var child = require('child_process');
 var moment = require('moment');
-// var current_time =  moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
-var current_time=new Date().toLocaleString();
+var current_time =  moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
+// var current_time=new Date().toLocaleString();
+
+
+// var d=new Date(); //创建一个Date对象
+// var localTime = d.getTime();
+// var localOffset=d.getTimezoneOffset()*60000; //获得当地时间偏移的毫秒数
+// var utc = localTime + localOffset; //utc即GMT时间
+// var offset =16; //以夏威夷时间为例，东10区
+// var hawaii = utc + (3600000*offset);
+// var current_time = new Date(hawaii);
+console.log(current_time);
+
+
+function getTimeByTimeZone(timeZone){
+    var d=new Date();
+        localTime = d.getTime(),
+        localOffset=d.getTimezoneOffset()*60000, //获得当地时间偏移的毫秒数,这里可能是负数
+        utc = localTime + localOffset, //utc即GMT时间
+        offset = timeZone, //时区，北京市+8  美国华盛顿为 -5
+        localSecondTime = utc + (3600000*offset);  //本地对应的毫秒数
+        current_time = new Date(localSecondTime);
+        console.log("根据本地时间得知"+timeZone+"时区的时间是 " + current_time.toLocaleString());
+        console.log("系统默认展示时间方式是："+ d.toLocaleString())
+}
+
+getTimeByTimeZone(8)
+console.log(current_time+'--');
 
 /**
  * 通过服务器请求拿到一个基础页面，后续的内容就不要再通过浏览器发请求获取了
@@ -182,5 +208,5 @@ process.on('uncaughtException', function (err) {
     console.log('Caught exception: ' + err);
 })
 
-console.log(current_time+'--启动成功---!!测试 777');
+console.log(current_time+'--启动成功---!!测试 99');
 
