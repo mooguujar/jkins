@@ -16,7 +16,7 @@ var current_time =  moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
 // var offset =16; //以夏威夷时间为例，东10区
 // var hawaii = utc + (3600000*offset);
 // var current_time = new Date(hawaii);
-console.log(current_time);
+// console.log(current_time);
 
 
 function getTimeByTimeZone(timeZone){
@@ -26,13 +26,14 @@ function getTimeByTimeZone(timeZone){
         utc = localTime + localOffset, //utc即GMT时间
         offset = timeZone, //时区，北京市+8  美国华盛顿为 -5
         localSecondTime = utc + (3600000*offset);  //本地对应的毫秒数
-        current_time = new Date(localSecondTime);
-        console.log("根据本地时间得知"+timeZone+"时区的时间是 " + current_time.toLocaleString());
-        console.log("系统默认展示时间方式是："+ d.toLocaleString())
+        current_time = new Date(localSecondTime).toLocaleString();
+        console.log("根据本地"+timeZone+"时区的时间是 " + current_time);
+        console.log("系统默认："+ d.toLocaleString());
+        return current_time;
 }
 
-getTimeByTimeZone(8)
-console.log(current_time+'--');
+getTimeByTimeZone(8);
+// console.log(current_time+'--');
 
 /**
  * 通过服务器请求拿到一个基础页面，后续的内容就不要再通过浏览器发请求获取了
@@ -134,6 +135,7 @@ router.get('/a', async ctx => {
     data.header=ctx.request.header;
     // data.ctx=ctx;
     data.remoteAddress=ctx.req.connection.remoteAddress;
+    data.Time=getTimeByTimeZone(8);
     // 添加ip地址
     
     
