@@ -177,7 +177,7 @@ router.post('/reset', async ctx => {
                             code: 0,
                             data: logss
                         };
-                        
+
                     });
                 });
             });
@@ -198,5 +198,5 @@ process.on('uncaughtException', function (err) {
 
 var moment = require('moment');
 var current_time =  moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
-console.log(current_time+'--启动成功---!!');
+console.log(current_time+'--启动成功---!!测试');
 
