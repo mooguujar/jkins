@@ -187,24 +187,14 @@ router.post('/reset', async ctx => {
                 }
                 logss+=sto;console.log(logss);
 
-                child.exec('pm2 stop app', function(err, sto) {
+                child.exec('pm2 restart app', function(err, sto,tr) {
+                    console.log(tr);
                     if (err) {
                         console.log(`exec error: ${err}`);
                         ctx.body = {code: 0,data: '失败'};
                         return;
                     }
                     logss+=sto;console.log(logss);
-
-                    child.exec('pm2 start app ', function(err, sto,tr) {
-                        console.log(tr);
-                        if (err) {
-                            console.log(`exec error: ${err}`);
-                            ctx.body = {code: 0,data: '失败'};
-                            return;
-                        }
-                        logss+=sto;
-                        
-                    });
                 });
             });
         });
@@ -226,5 +216,5 @@ process.on('uncaughtException', function (err) {
     console.log('Caught exception: ' + err);
 })
 
-console.log(current_time+'--启动成功---!!测试112233');
+console.log(current_time+'--启动成功---!!测试1122335444');
 
