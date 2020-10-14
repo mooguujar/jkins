@@ -17,3 +17,4 @@ selenium-debug.log
 *.njsproj
 *.sln
 /data/data.json
+/static/data/data.json
