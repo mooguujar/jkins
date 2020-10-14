@@ -190,12 +190,12 @@ router.post('/reset', async ctx => {
     var { stdout, stderr } = await exec('npm i')
     logss+=stdout;console.log(logss+'--stderr=== npm i');
 
-    console.log('------------',logss);
+    console.log('------------','执行完毕并成功，执行下一步重启');
     ctx.body = {
         code: 0,
         data: logss
     };
-    
+
     var { stdout, stderr } =  exec('pm2 restart app');
     logss+=stdout;console.log(logss+'--=== restart');
 
