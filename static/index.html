@@ -21,7 +21,7 @@
         </div>
         <hr />
         <ul>
-            <li v-for="(todo,i) of todos">
+            <li v-for="(todo,i) in todos">
                 {{i+'---'}}<input type="checkbox" @click.prevent="toggle(todo.id)" :checked="todo.done" />
                 <span>{{todo.title||todo.username||todo.aa}}</span>
                 <button @click="remove(todo,i)">删除</button>
