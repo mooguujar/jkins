@@ -179,36 +179,39 @@ router.post('/reset', async ctx => {
     var logss='fa';
     console.log(current_time+'重新发布12');
     
-    // var ss='11';
-    // var { stdout, stderr } = await exec('cd /data/jkins');
-    //     logss+=stdout;console.log(logss+'--'+stderr+'=== cd');
-    // var { stdout, stderr } = await exec('git pull');
-    //     logss+=stdout;console.log(logss+'--=== git pull');
-    // var { stdout, stderr } = await exec('npm i').then((stdout)=>{
-    //     var { stdout, stderr } =  exec('pm2 restart app');
-    //     logss+=stdout;console.log(logss+'--=== restart');
-    // });
-    //     logss+=stdout;console.log(logss+'--stderr=== npm i');
+    var ss='11';
+
+    // var { stdout, stderr } = await exec('ls');
+    //     logss+=stdout;console.log(logss+'--'+stderr+'=== ls');
+    var { stdout, stderr } = await exec('cd /data/jkins');
+        logss+=stdout;console.log(logss+'--'+stderr+'=== cd');
+    var { stdout, stderr } = await exec('git pull');
+        logss+=stdout;console.log(logss+'--=== git pull');
+    var { stdout, stderr } = await exec('npm i').then((stdout)=>{
+        var { stdout, stderr } =  exec('pm2 restart app');
+        logss+=stdout;console.log(logss+'--=== restart');
+    });
+        logss+=stdout;console.log(logss+'--stderr=== npm i');
 
     
         
-    ss =await child.exec('cd /data/jkins', async function(err, stdout,stderr) {
-        logss+=stdout;console.log(logss+'--'+stderr+'=== cd');
+    // ss =await child.exec('cd /data/jkins', async function(err, stdout,stderr) {
+    //     logss+=stdout;console.log(logss+'--'+stderr+'=== cd');
 
-        child.exec('git pull', async function(err, stdout,stderr) {
-            logss+=stdout;console.log(logss+'--=== git pull');
+    //     child.exec('git pull', async function(err, stdout,stderr) {
+    //         logss+=stdout;console.log(logss+'--=== git pull');
 
-            child.exec('npm i', function(err, stdout,stderr) {
-                logss+=stdout;console.log(logss+'--stderr=== npm i');
+    //         child.exec('npm i', function(err, stdout,stderr) {
+    //             logss+=stdout;console.log(logss+'--stderr=== npm i');
         
-                child.exec('pm2 restart app', function(err, stdout,stderr) {
-                    logss+=stdout;console.log(logss+'--=== restart');
-                });
-            })
-        })
-    })
+    //             child.exec('pm2 restart app', function(err, stdout,stderr) {
+    //                 logss+=stdout;console.log(logss+'--=== restart');
+    //             });
+    //         })
+    //     })
+    // })
 
-    console.log('------------',ss);
+    console.log('------------',logss);
     ctx.body = {
         code: 0,
         data: logss
