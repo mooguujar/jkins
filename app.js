@@ -4,6 +4,8 @@ const Router = require('koa-router');
 const BodyParser = require('koa-bodyparser');
 const fs = require('fs');
 var child = require('child_process');
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 var moment = require('moment');
 var current_time =  moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
 // var current_time=new Date().toLocaleString();
@@ -177,29 +179,40 @@ router.post('/reset', async ctx => {
     var logss='fa';
     console.log(current_time+'重新发布12');
     
+    // var ss='11';
+    // var { stdout, stderr } = await exec('cd /data/jkins');
+    //     logss+=stdout;console.log(logss+'--'+stderr+'=== cd');
+    // var { stdout, stderr } = await exec('git pull');
+    //     logss+=stdout;console.log(logss+'--=== git pull');
+    // var { stdout, stderr } = await exec('npm i').then((stdout)=>{
+    //     var { stdout, stderr } =  exec('pm2 restart app');
+    //     logss+=stdout;console.log(logss+'--=== restart');
+    // });
+    //     logss+=stdout;console.log(logss+'--stderr=== npm i');
+
     
-    await child.exec('cd /data/jkins', function(err, sto,tr) {
-        logss+=sto;console.log(logss+'--=== cd');
+        
+    ss =await child.exec('cd /data/jkins', async function(err, stdout,stderr) {
+        logss+=stdout;console.log(logss+'--'+stderr+'=== cd');
 
-        await child.exec('git pull', function(err, sto,tr) {
-            logss+=sto;console.log(logss+'--=== git pull');
+        child.exec('git pull', async function(err, stdout,stderr) {
+            logss+=stdout;console.log(logss+'--=== git pull');
 
-            await child.exec('npm i', function(err, sto,tr) {
-                logss+=sto;console.log(logss+'--=== npm i');
-
-                // console.log(logss);
-                ctx.body = {
-                    code: 0,
-                    data: logss
-                };
-
-                child.exec('pm2 restart app', function(err, sto,tr) {
-                    logss+=sto;console.log(logss+'--=== restart');
+            child.exec('npm i', function(err, stdout,stderr) {
+                logss+=stdout;console.log(logss+'--stderr=== npm i');
+        
+                child.exec('pm2 restart app', function(err, stdout,stderr) {
+                    logss+=stdout;console.log(logss+'--=== restart');
                 });
-            });
-        });
-    });
+            })
+        })
+    })
 
+    console.log('------------',ss);
+    ctx.body = {
+        code: 0,
+        data: logss
+    };
     
 });
 
