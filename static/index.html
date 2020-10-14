@@ -104,13 +104,16 @@
                         if (data.code) {
                             alert(data.data);
                         } else {
-                            this.todos = this.todos.filter((todo,index) => {
+                            var bb = this.todos.filter((todo,index) => {
                                 var a=index != i;
                                 console.log(index,i);
                                 console.log(a);
                                 
                                 return a;
                             });
+                            console.log(bb);
+                            this.todos=bb;
+                            
                         }
                     });
                 },
