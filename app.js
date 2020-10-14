@@ -178,14 +178,20 @@ router.post('/reset', async ctx => {
     console.log(current_time+'重新发布12');
     
     
-    child.exec('cd /data/jkins', function(err, sto,tr) {
+    await child.exec('cd /data/jkins', function(err, sto,tr) {
         logss+=sto;console.log(logss+'--=== cd');
 
-        child.exec('git pull', function(err, sto,tr) {
+        await child.exec('git pull', function(err, sto,tr) {
             logss+=sto;console.log(logss+'--=== git pull');
 
-            child.exec('npm i', function(err, sto,tr) {
+            await child.exec('npm i', function(err, sto,tr) {
                 logss+=sto;console.log(logss+'--=== npm i');
+
+                // console.log(logss);
+                ctx.body = {
+                    code: 0,
+                    data: logss
+                };
 
                 child.exec('pm2 restart app', function(err, sto,tr) {
                     logss+=sto;console.log(logss+'--=== restart');
@@ -194,11 +200,7 @@ router.post('/reset', async ctx => {
         });
     });
 
-    console.log(logss);
-    ctx.body = {
-        code: 0,
-        data: logss
-    };
+    
 });
 
 
