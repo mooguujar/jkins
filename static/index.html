@@ -104,7 +104,10 @@
                         if (data.code) {
                             alert(data.data);
                         } else {
-                            this.todos = this.todos.filter((todo,index) => index != i);
+                            this.todos = this.todos.filter((todo,index) => {
+                                var a=index != i;
+                                return a;
+                            });
                         }
                     });
                 },
