@@ -106,14 +106,14 @@
                         } else {
                             var aa=JSON.parse(JSON.stringify(this.todos));
                             // var cc=Object.assign({},aa);
-                            // console.log(aa===this.todos);
+                            console.log(aa===this.todos);
                             var bb = aa.filter((todo,index) => {
                                 var a=index != i;
                                 // console.log(index,i);
                                 // console.log(a);
                                 return a;
                             });
-                            // console.log(bb);
+                            console.log(bb);
                             this.todos=bb;
                             
                         }
