@@ -60,7 +60,7 @@ app.use( BodyParser() );
 const router = new Router();
 
 router.get('/', async ctx => {
-    ctx.body = ``;
+    // ctx.body = ``;
 });
 
 
