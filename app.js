@@ -187,11 +187,17 @@ router.post('/reset', async ctx => {
         logss+=stdout;console.log(logss+'--'+stderr+'=== cd');
     var { stdout, stderr } = await exec('git pull');
         logss+=stdout;console.log(logss+'--=== git pull');
-    var { stdout, stderr } = await exec('npm i').then((stdout)=>{
-        var { stdout, stderr } =  exec('pm2 restart app');
-        logss+=stdout;console.log(logss+'--=== restart');
-    });
-        logss+=stdout;console.log(logss+'--stderr=== npm i');
+    var { stdout, stderr } = await exec('npm i')
+    logss+=stdout;console.log(logss+'--stderr=== npm i');
+
+    console.log('------------',logss);
+    ctx.body = {
+        code: 0,
+        data: logss
+    };
+    
+    var { stdout, stderr } =  exec('pm2 restart app');
+    logss+=stdout;console.log(logss+'--=== restart');
 
     
         
@@ -211,11 +217,7 @@ router.post('/reset', async ctx => {
     //     })
     // })
 
-    console.log('------------',logss);
-    ctx.body = {
-        code: 0,
-        data: logss
-    };
+    
     
 });
 
