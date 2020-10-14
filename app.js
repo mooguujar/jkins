@@ -184,11 +184,11 @@ router.post('/reset', async ctx => {
     // var { stdout, stderr } = await exec('ls');
     //     logss+=stdout;console.log(logss+'--'+stderr+'=== ls');
     var { stdout, stderr } = await exec('cd /data/jkins');
-        logss+=stdout;console.log(logss+'--'+stderr+'=== cd');
+        logss+=stdout;console.log('--'+stderr+'=== cd');
     var { stdout, stderr } = await exec('git pull');
-        logss+=stdout;console.log(logss+'--=== git pull');
+        logss+=stdout;console.log('--=== git pull');
     var { stdout, stderr } = await exec('npm i')
-    logss+=stdout;console.log(logss+'--stderr=== npm i');
+    logss+=stdout;console.log('--stderr=== npm i');
 
     console.log('------------','执行完毕并成功，执行下一步重启');
     ctx.body = {
