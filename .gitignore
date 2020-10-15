@@ -18,3 +18,4 @@ selenium-debug.log
 *.sln
 /data/data.json
 /static/data/data.json
+/package-lock.json
