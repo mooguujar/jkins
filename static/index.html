@@ -114,16 +114,16 @@
                                 return a;
                             });
                             console.log(bb);
-                            // this.todos=[];
-                            fetch('/todos').then(res => {
-                                return res.json();
-                            }).then(data => {
-                                // console.log(data);'
-                                if (!data.code) {
-                                    this.todos = data.data;
-                                }
-                            });
-                            // this.$set(this,'todos',bb)
+                            this.todos=[];
+                            // fetch('/todos').then(res => {
+                            //     return res.json();
+                            // }).then(data => {
+                            //     // console.log(data);'
+                            //     if (!data.code) {
+                            //         this.todos = data.data;
+                            //     }
+                            // });
+                            this.$set(this,'todos',bb)
                             // this.todos=bb;
                             
                         }
