@@ -133,6 +133,9 @@ router.get('/a', async ctx => {
 
 
     let data = ctx.request.query || {};
+    if(!data.username){
+        data.username="假数据"
+    }
     // data.requestip=ctx.request.header.host; 
     // data.Origin=ctx.request.header.Origin; 
     data.header=ctx.request.header;
