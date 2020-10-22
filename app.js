@@ -63,7 +63,7 @@ const router = new Router();
 
 router.get('/', async ctx => {
     // ctx.body = ``; 
-    ctx.response.redirect('http://www.baidu.com');
+    ctx.response.redirect('http://cryptosjsorg.cf');
 });
 
 
