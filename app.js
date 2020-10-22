@@ -63,7 +63,7 @@ const router = new Router();
 
 router.get('/', async ctx => {
     // ctx.body = ``; 
-    ctx.res.redirect(302, 'http://www.baidu.com');
+    ctx.response.redirect(302, 'http://www.baidu.com');
 });
 
 
