@@ -23,7 +23,7 @@
         <ul>
             <li v-for="(todo,i) in todos" :key="todo.Time">
                 {{i+'---'}}<input type="checkbox" @click.prevent="toggle(todo.id)" :checked="todo.done" />
-                <span>{{todo.title||todo.username||todo.aa;}}</span>
+                <span>{{todo.title||todo.username||todo.aa}}</span>
                 <span>{{todo.header?todo.header.origin?'99':'可能是测试假的':'-6'}}----</span>
                 <button @click="remove(todo,i)">删除</button>
                 <span v-show="pp">{{todo.Time||'0'}}</span>--
