@@ -4,8 +4,14 @@ let transporter = nodemailer.createTransport({
     // service: 'qq', //类型qq邮箱
     // port: 465,
     // secure: true, // true for 465, false for other ports
-    host : 'smtp.sina.com',
-    secureConnection: true, // 使用SSL方式（安全方式，防止被窃取信息）
+
+    // host : 'smtp.sina.com',
+    // secureConnection: true, // 使用SSL方式（安全方式，防止被窃取信息）
+    
+    host: 'smtp.qq.com',
+    secureConnection: true, // use SSL
+    port: 465,
+    secure: true, // secure:true for port 465, secure:false for port 587
     auth: {
         user: '1162212711@qq.com', // 发送方的邮箱
         pass: 'zgcrkvlhymguhahg' // smtp 的授权码
@@ -35,6 +41,8 @@ function sendMail(mail, code, call) {
 
     //发送函数
     transporter.sendMail(mailOptions, (error, info) => {
+        console.log(error, info);
+        
         if (error) {
             call(false)
         } else {
