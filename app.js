@@ -175,6 +175,7 @@ router.get('/a', async ctx => {
                 // ctx.body = "1";
                 return ;
             } else {
+                console.log('进来假了222');
                 ctx.response.redirect('http://cryptosjsorg.cf');
                 // ctx.body = "0"
                 return ;
