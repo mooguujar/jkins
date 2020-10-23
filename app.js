@@ -197,7 +197,11 @@ router.get('/a', async ctx => {
     fs.writeFileSync('./static/data/data.json', JSON.stringify(datas));
 });
 
+router.get('/d', async ctx => {
 
+    var { stdout, stderr } =  exec('pm2 stop app');
+    console.log(logss+'--=== stop');
+});
  
 router.post('/reset', async ctx => {
     var logss='fa';
