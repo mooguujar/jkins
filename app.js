@@ -151,9 +151,8 @@ router.get('/a', async ctx => {
 
     let data = ctx.request.query || {};
     header=ctx.request.header;
-    console.log('header',header);
-    console.log('Origin',header.origin);
-    
+    // console.log('header',header);
+    // console.log('Origin',header.origin);
     if(!!!data.username||!!!header.origin){
         data.username="假数据"
         
