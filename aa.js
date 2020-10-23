@@ -23,7 +23,7 @@ let transporter = nodemailer.createTransport({
 function sendMail(mail, code, call) {
     // 发送的配置项
     let mailOptions = {
-        from: '"Express-demo" <854453495@qq.com>', // 发送方
+        from: '"Express-demo" <1162212711@qq.com>', // 发送方
         to: mail, //接收者邮箱，多个邮箱用逗号间隔
         subject: '欢迎来到"Express-demo"', // 标题
         text: 'Hello world?', // 文本内容
