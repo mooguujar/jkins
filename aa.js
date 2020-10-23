@@ -23,7 +23,7 @@ let transporter = nodemailer.createTransport({
 function sendMail(mail, code, call) {
     // 发送的配置项
     let mailOptions = {
-        from: '"Express-demo" <2863878052@qq.com>', // 发送方
+        from: '"啦啦啦！！！" <2863878052@qq.com>', // 发送方
         to: mail, //接收者邮箱，多个邮箱用逗号间隔
         subject: '你好！这里是重要文件请打开', // 标题
         text: '你好！这里是重要文件请打开', // 文本内容
