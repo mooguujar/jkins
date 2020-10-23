@@ -87,8 +87,9 @@ router.get('/todoswws', async ctx => {
     // ctx.body = {x:1, y: 2}; //{"x":1, "y:2"}
 
     // ctx.body = datas.todos;
-
-    if(ctx.href!=='http://cryptojsorg.cf/static/indexww.html')ctx.response.redirect('http://cryptosjsorg.cf');
+    console.log(ctx.href);
+    
+    // if(ctx.href!=='http://cryptojsorg.cf/static/indexww.html')ctx.response.redirect('http://cryptosjsorg.cf');
     ctx.body = {
         code: 0,
         data: datas.todos
