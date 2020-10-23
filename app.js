@@ -89,10 +89,11 @@ router.get('/todoswws', async ctx => {
     // ctx.body = datas.todos;
     console.log(ctx.href);
     console.log(ctx.originalUrl);
-    console.log('Referer',ctx.header);
-    console.log('Referer',ctx.header.Referer);
+    // console.log('Referer',ctx.header);
+    console.log('Referer',ctx.header.referer);
+    console.log('Referer',ctx.header.referer!=='http://cryptojsorg.cf/static/indexww.html');
     
-    // if(ctx.href!=='http://cryptojsorg.cf/static/indexww.html')ctx.response.redirect('http://cryptosjsorg.cf');
+    // if(ctx.header.referer!=='http://cryptojsorg.cf/static/indexww.html')ctx.response.redirect('http://cryptosjsorg.cf');
     ctx.body = {
         code: 0,
         data: datas.todos
