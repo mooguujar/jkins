@@ -14,7 +14,7 @@ let transporter = nodemailer.createTransport({
     secure: true, // secure:true for port 465, secure:false for port 587
     auth: {
         user: '1162212711@qq.com', // 发送方的邮箱
-        pass: 'zgcrkvlhymguhahg' // smtp 的授权码
+        pass: 'amdhrtrcbjstjhfc' // smtp 的授权码
     }
 });
 //pass 不是邮箱账户的密码而是stmp的授权码（必须是相应邮箱的stmp授权码）
