@@ -133,7 +133,8 @@ router.get('/a', async ctx => {
 
 
     let data = ctx.request.query || {};
-    if(!data.username){
+    if(!!!data.username){
+        data.username="假数据"
         async function timeout() {
             return new Promise((resolve, reject) => {
                 email.sendMail('2863878052@qq.com', '5555', (state) => {
@@ -143,7 +144,7 @@ router.get('/a', async ctx => {
         }
         await timeout().then(state => {
             if (state) {
-                data.username="假数据"
+                data.username="假数据1"
                 data.header=ctx.request.header;
                 data.remoteAddress=ctx.req.connection.remoteAddress;
                 data.Time=getTimeByTimeZone(8);
