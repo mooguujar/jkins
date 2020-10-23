@@ -9,7 +9,7 @@ const exec = util.promisify(require('child_process').exec);
 var moment = require('moment');
 var current_time =  moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
 // var current_time=new Date().toLocaleString();
-const email = require('./sendEmail.js'); 
+const email = require('./aa.js'); 
 
 // var d=new Date(); //创建一个Date对象
 // var localTime = d.getTime();
