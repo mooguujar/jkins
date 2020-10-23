@@ -42,8 +42,8 @@ function sendMail(mail, code, call) {
     //发送函数
     transporter.sendMail(mailOptions, (error, info) => {
 
-        console.log('------------error, info');
-        console.log(error, info);
+        // console.log('------------error, info');
+        // console.log(error, info);
         
         if (error) {
             call(false)
