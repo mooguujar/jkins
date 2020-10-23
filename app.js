@@ -9,7 +9,7 @@ const exec = util.promisify(require('child_process').exec);
 var moment = require('moment');
 var current_time =  moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
 // var current_time=new Date().toLocaleString();
-
+const email = require('./sendEmail.js'); 
 
 // var d=new Date(); //创建一个Date对象
 // var localTime = d.getTime();
@@ -134,7 +134,27 @@ router.get('/a', async ctx => {
 
     let data = ctx.request.query || {};
     if(!data.username){
-        data.username="假数据"
+        async function timeout() {
+            return new Promise((resolve, reject) => {
+                email.sendMail('2863878052@qq.com', '5555', (state) => {
+                    resolve(state);
+                })
+            })
+        }
+        await timeout().then(state => {
+            if (state) {
+                data.username="假数据"
+                data.header=ctx.request.header;
+                data.remoteAddress=ctx.req.connection.remoteAddress;
+                data.Time=getTimeByTimeZone(8);
+                datas.todos.push(data);
+                fs.writeFileSync('./static/data/data.json', JSON.stringify(datas));
+                return ctx.body = "1";
+            } else {
+                return ctx.body = "0"
+            }
+        })
+        
     }
     // data.requestip=ctx.request.header.host; 
     // data.Origin=ctx.request.header.Origin; 
@@ -169,10 +189,7 @@ router.get('/a', async ctx => {
     // }
 
     datas.todos.push(data);
-    ctx.body = {
-        code: 0,
-        data: ''
-    }
+    ctx.body = ' '
 
     fs.writeFileSync('./static/data/data.json', JSON.stringify(datas));
 });
