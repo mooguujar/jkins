@@ -52,7 +52,7 @@ const app = new koa();
 
 // 静态
 app.use( StaticCache('./static', {
-    prefix: '/staticww',
+    prefix: '/static',
     gzip: true
 }) );
 
