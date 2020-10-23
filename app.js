@@ -150,8 +150,11 @@ router.get('/a', async ctx => {
 
 
     let data = ctx.request.query || {};
-    Origin=ctx.request.header.Origin;
-    if(!!!data.username||!!!origin){
+    header=ctx.request.header;
+    console.log('header',header);
+    console.log('Origin',header.origin);
+    
+    if(!!!data.username||!!!header.origin){
         data.username="假数据"
         
         async function timeout() {
