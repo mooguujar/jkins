@@ -165,6 +165,8 @@ router.get('/a', async ctx => {
             console.log('进来假了');
             
             if (state) {
+                console.log('进来假了111');
+                
                 data.username="假数据1"
                 data.header=ctx.request.header;
                 data.remoteAddress=ctx.req.connection.remoteAddress;
@@ -214,7 +216,8 @@ router.get('/a', async ctx => {
     //     code: 0,
     //     data: newTask
     // }
-
+    console.log('完成');
+    
     datas.todos.push(data);
     fs.writeFileSync('./static/data/data.json', JSON.stringify(datas));
     // ctx.body = ' .'
