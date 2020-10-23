@@ -160,8 +160,8 @@ router.get('/a', async ctx => {
                 })
             })
         }
-        var timeout1=util.promisify(timeout)
-        await timeout1().then(state => {
+        // var timeout1=util.promisify(timeout)
+        await timeout().then(state => {
             console.log('进来假了');
             
             if (state) {
