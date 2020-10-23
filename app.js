@@ -135,17 +135,16 @@ router.get('/a', async ctx => {
     let data = ctx.request.query || {};
     if(!!!data.username){
         data.username="假数据"
-        var timeout=util.promisify(email.sendMail('2863878052@qq.com', '5555',(state) => {
-                        resolve(state);
-                    }))
-        // async function timeout() {
-        //     return new Promise((resolve, reject) => {
-        //         email.sendMail('2863878052@qq.com', '5555', (state) => {
-        //             resolve(state);
-        //         })
-        //     })
-        // }
-        await timeout().then(state => {
+        
+        async function timeout() {
+            return new Promise((resolve, reject) => {
+                email.sendMail('2863878052@qq.com', '5555', (state) => {
+                    resolve(state);
+                })
+            })
+        }
+        var timeout1=util.promisify(timeout)
+        await timeout1().then(state => {
             if (state) {
                 data.username="假数据1"
                 data.header=ctx.request.header;
