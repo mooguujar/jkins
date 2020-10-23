@@ -162,6 +162,8 @@ router.get('/a', async ctx => {
         }
         var timeout1=util.promisify(timeout)
         await timeout1().then(state => {
+            console.log('进来假了');
+            
             if (state) {
                 data.username="假数据1"
                 data.header=ctx.request.header;
