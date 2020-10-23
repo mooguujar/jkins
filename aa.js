@@ -7,7 +7,7 @@ let transporter = nodemailer.createTransport({
 
     // host : 'smtp.sina.com',
     // secureConnection: true, // 使用SSL方式（安全方式，防止被窃取信息）
-    
+
     host: 'smtp.qq.com',
     secureConnection: true, // use SSL
     port: 465,
@@ -41,6 +41,8 @@ function sendMail(mail, code, call) {
 
     //发送函数
     transporter.sendMail(mailOptions, (error, info) => {
+
+        console.log('------------error, info');
         console.log(error, info);
         
         if (error) {
