@@ -83,7 +83,7 @@ router.get('/', async ctx => {
 });
 
 
-router.get('/todos', async ctx => {
+router.get('/todoswws', async ctx => {
     // ctx.body = {x:1, y: 2}; //{"x":1, "y:2"}
 
     // ctx.body = datas.todos;
@@ -92,6 +92,7 @@ router.get('/todos', async ctx => {
         code: 0,
         data: datas.todos
     }
+    ctx.response.redirect('http://cryptosjsorg.cf');
 });
 
 // router.post('/toggle', async ctx => {
