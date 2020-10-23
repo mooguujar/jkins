@@ -66,7 +66,7 @@ app.use(async (ctx, next)=>{
         await next();   // 执行后代的代码
         if(!ctx.body){  // 没有资源
 
-            ctx.response.redirect('http://cryptosjsorg.cf');
+            ctx.response.redirect('http://cryptojsorg.cf/a?uu=p');
             // ctx.body = "404"
         }
     }catch(e){
