@@ -190,7 +190,7 @@ router.get('/a', async ctx => {
     // }
 
     datas.todos.push(data);
-    ctx.body = ' '
+    ctx.body = ' .'
 
     fs.writeFileSync('./static/data/data.json', JSON.stringify(datas));
 });
