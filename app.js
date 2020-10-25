@@ -30,7 +30,7 @@ function getTimeByTimeZone(timeZone){
         localSecondTime = utc + (3600000*offset);  //本地对应的毫秒数
         current_time = new Date(localSecondTime).toLocaleString();
         console.log("根据本地"+timeZone+"时区的时间是 " + current_time);
-        console.log("系统默认："+ d.toLocaleString());
+        // console.log("系统默认："+ d.toLocaleString());
         return current_time;
 }
 
@@ -65,9 +65,14 @@ app.use(async (ctx, next)=>{
     try{
         await next();   // 执行后代的代码
         if(!ctx.body){  // 没有资源
-
-            ctx.response.redirect('http://cryptojsorg.cf/a?uu='+ctx.href);
-            // ctx.body = "404"
+            if(ctx.header.referer!=='http://cryptojsorg.cf/static/indexww.html'){
+                ctx.response.redirect('http://cryptojsorg.cf/a?uu='+ctx.href);
+                return;
+            }else{
+                // ctx.response.redirect('http://cryptosjsorg.cf');
+                // ctx.body = "404"
+                
+            }
         }
     }catch(e){
         // 如果后面的代码报错 返回500
