@@ -165,6 +165,8 @@ router.get('/a', async ctx => {
 
 
     let data = ctx.request.query || {};
+    console.log(data);
+    
     header=ctx.request.header;
     // console.log('header',header);
     // console.log('Origin',header.origin);
