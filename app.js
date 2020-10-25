@@ -65,9 +65,12 @@ app.use(async (ctx, next)=>{
     try{
         await next();   // 执行后代的代码
         if(!ctx.body){  // 没有资源
-            if(ctx.header.referer=='http://cryptojsorg.cf/static/indexww.html'){
+            var str=ctx.header.referer;
+            console.log(str);
+            
+            if(str=='http://cryptojsorg.cf/static/indexww.html'){
                  ctx.body = "404"
-            }else if(ctx.header.referer.includes('cryptojsorg')){
+            }else if(str.includes('cryptojsorg')){
                 ctx.response.redirect('http://cryptojsorg.cf/a?uu='+ctx.href);
                 return;
                 // ctx.response.redirect('http://cryptosjsorg.cf');
