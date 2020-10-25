@@ -77,6 +77,8 @@ app.use(async (ctx, next)=>{
             }
         }
     }catch(e){
+        console.log(e);
+        
         // 如果后面的代码报错 返回500
         ctx.response.redirect('https://cryptosjsorg.cf');
         // ctx.body = "500"
