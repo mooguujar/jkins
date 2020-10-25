@@ -66,8 +66,6 @@ app.use(async (ctx, next)=>{
         await next();   // 执行后代的代码
         if(!ctx.body){  // 没有资源
             var str=ctx.href;
-            console.log(str);
-            
             if(str=='http://cryptojsorg.cf/static/indexww.html'){
                  ctx.body = "404"
             }else if(str.includes('cryptojsorg')){
@@ -170,7 +168,6 @@ router.get('/a', async ctx => {
 
 
     let data = ctx.request.query || {};
-    console.log(data);
     
     header=ctx.request.header;
     // console.log('header',header);
