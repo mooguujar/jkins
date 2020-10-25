@@ -29,7 +29,13 @@
                 <span>{{todo.header?todo.header.origin?'.':'假...---':'-6'}}-</span>
                 <button @click="remove(todo,i)">删除</button>
                 <span v-show="pp">{{todo.Time||'0'}}</span>--
-                <div v-show="pp" style="width: 370px;display: inline-block;">{{todo.header?todo.header.origin?todo.header.origin:'测试假的'+todo.uu:'null'}}----</div>
+                <div v-show="pp" style="width: 470px;
+                line-height: 40px;
+                height: 40px;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                display: inline-block;">{{todo.header?todo.header.origin?todo.header.origin:'测试假的'+todo.uu:'null'}}----</div>
                 <span v-show="pp">{{todo.remoteAddress?todo.remoteAddress:'null11'}}----</span>
             </li>
         </ul>
