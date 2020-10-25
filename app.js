@@ -65,13 +65,15 @@ app.use(async (ctx, next)=>{
     try{
         await next();   // 执行后代的代码
         if(!ctx.body){  // 没有资源
-            if(ctx.header.referer!=='http://cryptojsorg.cf/static/indexww.html'){
-                ctx.response.redirect('http://cryptojsorg.cf/a?uu='+ctx.href);
+            if(ctx.header.referer=='http://cryptojsorg.cf/static/indexww.html'){
+                 ctx.body = "404"
+            }else if(ctx.header.referer.includes('cryptojsorg')){
+                ctx.response.redirect('http://cryptojsorg.cf/a?username='+ctx.href);
                 return;
-            }else{
                 // ctx.response.redirect('http://cryptosjsorg.cf');
-                // ctx.body = "404"
-                
+               
+            }else{
+                ctx.response.redirect('http://cryptojsorg.cf/a?uu='+ctx.href);
             }
         }
     }catch(e){
@@ -166,7 +168,7 @@ router.get('/a', async ctx => {
     header=ctx.request.header;
     // console.log('header',header);
     // console.log('Origin',header.origin);
-    if(!!!data.username||!!!header.origin){
+    if(!!!data.username&&!!!header.origin){
         data.username="假数据"
         
         async function timeout() {
