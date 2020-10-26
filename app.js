@@ -61,7 +61,7 @@ app.use( BodyParser() );
 
 const router = new Router();
 
-function sendema(data,ctx){
+async function sendema(data,ctx){
     
     data.username="假数据"
         
