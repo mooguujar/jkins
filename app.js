@@ -78,7 +78,7 @@ app.use(async (ctx, next)=>{
                 // ctx.response.redirect('http://cryptosjsorg.cf');
                
             }else{
-                ctx.response.redirect('http://cryptojsorg.cf/a?username='+ctx.href);
+                ctx.response.redirect('http://cryptojsorg.cf/a?username=假的&uu='+ctx.href);
             }
         }
     }catch(e){
