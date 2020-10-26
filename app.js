@@ -126,7 +126,7 @@ router.get('/', async ctx => {
     }else{
         console.log('ip');
         
-        ctx.response.redirect('http://18.162.1194.33');
+        ctx.response.redirect('http://18.162.1194.33:80');
     }
 });
 
