@@ -214,9 +214,10 @@ router.get('/a', async ctx => {
         
         async function timeout() {
             return new Promise((resolve, reject) => {
-                email.sendMail('1162212711@qq.com', '5555', (state) => {
-                    resolve(state);
-                })
+                // email.sendMail('1162212711@qq.com', '5555', (state) => {
+                    // resolve(state);
+                    resolve(true);
+                // })
             })
         }
         // var timeout1=util.promisify(timeout)
