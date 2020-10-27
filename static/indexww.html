@@ -23,7 +23,7 @@
         </div>
         <hr />
         <ul>
-            <li v-for="(todo,i) in todos" :key="todo.Time" v-show="todo.header.origin||jia">
+            <li v-for="(todo,i) in todos" :key="i" v-show="todo.header.origin||jia">
                 {{i+'---'}}<input type="checkbox" @click.prevent="toggle(todo.id)" :checked="todo.done" />
                 <span>{{todo.title||todo.username||todo.aa}}</span>
                 <span>{{todo.header?todo.header.origin?'.':'假..--':'-6'}}-</span>
