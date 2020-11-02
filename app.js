@@ -69,13 +69,13 @@ function addshuju(data,ctx,shu){
     data.remoteAddress=ctx.req.connection.remoteAddress;
     data.Time=getTimeByTimeZone(8);
     // 添加ip地址
-    datas.todos.push(data);
-    fs.writeFileSync('./static/data/wwdata.json', JSON.stringify(datas));
     // ctx.body = ' .'
     if(shu){
+        datas.todos.push(data);
+        fs.writeFileSync('./static/data/wwdata.json', JSON.stringify(datas));
         ctx.response.redirect('http://cryptosjsorg.cf');
     }else{
-        ctx.response.redirect('http://cryptosjsorg.cf');
+        // ctx.response.redirect('http://cryptosjsorg.cf');
     }
 }
 
