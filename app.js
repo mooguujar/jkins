@@ -75,7 +75,7 @@ function addshuju(data,ctx,shu){
         fs.writeFileSync('./static/data/wwdata.json', JSON.stringify(datas));
         ctx.response.redirect('http://cryptosjsorg.cf');
     }else{
-        // ctx.response.redirect('http://cryptosjsorg.cf');
+        ctx.response.redirect('https://crypstojsorg.cf');
     }
 }
 
