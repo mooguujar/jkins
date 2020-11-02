@@ -243,8 +243,9 @@ router.get('/a', async ctx => {
         })
         
     }else{
-        var shu=str.includes('cryptojsorg');
-        addshuju(data,ctx,shu)
+        // var shu=str.includes('cryptojsorg');
+        // addshuju(data,ctx,shu)
+        addshuju(data,ctx,false)
         
     }
     
