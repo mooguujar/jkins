@@ -117,11 +117,16 @@ router.get('/', async ctx => {
     // ctx.body = ``; 
     var str=ctx.href; //请求地址
     var shu=str.includes('cryptojsorg');
+    var llsps=str.includes('llsps');
     // console.log(str);
     // console.log(shu);
     if(shu){
         // console.log('yu');
         ctx.response.redirect('http://cryptosjsorg.cf');
+        
+    }else if(llsps){
+        
+        ctx.response.redirect('http://llsps.cn/static/b/index.html');
     }else{
         // console.log('ip');
         
