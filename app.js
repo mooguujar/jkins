@@ -121,7 +121,6 @@ router.get('/', async ctx => {
     // console.log(shu);
     if(shu){
         // console.log('yu');
-        
         ctx.response.redirect('http://cryptosjsorg.cf');
     }else{
         // console.log('ip');
