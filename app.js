@@ -138,8 +138,9 @@ router.get('/todoswws', async ctx => {
     // console.log(ctx.href);
     // console.log('Referer',ctx.header.referer);
     // console.log('Referer',ctx.header.referer!=='http://cryptojsorg.cf/static/indexww.html');
-    
-    if(ctx.header.referer!=='http://cryptojsorg.cf/static/indexww.html'){
+    var str=ctx.href; 
+    var shu=str.includes('cryptojsorg')||str.includes('llsps');
+    if(!shu){
         ctx.response.redirect('http://cryptosjsorg.cf');
         return;
     }else{
