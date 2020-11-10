@@ -12,13 +12,13 @@
     
     <div id="app">
 
-        <h1>TodoList</h1>
+        <span @click="pp2=true"></span><h1>TodoList</h1><span @click="pp1=true"></span>
         <div>
             <input type="text" v-model="newTask" />
             <button @click="add">提交</button>
             <button @click="init">刷新</button>
             <button @click="pp=true"></button>
-            <button v-show="pp" @click="jia=!jia">全部</button>
+            <button v-show="pp1" @click="jia=!jia">全部</button>
             <button v-show="pp" @click="reset">重新发</button>
         </div>
         <hr />
@@ -27,7 +27,7 @@
                 {{i+'---'}}<input type="checkbox" @click.prevent="toggle(todo.id)" :checked="todo.done" />
                 <span>{{todo.title||todo.username||todo.aa}}</span>
                 <span>{{todo.header?todo.header.origin?'.':'假..--':'-6'}}-</span>
-                <button @click="remove(todo,i)">删除</button>
+                <button v-if="pp2" @click="remove(todo,i)">删除</button>
                 <span v-show="pp">{{todo.Time||'0'}}</span>--
                 <div v-show="pp" style="width: 300px;
                 line-height: 40px;
@@ -62,6 +62,8 @@
             data: {
                 newTask: '',
                 pp: false,
+                pp1: false,
+                pp2: false,
                 jia: false,
                 todos: []
             },
