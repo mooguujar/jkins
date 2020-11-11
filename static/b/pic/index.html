@@ -1,0 +1,141 @@
+<!doctype html>
+<html >
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>相册</title>
+
+<link type="text/css" rel="stylesheet" href="css/css.css"></link>
+
+</head>
+
+<body>
+
+<!-- 代码 开始 -->
+
+<div id="content">
+
+    <div class="mygallery clearfix">
+
+	<div class="tn3 album">
+
+	    <h4>Fixed Dimensions</h4>
+
+	    <div class="tn3 description">Images with fixed dimensions</div>
+
+	    <div class="tn3 thumb">images/35x35/1.jpg</div>
+
+	    <ol>
+
+		<li>
+		    <h4>相册</h4>
+		    <div class="tn3 description">相册</div>
+		    <a href="images/ad.png">
+			<img  src="images/ad.png" />
+		    </a>
+		</li>
+		<li>
+		    <h4>相册</h4>
+		    <div class="tn3 description">相册</div>
+		    <a href="images/h.png">
+			<img  src="images/h.png" />
+		    </a>
+		</li>
+
+
+	    </ol>
+
+	</div>
+
+    </div>
+
+</div>
+<script src="js/jQuery.js"></script>
+
+<script src="js/jquery.tn3lite.min.js"></script>
+
+<script>
+function getUrlParam(name) {
+ var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+ var r = window.location.search.substr(1).match(reg); //匹配目标参数
+ if (r != null) return unescape(r[2]); return null; //返回参数值
+}
+$(document).ready(function() {
+
+	var tn1 = $('.mygallery').tn3({
+
+		skinDir:"skins",
+
+		imageClick:"fullscreen",
+
+		image:{
+
+		maxZoom:1.5,
+
+		crop:true,
+
+		clickEvent:"dblclick",
+
+		transitions:[{
+
+		type:"blinds"
+
+		},{
+
+		type:"grid"
+
+		},{
+
+		type:"grid",
+
+		duration:460,
+
+		easing:"easeInQuad",
+
+		gridX:1,
+
+		gridY:8,
+
+		// flat, diagonal, circle, random
+
+		sort:"random",
+
+		sortReverse:false,
+
+		diagonalStart:"bl",
+
+		// fade, scale
+
+		method:"scale",
+
+		partDuration:360,
+
+		partEasing:"easeOutSine",
+
+		partDirection:"left"
+
+		}]
+
+		}
+
+	});
+
+});
+$(function(){
+	var xx =Number(getUrlParam('p'))||0;
+	setTimeout(function(){
+		$(".tn3-thumbs li")[xx].click();
+	},500)
+}); 
+</script>
+
+<!-- 代码 结束 -->
+
+
+
+</body>
+
+</html>
+

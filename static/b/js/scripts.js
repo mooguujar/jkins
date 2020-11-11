@@ -86,6 +86,11 @@ var appMaster = {
             $('.filter a').removeClass('active');
             $(this).addClass('active');
         });
+        $('.js-filter-item').on('click', function() {
+            $('.filtering').slickFilter('.item');
+            $('.filter a').removeClass('active');
+            $(this).addClass('active');
+        });
         
         $('.js-filter-one').on('click', function() {
             $('.filtering').slickFilter('.one');
