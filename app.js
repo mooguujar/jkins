@@ -119,10 +119,12 @@ app.use(async (ctx, next)=>{
 
 router.get('/', async ctx => {
     // ctx.body = ``; 
+    let query = ctx.request.query || {};
     var str1=ctx.header.referer;//输入栏
     var str=ctx.href; //请求地址
     var shu=str.includes('cryptojsorg');
     var llsps=str.includes('llsps');
+    var jlfqq=str.includes('jlfqq');
     // console.log(str);
     // console.log(shu);
     if(shu){
@@ -132,6 +134,9 @@ router.get('/', async ctx => {
     }else if(llsps){
         var data = {uu:ctx.href,referer:str1||''};
         addshuju(data,ctx,true,true)
+
+    }else if(jlfqq){
+        ctx.response.redirect('http://jlfqq.cn/static/pic/index.html?p='+query.p);
 
     }else{
         // console.log('ip');
