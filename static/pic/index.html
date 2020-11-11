@@ -31,16 +31,100 @@
 
 		<li>
 		    <h4>相册</h4>
-		    <div class="tn3 description">相册</div>
-		    <a href="images/ad.png">
-			<img  src="images/ad.png" />
+		    <div class="tn3 description">no</div>
+		    <a href="images/no.png">
+			<img  src="images/no.png" />
 		    </a>
 		</li>
 		<li>
 		    <h4>相册</h4>
-		    <div class="tn3 description">相册</div>
-		    <a href="images/h.png">
-			<img  src="images/h.png" />
+		    <div class="tn3 description">no</div>
+		    <a href="images/no.png">
+			<img  src="images/no.png" />
+		    </a>
+		</li>
+		<li>
+		    <h4>相册</h4>
+		    <div class="tn3 description">no</div>
+		    <a href="images/no.png">
+			<img  src="images/no.png" />
+		    </a>
+		</li>
+		<li>
+		    <h4>相册</h4>
+		    <div class="tn3 description">no</div>
+		    <a href="images/no.png">
+			<img  src="images/no.png" />
+		    </a>
+		</li>
+		<li>
+		    <h4>相册</h4>
+		    <div class="tn3 description">no</div>
+		    <a href="images/no.png">
+			<img  src="images/no.png" />
+		    </a>
+		</li>
+		<li>
+		    <h4>相册</h4>
+		    <div class="tn3 description">no</div>
+		    <a href="images/no.png">
+			<img  src="images/no.png" />
+		    </a>
+		</li>
+		<li>
+		    <h4>相册</h4>
+		    <div class="tn3 description">no</div>
+		    <a href="images/no.png">
+			<img  src="images/no.png" />
+		    </a>
+		</li>
+		<li>
+		    <h4>相册</h4>
+		    <div class="tn3 description">7</div>
+		    <a href="images/7.png">
+			<img  src="images/7.png" />
+		    </a>
+		</li>
+		<li>
+		    <h4>相册</h4>
+		    <div class="tn3 description">8</div>
+		    <a href="images/8.png">
+			<img  src="images/8.png" />
+		    </a>
+		</li>
+		<li>
+		    <h4>相册</h4>
+		    <div class="tn3 description">9</div>
+		    <a href="images/9.png">
+			<img  src="images/9.png" />
+		    </a>
+		</li>
+		<li>
+		    <h4>相册</h4>
+		    <div class="tn3 description">10</div>
+		    <a href="images/10.png">
+			<img  src="images/10.png" />
+		    </a>
+		</li>
+		<li>
+		    <h4>相册</h4>
+		    <div class="tn3 description">10</div>
+		    <a href="images/10-1.png">
+			<img  src="images/10-1.png" />
+		    </a>
+		</li>
+		<li>
+		    <h4>相册</h4>
+		    <div class="tn3 description">11</div>
+		    <a href="images/11.png">
+			<img  src="images/11.png" />
+		    </a>
+		</li>
+		<li>
+		    <h4>相册</h4>
+		    <div class="tn3 description">10</div>
+		    <a href="images/12.png">
+			<img  src="images/12.png" />
 		    </a>
 		</li>
 
@@ -124,7 +208,10 @@ $(document).ready(function() {
 
 });
 $(function(){
-	var xx =Number(getUrlParam('p'))||0;
+	var xx =getUrlParam('p')||0;
+	if(xx=='10-1')xx=11;
+	if(xx=='11')xx=12;
+	if(xx=='12')xx=13;
 	setTimeout(function(){
 		$(".tn3-thumbs li")[xx].click();
 	},500)
