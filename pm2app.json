@@ -1,0 +1,14 @@
+{
+    "apps": [
+        {
+            "name": "pm2app",  
+            "script": "./app.js", 
+            "env": {
+                "port": "8080", 
+                "host": "59.111.181.38" 
+            },
+            "instances": 0,
+            "autorestart": true   
+        }
+    ]
+}
