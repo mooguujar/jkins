@@ -5,7 +5,7 @@
             "script": "./app.js", 
             "env": {
                 "port": "8080", 
-                "host": "59.111.181.38" 
+                "host": "39.103.186.106" 
             },
             "instances": 0,
             "autorestart": true   
