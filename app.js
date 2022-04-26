@@ -97,7 +97,7 @@ app.use(async (ctx, next)=>{
             // console.log(str);
             // console.log('str1',str1);
 
-            // console.log('访问',str1);
+            // console.log('访问',str1);//
 
             if(str1=='http://cryptojsorg.cf/static/indexww.html'){
                  ctx.body = "404"
