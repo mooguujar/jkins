@@ -63,7 +63,7 @@ app.use( BodyParser() );
 
 const router = new Router();
 
-function addshuju(data,ctx,shu,domain){
+function addshuju(data,ctx,shu,isdomain){
     // data.requestip=ctx.request.header.host; 
     // data.Origin=ctx.request.header.Origin; 
     data.header=ctx.request.header;
@@ -72,13 +72,16 @@ function addshuju(data,ctx,shu,domain){
     data.Time=getTimeByTimeZone(8);
     // 添加ip地址
     // ctx.body = ' .'
-    console.log('写入数据',data.remoteAddress);
+    console.log('写入数据',data,data.remoteAddress);
     
     datas.todos.push(data);
     fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
     if(shu){//是否是正常的访问
-        if(domain){
-            ctx.response.redirect(ctx.href||ctx.request.header.host+'static/b/index.html');
+        if(isdomain){
+            console.log(ctx.href||ctx.request.header.host+'static/b/index.html');
+            console.log(ctx.href+'static/b/index.html');
+            
+            ctx.response.redirect(ctx.href+'static/b/index.html');
         }else{
             ctx.response.redirect('http://cryptosjsorg.cf');
         }
