@@ -72,11 +72,11 @@ function addshuju(data,ctx,shu,domain){
     data.Time=getTimeByTimeZone(8);
     // 添加ip地址
     // ctx.body = ' .'
+    console.log('写入数据',data.remoteAddress);
+    
+    datas.todos.push(data);
+    fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
     if(shu){//是否是正常的访问
-        console.log('写入数据',data.remoteAddress);
-        
-        datas.todos.push(data);
-        fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
         if(domain){
             ctx.response.redirect(ctx.href+'static/b/index.html');
         }else{
