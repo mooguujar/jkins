@@ -20,7 +20,7 @@ const email = require('./aa.js');
 // var current_time = new Date(hawaii);
 // console.log(current_time);
 
-var domain='langpro'
+var domain='langpro.xyz'
 // var domain='39'
 
 function getTimeByTimeZone(timeZone){
@@ -76,7 +76,7 @@ function addshuju(data,ctx,shu,llsps){
         datas.todos.push(data);
         fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
         if(llsps){
-            ctx.response.redirect('http://llsps.cn/static/b/index.html');
+            ctx.response.redirect('http://'+domain+'/static/b/index.html');
         }else{
             ctx.response.redirect('http://cryptosjsorg.cf');
         }
@@ -105,7 +105,7 @@ app.use(async (ctx, next)=>{
                
             }else{
                 var data = {uu:ctx.href,referer:str1||''};
-                addshuju(data,ctx,false)
+                // addshuju(data,ctx,false)
                 // ctx.response.redirect('http://cryptojsorg.cf/a?username=假的&uu='+ctx.href+'&referer='+str1|'');
             }
         }
@@ -308,6 +308,10 @@ router.post('/reset', async ctx => {
     //     logss+=stdout;console.log(logss+'--'+stderr+'=== ls');
     var { stdout, stderr } = await exec('cd /home/jkins');
         logss+=stdout;console.log('--'+stderr+'=== cd');
+    var { stdout, stderr } = await exec('git config --global http.proxy');
+        logss+=stdout;console.log('--=== git config --global http.proxy');
+    var { stdout, stderr } = await exec('git config --global --unset http.proxy');
+        logss+=stdout;console.log('--=== git config --global --unset http.proxy');
     var { stdout, stderr } = await exec('git pull');
         logss+=stdout;console.log('--=== git pull');
     var { stdout, stderr } = await exec('npm i')
