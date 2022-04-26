@@ -95,7 +95,7 @@ app.use(async (ctx, next)=>{
             var str1=ctx.header.referer;//输入栏
             // console.log(str);
             // console.log('str1',str1);
-            
+
             console.log('访问',str1);
 
             if(str1=='http://cryptojsorg.cf/static/indexww.html'){
@@ -133,6 +133,8 @@ router.get('/', async ctx => {
     var jlfqq=str.includes('jlfqq');
     // console.log(str);
     // console.log(shu);
+
+    console.log('访问/',str1);
     if(shu){
         // console.log('yu');
         ctx.response.redirect('http://cryptosjsorg.cf');
