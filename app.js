@@ -168,27 +168,27 @@ router.get('/todoswws', async ctx => {
     }
 });
 
-// router.post('/toggle', async ctx => {
-//     let id = ctx.request.body.id || 0;
+router.post('/toggle', async ctx => {
+    let id = ctx.request.body.id || 0;
 
-//     if (!id) {
-//         ctx.body = {
-//             code: 1,
-//             data: '请传入id'
-//         }
-//         return;
-//     }
+    if (!id) {
+        ctx.body = {
+            code: 1,
+            data: '请传入id'
+        }
+        return;
+    }
 
-//     let todo = datas.todos.find( todo => todo.id == id );
-//     todo.done = !todo.done;
+    let todo = datas.todos.find( todo => todo.id == id );
+    todo.done = !todo.done;
 
-//     ctx.body = {
-//         code: 0,
-//         data: todo
-//     }
+    ctx.body = {
+        code: 0,
+        data: todo
+    }
 
-//     fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
-// });
+    fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
+});
 
 router.post('/remove', async ctx => {
     let obj = ctx.request.body || 0;
