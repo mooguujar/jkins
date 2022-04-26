@@ -305,7 +305,7 @@ router.post('/reset', async ctx => {
 
     // var { stdout, stderr } = await exec('ls');
     //     logss+=stdout;console.log(logss+'--'+stderr+'=== ls');
-    var { stdout, stderr } = await exec('cd /data/jkins');
+    var { stdout, stderr } = await exec('cd /home/jkins');
         logss+=stdout;console.log('--'+stderr+'=== cd');
     var { stdout, stderr } = await exec('git pull');
         logss+=stdout;console.log('--=== git pull');
@@ -323,7 +323,7 @@ router.post('/reset', async ctx => {
 
     
         
-    // ss =await child.exec('cd /data/jkins', async function(err, stdout,stderr) {
+    // ss =await child.exec('cd /home/jkins', async function(err, stdout,stderr) {
     //     logss+=stdout;console.log(logss+'--'+stderr+'=== cd');
 
     //     child.exec('git pull', async function(err, stdout,stderr) {
