@@ -72,15 +72,13 @@ function addshuju(data,ctx,shu,isdomain){
     data.Time=getTimeByTimeZone(8);
     // 添加ip地址
     // ctx.body = ' .'
-    console.log('写入数据',data,data.remoteAddress);
-    
+
+    // console.log('写入数据',data,data.remoteAddress);
+
     datas.todos.push(data);
     fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
     if(shu){//是否是正常的访问
         if(isdomain){
-            console.log(ctx.href||ctx.request.header.host+'static/b/index.html');
-            console.log(ctx.href+'static/b/index.html');
-            
             ctx.response.redirect(ctx.href+'static/b/index.html');
         }else{
             ctx.response.redirect('http://cryptosjsorg.cf');
@@ -99,7 +97,7 @@ app.use(async (ctx, next)=>{
             // console.log(str);
             // console.log('str1',str1);
 
-            console.log('访问',str1);
+            // console.log('访问',str1);
 
             if(str1=='http://cryptojsorg.cf/static/indexww.html'){
                  ctx.body = "404"
