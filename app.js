@@ -20,8 +20,8 @@ const email = require('./aa.js');
 // var current_time = new Date(hawaii);
 // console.log(current_time);
 
-var domain='langpro.xyz'
-// var domain='39'
+// var domain='langpro.xyz'
+var domain='/'
 
 function getTimeByTimeZone(timeZone){
     var d=new Date();
