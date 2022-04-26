@@ -20,7 +20,8 @@ const email = require('./aa.js');
 // var current_time = new Date(hawaii);
 // console.log(current_time);
 
-var domain='444cf'
+var domain='langpro'
+// var domain='39'
 
 function getTimeByTimeZone(timeZone){
     var d=new Date();
@@ -155,7 +156,7 @@ router.get('/todoswws', async ctx => {
     // console.log('Referer',ctx.header.referer);
     // console.log('Referer',ctx.header.referer!=='http://cryptojsorg.cf/static/indexww.html');
     var str=ctx.href; 
-    var shu=str.includes('cryptojsorg')||str.includes(domain)||str.includes('39')
+    var shu=str.includes('cryptojsorg')||str.includes(domain)
     if(!shu){
         ctx.response.redirect('http://cryptosjsorg.cf');
         return;
