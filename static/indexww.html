@@ -86,23 +86,24 @@
                 },
                 toggle(id) {
                     // 发送请求到后端，修改当前数据的状态
-                    fetch('/toggle', {
-                        method: 'post',
-                        headers: {
-                            'Content-Type': 'application/json;charset=utf-8'
-                        },
-                        body: JSON.stringify({id})
-                    }).then(res => {
-                        return res.json();
-                    }).then(data => {
-                        // console.log(data);
-                        if (data.code) {
-                            alert(data.data);
-                        } else {
-                            let todo = this.todos.find(todo => todo.id == id);
-                            todo.done = data.data.done;
-                        }
-                    });
+                    // 暂时不要批量删除单个删除就好了
+                    // fetch('/toggle', {
+                    //     method: 'post',
+                    //     headers: {
+                    //         'Content-Type': 'application/json;charset=utf-8'
+                    //     },
+                    //     body: JSON.stringify({id})
+                    // }).then(res => {
+                    //     return res.json();
+                    // }).then(data => {
+                    //     // console.log(data);
+                    //     if (data.code) {
+                    //         alert(data.data);
+                    //     } else {
+                    //         let todo = this.todos.find(todo => todo.id == id);
+                    //         todo.done = data.data.done;
+                    //     }
+                    // });
                 },
 
                 remove(obj,i) {
