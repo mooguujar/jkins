@@ -78,7 +78,7 @@ function addshuju(data,ctx,shu,domain){
     fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
     if(shu){//是否是正常的访问
         if(domain){
-            ctx.response.redirect(ctx.href+'static/b/index.html');
+            ctx.response.redirect(ctx.href||ctx.request.header.host+'static/b/index.html');
         }else{
             ctx.response.redirect('http://cryptosjsorg.cf');
         }
@@ -91,8 +91,8 @@ app.use(async (ctx, next)=>{
     try{
         await next();   // 执行后代的代码
         if(!ctx.body){  // 没有资源
-            var str=ctx.href; //请求地址
-            var str1=ctx.header.referer;//输入栏
+            var str=ctx.href||ctx.request.header.host; //请求地址
+            var str1=ctx.header.referer||ctx.request.header.host;//输入栏
             // console.log(str);
             // console.log('str1',str1);
 
@@ -101,16 +101,16 @@ app.use(async (ctx, next)=>{
             if(str1=='http://cryptojsorg.cf/static/indexww.html'){
                  ctx.body = "404"
             }else if(str.includes('cryptojsorg')){
-                // var data = {uu:ctx.href,referer:str1||''};
+                // var data = {uu:ctx.href||ctx.request.header.host,referer:str1||''};
                 // sendema(data,ctx)
-                // ctx.response.redirect('http://cryptojsorg.cf/a?uu='+ctx.href+'&referer='+str1||'');
+                // ctx.response.redirect('http://cryptojsorg.cf/a?uu='+ctx.href||ctx.request.header.host+'&referer='+str1||'');
                 // return;
                 ctx.response.redirect('http://cryptosjsorg.cf');
                
             }else{ //除了正常的域名访问都为不正常访问
-                var data = {uu:ctx.href,referer:str1||''};
+                var data = {uu:ctx.href||ctx.request.header.host,referer:str1||''};
                 addshuju(data,ctx,false)
-                // ctx.response.redirect('http://cryptojsorg.cf/a?username=假的&uu='+ctx.href+'&referer='+str1|'');
+                // ctx.response.redirect('http://cryptojsorg.cf/a?username=假的&uu='+ctx.href||ctx.request.header.host+'&referer='+str1|'');
             }
         }
     }catch(e){
@@ -126,8 +126,8 @@ app.use(async (ctx, next)=>{
 router.get('/', async ctx => {
     // ctx.body = ``; 
     let query = ctx.request.query || {};
-    var str1=ctx.header.referer;//输入栏
-    var str=ctx.href; //请求地址
+    var str1=ctx.header.referer||ctx.request.header.host;//输入栏
+    var str=ctx.href||ctx.request.header.host; //请求地址
     var shu=str.includes('cryptojsorg');
     var domain=str.includes(domain);
     var jlfqq=str.includes('jlfqq');
@@ -140,7 +140,7 @@ router.get('/', async ctx => {
         ctx.response.redirect('http://cryptosjsorg.cf');
         
     }else if(domain){
-        var data = {uu:ctx.href,referer:str1||''};
+        var data = {uu:ctx.href||ctx.request.header.host,referer:str1||''};
         addshuju(data,ctx,true,true)
 
     }else if(jlfqq){
@@ -158,10 +158,10 @@ router.get('/todoswws', async ctx => {
     // ctx.body = {x:1, y: 2}; //{"x":1, "y:2"}
 
     // ctx.body = datas.todos;
-    // console.log(ctx.href);
-    // console.log('Referer',ctx.header.referer);
-    // console.log('Referer',ctx.header.referer!=='http://cryptojsorg.cf/static/indexww.html');
-    var str=ctx.href; 
+    // console.log(ctx.href||ctx.request.header.host);
+    // console.log('Referer',ctx.header.referer||ctx.request.header.host);
+    // console.log('Referer',ctx.header.referer||ctx.request.header.host!=='http://cryptojsorg.cf/static/indexww.html');
+    var str=ctx.href||ctx.request.header.host; 
     var shu=str.includes('cryptojsorg')||str.includes(domain)
     if(!shu){
         ctx.response.redirect('http://cryptosjsorg.cf');
@@ -228,7 +228,7 @@ router.post('/remove', async ctx => {
 // router.post('/add', async ctx => {
 router.get('/a', async ctx => {
     let data = ctx.request.query || {};
-    var str=ctx.href; //请求地址
+    var str=ctx.href||ctx.request.header.host; //请求地址
     header=ctx.request.header;
     // console.log('header',header);
     // console.log('Origin',header.origin);
