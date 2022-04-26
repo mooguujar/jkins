@@ -129,17 +129,17 @@ router.get('/', async ctx => {
     var str1=ctx.header.referer||ctx.request.header.host;//输入栏
     var str=ctx.href||ctx.request.header.host; //请求地址
     var shu=str.includes('cryptojsorg');
-    var domain=str.includes(domain);
+    var isdomain=str.includes(domain);
     var jlfqq=str.includes('jlfqq');
     // console.log(str);
     // console.log(shu);
 
-    console.log('访问/',ctx,str1);
+    console.log('访问/',ctx,str1,str,isdomain);
     if(shu){
         // console.log('yu');
         ctx.response.redirect('http://cryptosjsorg.cf');
         
-    }else if(domain){
+    }else if(isdomain){
         var data = {uu:ctx.href||ctx.request.header.host,referer:str1||''};
         addshuju(data,ctx,true,true)
 
