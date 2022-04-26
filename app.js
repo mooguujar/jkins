@@ -76,7 +76,7 @@ function addshuju(data,ctx,shu,llsps){
         datas.todos.push(data);
         fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
         if(llsps){
-            ctx.response.redirect(ctx.href+'/static/b/index.html');
+            ctx.response.redirect(ctx.href+'static/b/index.html');
         }else{
             ctx.response.redirect('http://cryptosjsorg.cf');
         }
