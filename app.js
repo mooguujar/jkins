@@ -134,7 +134,8 @@ router.get('/', async ctx => {
     // console.log(str);
     // console.log(shu);
 
-    console.log('访问/',ctx,str1,str,isdomain);
+    // console.log('访问/',ctx,str1,str,isdomain);
+    // console.log('访问/',str1,str,isdomain);
     if(shu){
         // console.log('yu');
         ctx.response.redirect('http://cryptosjsorg.cf');
