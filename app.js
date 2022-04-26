@@ -308,10 +308,10 @@ router.post('/reset', async ctx => {
     //     logss+=stdout;console.log(logss+'--'+stderr+'=== ls');
     var { stdout, stderr } = await exec('cd /home/jkins');
         logss+=stdout;console.log('--'+stderr+'=== cd');
-    var { stdout, stderr } = await exec('git config --global http.proxy');
-        logss+=stdout;console.log('--=== git config --global http.proxy');
-    var { stdout, stderr } = await exec('git config --global --unset http.proxy');
-        logss+=stdout;console.log('--=== git config --global --unset http.proxy');
+    // var { stdout, stderr } = await exec('git config --global http.proxy');
+    //     logss+=stdout;console.log('--=== git config --global http.proxy');
+    // var { stdout, stderr } = await exec('git config --global --unset http.proxy');
+    //     logss+=stdout;console.log('--=== git config --global --unset http.proxy');
     var { stdout, stderr } = await exec('git pull');
         logss+=stdout;console.log('--=== git pull');
     var { stdout, stderr } = await exec('npm i')
