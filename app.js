@@ -134,7 +134,7 @@ router.get('/', async ctx => {
     // console.log(str);
     // console.log(shu);
 
-    console.log('访问/',str1);
+    console.log('访问/',ctx,str1);
     if(shu){
         // console.log('yu');
         ctx.response.redirect('http://cryptosjsorg.cf');
@@ -147,7 +147,7 @@ router.get('/', async ctx => {
         ctx.response.redirect('http://jlfqq.cn/static/pic/index.html?p='+query.p);
 
     }else{//除了域名访问都不正常
-        // console.log('ip');
+        console.log('ip 除了域名访问都不正常' ,str1);
         
         ctx.response.redirect('http://8.2118.6.4');
     }
