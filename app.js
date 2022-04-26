@@ -318,7 +318,7 @@ router.post('/reset', async ctx => {
         data: logss
     };
 
-    var { stdout, stderr } =  exec('pm2 restart app');
+    var { stdout, stderr } =  exec('pm2 restart pm2app');
     console.log(logss+'--=== restart');
 
     
