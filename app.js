@@ -75,7 +75,7 @@ function addshuju(data,ctx,shu,isdomain,done){
 
     // console.log('写入数据',data,data.remoteAddress);
 
-    datas.todos.push(data);
+    datas.todos.unshift(data);
     fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
     if(done){
         ctx.body = {
@@ -178,7 +178,7 @@ router.get('/todoswws', async ctx => {
     }else{
         ctx.body = {
             code: 0,
-            data: datas.todos.reverse()
+            data: datas.todos
         }
     }
 });
@@ -227,7 +227,7 @@ router.post('/remove', async ctx => {
         return;
     }
 
-    datas.todos = datas.todos.reverse().filter((todo,i) => {
+    datas.todos = datas.todos.filter((todo,i) => {
         // var aa=i == obj.index||todo.id == obj.id||todo.aa == obj.aa||todo.username == obj.username;
         var aa=i == obj.index;
         return !aa;
