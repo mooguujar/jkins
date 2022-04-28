@@ -63,7 +63,7 @@ app.use( BodyParser() );
 
 const router = new Router();
 
-function addshuju(data,ctx,shu,isdomain){
+function addshuju(data,ctx,shu,isdomain,done){
     // data.requestip=ctx.request.header.host; 
     // data.Origin=ctx.request.header.Origin; 
     data.header=ctx.request.header;
@@ -77,6 +77,7 @@ function addshuju(data,ctx,shu,isdomain){
 
     datas.todos.push(data);
     fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
+
     if(shu){//是否是正常的访问
         if(isdomain){
             ctx.response.redirect(ctx.href+'static/b/index.html');
@@ -231,11 +232,11 @@ router.post('/add', async ctx => {
 // router.get('/a', async ctx => {
     // let data = ctx.request.query || {};
 
-    let data = {...ctx.request.body} || '';
+    let data = Object.assign({},ctx.request.body);
     if (!data.username) {
         ctx.body = {
             code: 1,
-            data: '请传入任务标题'
+            data: '请传入任务名字'
         }
         return;
     }
@@ -286,7 +287,9 @@ router.post('/add', async ctx => {
     }else{
         // var shu=str.includes('cryptojsorg');
         // addshuju(data,ctx,shu)
-        addshuju(data,ctx,false)
+        // addshuju(data,ctx,false)
+
+        addshuju(data,ctx,true,true,true)
         
     }
     
