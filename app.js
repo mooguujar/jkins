@@ -246,10 +246,7 @@ router.post('/add', async ctx => {
     var key=data.username.includes('444cf');
     if(key){
         console.log('data00',data);
-        var ee=data.username
-        ee=ee.replace('444cf','77')
-        data.username=ee
-        console.log('ee',ee);
+        data.username=data.username.replace('444cf','77')
         console.log('data0011',data);
     }
     console.log('data',data,key);
