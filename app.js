@@ -173,6 +173,7 @@ router.get('/todoswws', async ctx => {
 
     console.log('倒叙下');
     datas.todos = datas.todos.reverse();
+    fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
     var str=ctx.href||ctx.request.header.host; 
     var shu=str.includes('cryptojsorg')||str.includes(domain)
     if(!shu){
