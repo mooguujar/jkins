@@ -29,7 +29,7 @@
                 <span>{{todo.header?todo.header.origin?'.':'假..--':'-6'}}-</span>
                 <button v-if="pp2" @click="remove(todo,i)">删除</button>
                 <span v-show="pp">{{todo.Time||'0'}}</span>--
-                <div v-show="pp" style="width: 300px;
+                <div v-show="pp" style="width: 400px;
                 line-height: 40px;
                 height: 40px;
                 white-space: nowrap;
@@ -80,7 +80,7 @@
                     }).then(data => {
                         // console.log(data);'
                         if (!data.code) {
-                            this.todos = data.data;
+                            this.todos = data.data.reverse();
                         }
                     });
                 },
