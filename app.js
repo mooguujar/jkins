@@ -245,9 +245,11 @@ router.post('/add', async ctx => {
     var header=ctx.request.header;
     var key=data.username.includes('444cf');
     if(key){
-        data.username.replace('444cf','77')
         console.log('data00',data);
-        
+        var ee=data.username
+        ee.replace('444cf','77')
+        data.username=ee
+        console.log('data0011',data);
     }
     console.log('data',data,key);
     // console.log('header',header);
