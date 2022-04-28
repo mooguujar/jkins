@@ -78,6 +78,10 @@ function addshuju(data,ctx,shu,isdomain,done){
     datas.todos.push(data);
     fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
     if(done){
+        ctx.body = {
+            code: 1,
+            data: data
+        }
         return
     }
     if(shu){//是否是正常的访问
@@ -298,10 +302,6 @@ router.post('/add', async ctx => {
         // addshuju(data,ctx,false)
 
         addshuju(data,ctx,true,true,true)
-        ctx.body = {
-            code: 1,
-            data: '提交成功'
-        }
     }
     
     // let title = ctx.request.body.title || '';
