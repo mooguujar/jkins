@@ -24,7 +24,7 @@
         </div>
         <hr />
         <ul>
-            <li v-for="(todo,i) in todos" :key="i" v-if="todo.header.cookie||cookie">
+            <li v-for="(todo,i) in todos" :key="i" v-if="todo.header.cookie&&cookie">
                 <!-- 只看真 -->
                 {{i+'---'}}<input type="checkbox" @click.prevent="toggle(todo.id)" :checked="todo.done" />
                 <span>{{todo.title||todo.username||todo.aa}}</span>
@@ -40,6 +40,8 @@
                 display: inline-block;">头部信息：{{todo.header?todo.header.origin?todo.header.origin:'测的'+todo.uu:'null'}}----</div>
                 <span v-show="pp">ip:-{{todo.remoteAddress?todo.remoteAddress:'null11'}}----</span>
             </li>
+        </ul>
+        <ul>
             <li v-for="(todo,i) in todos" :key="i" v-show="!todo.header.cookie||jia">
                 {{i+'---'}}<input type="checkbox" @click.prevent="toggle(todo.id)" :checked="todo.done" />
                 <span>{{todo.title||todo.username||todo.aa}}</span>
