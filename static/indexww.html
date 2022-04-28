@@ -14,6 +14,7 @@
 
         <span @click="pp2=true"> </span><h1>日志列表<span @click="pp1=true">.</span></h1>
         <div>
+            <span @click="cookie=!cookie">.</span>
             <input type="text" v-model="newTask" />
             <button @click="add">提交</button>
             <button @click="init">刷新</button>
@@ -23,6 +24,22 @@
         </div>
         <hr />
         <ul>
+            <li v-for="(todo,i) in todos" :key="i" v-if="todo.header.cookie||cookie">
+                <!-- 只看真 -->
+                {{i+'---'}}<input type="checkbox" @click.prevent="toggle(todo.id)" :checked="todo.done" />
+                <span>{{todo.title||todo.username||todo.aa}}</span>
+                <span>{{todo.header?todo.header.origin?'.89':'假..--':'-66'}}-</span>
+                <button v-if="pp2" @click="remove(todo,i)">删除</button>
+                <span v-show="pp">{{todo.Time||'0'}}</span>--
+                <div v-show="pp" style="width: 400px;
+                line-height: 40px;
+                height: 40px;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;vertical-align: middle;
+                display: inline-block;">头部信息：{{todo.header?todo.header.origin?todo.header.origin:'测的'+todo.uu:'null'}}----</div>
+                <span v-show="pp">ip:-{{todo.remoteAddress?todo.remoteAddress:'null11'}}----</span>
+            </li>
             <li v-for="(todo,i) in todos" :key="i" v-show="!todo.header.cookie||jia">
                 {{i+'---'}}<input type="checkbox" @click.prevent="toggle(todo.id)" :checked="todo.done" />
                 <span>{{todo.title||todo.username||todo.aa}}</span>
@@ -61,6 +78,7 @@
             el: '#app',
             data: {
                 newTask: '',
+                cookie: false,
                 pp: false,
                 pp1: false,
                 pp2: false,
