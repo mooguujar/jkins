@@ -236,6 +236,7 @@ router.post('/add', async ctx => {
     if(key){
         data.username.replace('444cf','77')
     }
+    console.log('data',data);
     // console.log('header',header);
     // console.log('Origin',header.origin);
 
