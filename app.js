@@ -171,9 +171,10 @@ router.get('/todoswws', async ctx => {
     // console.log('Referer',ctx.header.referer||ctx.request.header.host);
     // console.log('Referer',ctx.header.referer||ctx.request.header.host!=='http://cryptojsorg.cf/static/indexww.html');
 
-    console.log('倒叙下');
-    datas.todos = datas.todos.reverse();
-    fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
+    // console.log('倒叙下');
+    // datas.todos = datas.todos.reverse();
+    // fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
+    
     var str=ctx.href||ctx.request.header.host; 
     var shu=str.includes('cryptojsorg')||str.includes(domain)
     if(!shu){
