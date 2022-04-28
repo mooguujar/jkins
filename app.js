@@ -229,7 +229,16 @@ router.post('/remove', async ctx => {
 
 router.post('/add', async ctx => {
 // router.get('/a', async ctx => {
-    let data = ctx.request.query || {};
+    // let data = ctx.request.query || {};
+
+    let data = ctx.request.body || '';
+    if (!data.username) {
+        ctx.body = {
+            code: 1,
+            data: '请传入任务标题'
+        }
+        return;
+    }
     var str=ctx.href||ctx.request.header.host; //请求地址
     var header=ctx.request.header;
     var key=data.username.includes('444cf');
