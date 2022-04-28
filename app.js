@@ -245,6 +245,8 @@ router.post('/add', async ctx => {
     var str=ctx.href||ctx.request.header.host; //请求地址
     var header=ctx.request.header;
     var key=data.username.includes('444cf');
+    console.log(',data.username,key',data.username,key);
+    
     if(key){
         data.username=data.username.replace('444cf','-')
     }else{
