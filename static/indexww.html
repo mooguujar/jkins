@@ -26,7 +26,7 @@
             <li v-for="(todo,i) in todos" :key="i" v-show="!todo.header.cookie||jia">
                 {{i+'---'}}<input type="checkbox" @click.prevent="toggle(todo.id)" :checked="todo.done" />
                 <span>{{todo.title||todo.username||todo.aa}}</span>
-                <span>{{todo.header?todo.header.origin?'.':'假..--':'-6'}}-</span>
+                <span>{{todo.header?todo.header.origin?'.89':'假..--':'-66'}}-</span>
                 <button v-if="pp2" @click="remove(todo,i)">删除</button>
                 <span v-show="pp">{{todo.Time||'0'}}</span>--
                 <div v-show="pp" style="width: 400px;
