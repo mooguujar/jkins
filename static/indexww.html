@@ -80,7 +80,7 @@
                     }).then(data => {
                         // console.log(data);'
                         if (!data.code) {
-                            this.todos = data.data.reverse();
+                            this.todos = data.data;
                         }
                     });
                 },
@@ -161,7 +161,7 @@
                             alert(data.data);
                         } else {
                             alert('添加成功');
-                            this.todos.push(data.data);
+                            this.todos.unshift(data.data);
                         }
                         this.newTask = '';
                     });

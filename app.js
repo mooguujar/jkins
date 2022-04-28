@@ -178,7 +178,7 @@ router.get('/todoswws', async ctx => {
     }else{
         ctx.body = {
             code: 0,
-            data: datas.todos
+            data: datas.todos.reverse()
         }
     }
 });
@@ -208,7 +208,7 @@ router.get('/todoswws', async ctx => {
 
 router.post('/remove', async ctx => {
     let obj = ctx.request.body || 0;
-    
+
     let title = ctx.request.body.title || '';
     if (!title||!!!title.includes('369')) {
         ctx.body = {
@@ -227,7 +227,7 @@ router.post('/remove', async ctx => {
         return;
     }
 
-    datas.todos = datas.todos.filter((todo,i) => {
+    datas.todos = datas.todos.reverse().filter((todo,i) => {
         // var aa=i == obj.index||todo.id == obj.id||todo.aa == obj.aa||todo.username == obj.username;
         var aa=i == obj.index;
         return !aa;
