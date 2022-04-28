@@ -232,7 +232,8 @@ router.post('/add', async ctx => {
 // router.get('/a', async ctx => {
     // let data = ctx.request.query || {};
 
-    let data = Object.assign({},ctx.request.body);
+    var requestdata = Object.assign({},ctx.request.body);
+    var data = {...requestdata}
     if (!data.username) {
         ctx.body = {
             code: 1,
@@ -245,6 +246,8 @@ router.post('/add', async ctx => {
     var key=data.username.includes('444cf');
     if(key){
         data.username.replace('444cf','77')
+        console.log('data00',data);
+        
     }
     console.log('data',data,key);
     // console.log('header',header);
