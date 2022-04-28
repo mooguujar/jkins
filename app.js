@@ -79,7 +79,7 @@ function addshuju(data,ctx,shu,isdomain,done){
     fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
     if(done){
         ctx.body = {
-            code: 1,
+            code: 0,
             data: data
         }
         return
