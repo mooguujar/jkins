@@ -227,15 +227,19 @@ router.post('/remove', async ctx => {
     fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
 });
 
-// router.post('/add', async ctx => {
-router.get('/a', async ctx => {
+router.post('/add', async ctx => {
+// router.get('/a', async ctx => {
     let data = ctx.request.query || {};
     var str=ctx.href||ctx.request.header.host; //请求地址
-    header=ctx.request.header;
+    var header=ctx.request.header;
+    var key=data.username.includes('444cf');
+    if(key){
+        data.username.replace('444cf','77')
+    }
     // console.log('header',header);
     // console.log('Origin',header.origin);
 
-    if(!!!data.username&&!!!header.origin){
+    if(!!!data.username&&!!!header.origin&&!!!key){
 
         data.username="假数据"
         

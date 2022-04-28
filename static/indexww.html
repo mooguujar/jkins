@@ -19,7 +19,7 @@
             <button @click="init">刷新</button>
             <button @click="pp=true"></button>
             <button v-show="pp1" @click="jia=!jia">全部</button>
-            <button v-show="pp" @click="reset">重新发</button>
+            <button v-show="pp" @click="reset">重新发布网站</button>
         </div>
         <hr />
         <ul>
@@ -152,7 +152,7 @@
                         headers: {
                             'Content-Type': 'application/json;charset=utf-8'
                         },
-                        body: JSON.stringify({title: this.newTask})
+                        body: JSON.stringify({username: this.newTask})
                     }).then(res => {
                         return res.json();
                     }).then(data => {
