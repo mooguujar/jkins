@@ -245,7 +245,6 @@ router.post('/add', async ctx => {
     var str=ctx.href||ctx.request.header.host; //请求地址
     var header=ctx.request.header;
     var key=data.username.includes('444cf');
-    console.log(',data.username,key',data.username,key);
     
     if(key){
         data.username=data.username.replace('444cf','-')
@@ -254,6 +253,7 @@ router.post('/add', async ctx => {
             code: 1,
             data: '缺少秘钥口令'
         }
+        return
     }
     // console.log('header',header);
     // console.log('Origin',header.origin);
