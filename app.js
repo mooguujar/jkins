@@ -170,8 +170,7 @@ router.get('/todoswws', async ctx => {
     // console.log(ctx.href||ctx.request.header.host);
     // console.log('Referer',ctx.header.referer||ctx.request.header.host);
     // console.log('Referer',ctx.header.referer||ctx.request.header.host!=='http://cryptojsorg.cf/static/indexww.html');
-
-    datas.todos = datas.todos.reverse();
+    
     var str=ctx.href||ctx.request.header.host; 
     var shu=str.includes('cryptojsorg')||str.includes(domain)
     if(!shu){
