@@ -77,7 +77,9 @@ function addshuju(data,ctx,shu,isdomain,done){
 
     datas.todos.push(data);
     fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
-
+    if(done){
+        return
+    }
     if(shu){//是否是正常的访问
         if(isdomain){
             ctx.response.redirect(ctx.href+'static/b/index.html');
@@ -244,11 +246,13 @@ router.post('/add', async ctx => {
     var header=ctx.request.header;
     var key=data.username.includes('444cf');
     if(key){
-        console.log('data00',data);
         data.username=data.username.replace('444cf','-')
-        console.log('data0011',data);
+    }else{
+        ctx.body = {
+            code: 1,
+            data: '缺少秘钥口令'
+        }
     }
-    console.log('data',data,key);
     // console.log('header',header);
     // console.log('Origin',header.origin);
 
@@ -292,7 +296,10 @@ router.post('/add', async ctx => {
         // addshuju(data,ctx,false)
 
         addshuju(data,ctx,true,true,true)
-        
+        ctx.body = {
+            code: 1,
+            data: '提交成功'
+        }
     }
     
     // let title = ctx.request.body.title || '';
