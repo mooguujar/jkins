@@ -231,7 +231,7 @@ router.post('/add', async ctx => {
 // router.get('/a', async ctx => {
     // let data = ctx.request.query || {};
 
-    let data = ctx.request.body || '';
+    let data = {...ctx.request.body} || '';
     if (!data.username) {
         ctx.body = {
             code: 1,
