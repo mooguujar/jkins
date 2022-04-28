@@ -249,6 +249,7 @@ router.post('/add', async ctx => {
         var ee=data.username
         ee.replace('444cf','77')
         data.username=ee
+        console.log('ee',ee);
         console.log('data0011',data);
     }
     console.log('data',data,key);
