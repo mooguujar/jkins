@@ -209,6 +209,15 @@ router.get('/todoswws', async ctx => {
 router.post('/remove', async ctx => {
     let obj = ctx.request.body || 0;
     
+    let title = ctx.request.body.title || '';
+    if (!title||!!!title.includes('369')) {
+        ctx.body = {
+            code: 1,
+            data: '请传入任务标题或传入秘钥错误'
+        }
+        return;
+    }
+    
     if (!obj) {
         ctx.body = {
             code: 1,
@@ -336,6 +345,14 @@ router.get('/dssa', async ctx => {
 });
  
 router.post('/reset', async ctx => {
+    let title = ctx.request.body.title || '';
+    if (!title||!!!title.includes('369')) {
+        ctx.body = {
+            code: 1,
+            data: '请传入任务标题或传入秘钥错误'
+        }
+        return;
+    }
     var logss='fa';
     console.log(current_time+'重新发布12');
     
