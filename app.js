@@ -183,7 +183,7 @@ router.get('/todoswws', async ctx => {
     }else{
         ctx.body = {
             code: 0,
-            data: datas.todos
+            data: datas.todos.slice(0,100)
         }
     }
 });
