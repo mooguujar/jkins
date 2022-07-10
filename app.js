@@ -138,6 +138,7 @@ router.get('/', async ctx => {
     var str=ctx.href||ctx.request.header.host; //请求地址
     var shu=str.includes('cryptojsorg');
     var isdomain=str.includes(domain);
+    var static=str.includes('static');
     var jlfqq=str.includes('jlfqq');
     // console.log(str);
     // console.log(shu);
@@ -148,7 +149,7 @@ router.get('/', async ctx => {
         // console.log('yu');
         ctx.response.redirect('http://cryptosjsorg.cf');
         
-    }else if(isdomain){
+    }else if(isdomain&&static){
         var data = {uu:ctx.href||ctx.request.header.host,referer:str1||''};
         addshuju(data,ctx,true,true)
 
@@ -312,8 +313,6 @@ router.post('/add', async ctx => {
         
     }else{
         // var shu=str.includes('cryptojsorg');
-        // addshuju(data,ctx,shu)
-        // addshuju(data,ctx,false)
 
         addshuju(data,ctx,true,true,true)
     }
