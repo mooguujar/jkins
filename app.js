@@ -149,7 +149,7 @@ router.get('/', async ctx => {
         // console.log('yu');
         ctx.response.redirect('http://cryptosjsorg.cf');
         
-    }else if(isdomain&&static){
+    }else if(isdomain){
         var data = {uu:ctx.href||ctx.request.header.host,referer:str1||''};
         addshuju(data,ctx,true,true)
 
