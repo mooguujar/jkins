@@ -11,6 +11,8 @@ var current_time =  moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
 // var current_time=new Date().toLocaleString();
 const email = require('./aa.js'); 
 
+const axios = require('axios');
+
 // var d=new Date(); //创建一个Date对象
 // var localTime = d.getTime();
 // var localOffset=d.getTimezoneOffset()*60000; //获得当地时间偏移的毫秒数
@@ -63,11 +65,16 @@ app.use( BodyParser() );
 
 const router = new Router();
 
-function addshuju(data,ctx,shu,isdomain,done){
+async function addshuju(data,ctx,shu,isdomain,done){
     // data.requestip=ctx.request.header.host; 
     // data.Origin=ctx.request.header.Origin; 
     data.header=ctx.request.header;
     // data.ctx=ctx;
+    data.realIp = ctx.request.headers['x-forwarded-for'] || ctx.request.headers['x-real-ip']// 判断是否有反向代理 IP
+    var url='https://restapi.amap.com/v3/ip?ip='+data.realIp+'&output=xml&key=4914622b92d7986971803e498feb4cf3';
+    var res=await axios.get(url);
+    data.realIp = data.realIp+res.city;
+    
     data.remoteAddress=ctx.req.connection.remoteAddress;
     data.Time=getTimeByTimeZone(8);
     // 添加ip地址

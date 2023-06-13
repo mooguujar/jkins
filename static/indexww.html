@@ -38,7 +38,7 @@
                 text-overflow: ellipsis;
                 overflow: hidden;vertical-align: middle;
                 display: inline-block;">头部信息：{{todo.header?todo.header.origin?todo.header.origin:'测的'+todo.uu:'null'}}----</div>
-                <span v-show="pp">ip:-{{todo.remoteAddress?todo.remoteAddress:'null11'}}----</span>
+                <span v-show="pp">ip:-{{todo.realIp? todo.realIp:'null' ,todo.remoteAddress?todo.remoteAddress:'null11'}}----</span>
             </li>
         </ul>
         <ul>
