@@ -61,31 +61,6 @@ app.use( StaticCache('./static', {
 }) );
 
 const https = require('https');
-const sslify = require('koa-sslify').default
-app.use(sslify())
-// 将两个证书文件读取放到options对象中
-// 使用readFileSync()方法，顺序地执行读文件和启动服务操作
-// const options = {
-//     key: fs.readFileSync('ssl/k.key'),
-//     cert: fs.readFileSync('ssl/pem.pem')
-// };
-const options = {
-    key: fs.readFileSync('ssl/cfkey.key'),
-    cert: fs.readFileSync('ssl/cfp.pem')
-};
-
-
-
-https.createServer(options
-    // , 
-    // app.callback()).listen(443, (err) => {  
-    //     if (err) {
-    //     console.log('server error: ', err);
-    //     } else {
-    //     console.log('server at' + 443);
-    //     } 
-    // }
-);
 
 // body 解析
 app.use( BodyParser() );
@@ -446,6 +421,31 @@ router.post('/reset', async ctx => {
 app.use( router.routes() );
 
 
+const sslify = require('koa-sslify').default
+app.use(sslify())
+// 将两个证书文件读取放到options对象中
+// 使用readFileSync()方法，顺序地执行读文件和启动服务操作
+// const options = {
+//     key: fs.readFileSync('ssl/k.key'),
+//     cert: fs.readFileSync('ssl/pem.pem')
+// };
+const options = {
+    key: fs.readFileSync('ssl/cfkey.key'),
+    cert: fs.readFileSync('ssl/cfp.pem')
+};
+
+
+
+https.createServer(options
+    // , 
+    // app.callback()).listen(443, (err) => {  
+    //     if (err) {
+    //     console.log('server error: ', err);
+    //     } else {
+    //     console.log('server at' + 443);
+    //     } 
+    // }
+);
 
 
 // 创建服务器，启动服务器，设置监听端口号
