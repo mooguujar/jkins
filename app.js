@@ -82,10 +82,12 @@ async function addshuju(data,ctx,shu,isdomain,done){
         });
         res.on('end', () => {
             datas11  = Buffer.concat(list).toString();
-            // console.log('data',datas11.city);
+            console.log('data',datas11.city);
         })
 
     });
+    console.log('data211111',datas11.city);
+    
 
     data.realIp = data.realIp+datas11.city||'null1';
 
