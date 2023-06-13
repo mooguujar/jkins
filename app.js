@@ -422,7 +422,7 @@ const options = {
 
 
 
-https.createServer(options, app.callback()).listen(80, (err) => {
+https.createServer(options, app.callback()).listen(443, (err) => {
     if (err) {
       console.log('server error: ', err);
     } else {
@@ -437,7 +437,7 @@ https.createServer(options, app.callback()).listen(80, (err) => {
 // }).listen(443);
 
 
-app.listen(80);
+// app.listen(80);
 
 process.on('uncaughtException', function (err) {
     console.log('Caught exception: ' + err);
