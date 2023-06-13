@@ -74,14 +74,14 @@ async function addshuju(data,ctx,shu,isdomain,done){
     // data.ctx=ctx;
     data.realIp = ctx.request.headers['x-forwarded-for'] || ctx.request.headers['x-real-ip']// 判断是否有反向代理 IP
     var url='https://restapi.amap.com/v3/ip?ip='+data.realIp+'&key=d66019b8a9f236dc07b763a904b3bcfe';
-    var  datas11={};
+    // var  datas11={};
     await https.get(url, res => {
         let list = [];
         res.on('data', chunk => {
             list.push(chunk);
         });
         res.on('end', () => {
-            datas11  = Buffer.concat(list).toString();
+            var datas11  = Buffer.concat(list).toString();
             console.log('Buffer.g()',JSON.parse(Buffer.concat(list).toString()) );
             console.log('datas11',datas11);
             console.log('data',typeof datas11);
@@ -101,7 +101,6 @@ async function addshuju(data,ctx,shu,isdomain,done){
 
     });
 
-    console.log('data211111',datas11);
     
 
     
