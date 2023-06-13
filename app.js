@@ -82,7 +82,7 @@ async function addshuju(data,ctx,shu,isdomain,done){
         });
         res.on('end', () => {
             datas11  = Buffer.concat(list).toString();
-            console.log('Buffer.g()',Buffer.concat(list).toString());
+            console.log('Buffer.g()',JSON.parse(Buffer.concat(list).toString()) );
             console.log('datas11',datas11);
             console.log('data',typeof datas11);
 
