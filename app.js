@@ -73,7 +73,8 @@ async function addshuju(data,ctx,shu,isdomain,done){
     data.header=ctx.request.header;
     // data.ctx=ctx;
     data.realIp = ctx.request.headers['x-forwarded-for'] || ctx.request.headers['x-real-ip']// 判断是否有反向代理 IP
-    var url='https://restapi.amap.com/v3/ip?ip='+data.realIp+'&key=d66019b8a9f236dc07b763a904b3bcfe';
+    // var url='https://restapi.amap.com/v3/ip?ip='+data.realIp+'&key=d66019b8a9f236dc07b763a904b3bcfe';
+    var url='https://nordvpn.com/wp-admin/admin-ajax.php?action=get_user_info_data&ip='+data.realIp;
     // var  datas11={};
     await https.get(url, res => {
         let list = [];
@@ -82,8 +83,10 @@ async function addshuju(data,ctx,shu,isdomain,done){
         });
         res.on('end', () => {
             var datas11  = JSON.parse(Buffer.concat(list).toString()) ;
+            console.log('datas11',datas11);
             
-            data.realIp = data.realIp+datas11.city||'null1';
+            // data.realIp = data.realIp+datas11.city||'null1';
+            data.realIp = data.realIp+datas11||'null1';
             data.remoteAddress=ctx.req.connection.remoteAddress;
             data.Time=getTimeByTimeZone(8);
             // 添加ip地址
