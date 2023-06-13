@@ -422,13 +422,13 @@ const options = {
 
 
 
-https.createServer(options, app.callback()).listen(443, (err) => {  
-    if (err) {
-      console.log('server error: ', err);
-    } else {
-      console.log('server at' + 443);
-    } 
-});
+// https.createServer(options, app.callback()).listen(443, (err) => {  
+//     if (err) {
+//       console.log('server error: ', err);
+//     } else {
+//       console.log('server at' + 443);
+//     } 
+// });
 
 
 // 创建服务器，启动服务器，设置监听端口号
@@ -437,7 +437,7 @@ https.createServer(options, app.callback()).listen(443, (err) => {
 // }).listen(443);
 
 
-// app.listen(80);
+app.listen(80);
 
 process.on('uncaughtException', function (err) {
     console.log('Caught exception: ' + err);
