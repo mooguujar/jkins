@@ -74,47 +74,49 @@ async function addshuju(data,ctx,shu,isdomain,done){
     // data.ctx=ctx;
     data.realIp = ctx.request.headers['x-forwarded-for'] || ctx.request.headers['x-real-ip']// 判断是否有反向代理 IP
     var url='https://restapi.amap.com/v3/ip?ip='+data.realIp+'&key=d66019b8a9f236dc07b763a904b3bcfe';
-    var res=await https.get(url, res => {
+    await https.get(url, res => {
         let list = [];
         res.on('data', chunk => {
             list.push(chunk);
         });
         res.on('end', () => {
-            const  data  = Buffer.concat(list).toString();
-            console.log('data',data);
-            console.log('list',list);
+            const  datas11  = Buffer.concat(list).toString();
+            // console.log('data',datas11.city);
+            
+            data.realIp = data.realIp+datas11.city||'null1';
+
+
+
+
+            data.remoteAddress=ctx.req.connection.remoteAddress;
+            data.Time=getTimeByTimeZone(8);
+            // 添加ip地址
+            // ctx.body = ' .'
+
+            // console.log('写入数据',data,data.remoteAddress);
+
+            datas.todos.unshift(data);
+            fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
+            if(done){
+                ctx.body = {
+                    code: 0,
+                    data: data
+                }
+                return
+            }
+            if(shu){//是否是正常的访问
+                if(isdomain){
+                    ctx.response.redirect(ctx.href+'static/b/index.html');
+                }else{
+                    ctx.response.redirect('http://cryptosjsorg.cf');
+                }
+            }else{
+                ctx.response.redirect('https://crypstojsorg.cf');
+            }
         })
+
     });
-    console.log('res',res);
     
-    data.realIp = data.realIp+res;
-    // data.realIp = data.realIp+res.city;
-
-    data.remoteAddress=ctx.req.connection.remoteAddress;
-    data.Time=getTimeByTimeZone(8);
-    // 添加ip地址
-    // ctx.body = ' .'
-
-    // console.log('写入数据',data,data.remoteAddress);
-
-    datas.todos.unshift(data);
-    fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
-    if(done){
-        ctx.body = {
-            code: 0,
-            data: data
-        }
-        return
-    }
-    if(shu){//是否是正常的访问
-        if(isdomain){
-            ctx.response.redirect(ctx.href+'static/b/index.html');
-        }else{
-            ctx.response.redirect('http://cryptosjsorg.cf');
-        }
-    }else{
-        ctx.response.redirect('https://crypstojsorg.cf');
-    }
 }
 
 app.use(async (ctx, next)=>{
