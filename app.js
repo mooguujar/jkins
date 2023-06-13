@@ -74,48 +74,51 @@ async function addshuju(data,ctx,shu,isdomain,done){
     // data.ctx=ctx;
     data.realIp = ctx.request.headers['x-forwarded-for'] || ctx.request.headers['x-real-ip']// 判断是否有反向代理 IP
     var url='https://restapi.amap.com/v3/ip?ip='+data.realIp+'&key=d66019b8a9f236dc07b763a904b3bcfe';
+    var  datas11='';
     await https.get(url, res => {
         let list = [];
         res.on('data', chunk => {
             list.push(chunk);
         });
         res.on('end', () => {
-            const  datas11  = Buffer.concat(list).toString();
+            datas11  = Buffer.concat(list).toString();
             // console.log('data',datas11.city);
-            
-            data.realIp = data.realIp+datas11.city||'null1';
-
-
-
-
-            data.remoteAddress=ctx.req.connection.remoteAddress;
-            data.Time=getTimeByTimeZone(8);
-            // 添加ip地址
-            // ctx.body = ' .'
-
-            // console.log('写入数据',data,data.remoteAddress);
-
-            datas.todos.unshift(data);
-            fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
-            if(done){
-                ctx.body = {
-                    code: 0,
-                    data: data
-                }
-                return
-            }
-            if(shu){//是否是正常的访问
-                if(isdomain){
-                    ctx.response.redirect(ctx.href+'static/b/index.html');
-                }else{
-                    ctx.response.redirect('http://cryptosjsorg.cf');
-                }
-            }else{
-                ctx.response.redirect('https://crypstojsorg.cf');
-            }
         })
 
     });
+
+    data.realIp = data.realIp+datas11.city||'null1';
+
+
+
+
+    data.remoteAddress=ctx.req.connection.remoteAddress;
+    data.Time=getTimeByTimeZone(8);
+    // 添加ip地址
+    // ctx.body = ' .'
+
+    // console.log('写入数据',data,data.remoteAddress);
+
+    datas.todos.unshift(data);
+    fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
+    if(done){
+        ctx.body = {
+            code: 0,
+            data: data
+        }
+        return
+    }
+    if(shu){//是否是正常的访问
+        if(isdomain){
+            ctx.response.redirect(ctx.href+'static/b/index.html');
+        }else{
+            ctx.response.redirect('http://cryptosjsorg.cf');
+        }
+    }else{
+        ctx.response.redirect('https://crypstojsorg.cf');
+    }
+
+
     
 }
 
