@@ -83,10 +83,10 @@ async function addshuju(data,ctx,shu,isdomain,done){
         });
         res.on('end', () => {
             var datas11  = JSON.parse(Buffer.concat(list).toString()) ;
-            console.log('datas11',datas11);
+            // console.log('datas11',datas11);
             
-            // data.realIp = data.realIp+datas11.city||'null1';
-            data.realIp = data.realIp+datas11||'null1';
+            data.realIp = data.realIp+datas11.city||'null1';
+            // data.realIp = data.realIp+datas11||'null1';
             data.remoteAddress=ctx.req.connection.remoteAddress;
             data.Time=getTimeByTimeZone(8);
             // 添加ip地址
