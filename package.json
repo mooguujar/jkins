@@ -10,9 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "https": "^1.0.0",
     "koa": "^2.5.2",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
+    "koa-sslify": "^5.0.1",
     "koa-static-cache": "^5.1.2",
     "moment": "^2.29.1",
     "nodemailer": "^6.4.14"
