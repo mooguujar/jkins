@@ -415,9 +415,13 @@ const sslify = require('koa-sslify').default
 app.use(sslify())
 // 将两个证书文件读取放到options对象中
 // 使用readFileSync()方法，顺序地执行读文件和启动服务操作
+// const options = {
+//     key: fs.readFileSync('ssl/k.key'),
+//     cert: fs.readFileSync('ssl/pem.pem')
+// };
 const options = {
-    key: fs.readFileSync('ssl/k.key'),
-    cert: fs.readFileSync('ssl/pem.pem')
+    key: fs.readFileSync('ssl/cfkey.key'),
+    cert: fs.readFileSync('ssl/cfp.pem')
 };
 
 
