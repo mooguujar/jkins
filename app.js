@@ -76,15 +76,14 @@ async function addshuju(data,ctx,shu,isdomain,done){
     var url='https://restapi.amap.com/v3/ip?ip='+data.realIp+'&output=xml&key=4914622b92d7986971803e498feb4cf3';
     var res=await https.get(url, res => {
         let list = [];
-        console.log('res1111',res);
         res.on('data', chunk => {
-            console.log('res111data1',chunk);
             list.push(chunk);
         });
         res.on('end', () => {
-            // const { data } = JSON.parse(Buffer.concat(list).toString());
+            const  data  = JSON.parse(Buffer.concat(list).toString());
+            console.log('data',data);
+            console.log('list',list);
         })
-        console.log('list',list);
     });
     console.log('res',res);
     
