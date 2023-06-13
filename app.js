@@ -84,7 +84,7 @@ async function addshuju(data,ctx,shu,isdomain,done){
             datas11  = Buffer.concat(list).toString();
             console.log('Buffer.g()',Buffer.concat(list).toString());
             console.log('datas11',datas11);
-            console.log('data',datas11.city);
+            console.log('data',typeof datas11);
 
 
             data.realIp = data.realIp+datas11.city||'null1';
