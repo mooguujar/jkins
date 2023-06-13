@@ -80,7 +80,7 @@ async function addshuju(data,ctx,shu,isdomain,done){
             list.push(chunk);
         });
         res.on('end', () => {
-            const  data  = JSON.parse(Buffer.concat(list).toString());
+            const  data  = Buffer.concat(list).toString();
             console.log('data',data);
             console.log('list',list);
         })
