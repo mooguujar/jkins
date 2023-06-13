@@ -60,6 +60,8 @@ app.use( StaticCache('./static', {
     gzip: true
 }) );
 
+const http = require('http');
+
 // body 解析
 app.use( BodyParser() );
 
@@ -72,9 +74,9 @@ async function addshuju(data,ctx,shu,isdomain,done){
     // data.ctx=ctx;
     data.realIp = ctx.request.headers['x-forwarded-for'] || ctx.request.headers['x-real-ip']// 判断是否有反向代理 IP
     var url='https://restapi.amap.com/v3/ip?ip='+data.realIp+'&output=xml&key=4914622b92d7986971803e498feb4cf3';
-    var res=await axios.get(url);
+    var res=await http.get(url);
     data.realIp = data.realIp+res.city;
-    
+
     data.remoteAddress=ctx.req.connection.remoteAddress;
     data.Time=getTimeByTimeZone(8);
     // 添加ip地址
