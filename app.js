@@ -451,23 +451,24 @@ app.use(sslify())
 //     key: fs.readFileSync('ssl/cfkey.key'),
 //     cert: fs.readFileSync('ssl/cfp.crt')
 // };
-// const options = {
-//     key: fs.readFileSync('./ssl/444cf.cn.key', 'utf8'),
-//     ca:fs.readFileSync('./ssl/444cf.cn_chain.crt', 'utf8'),
-//     cert: fs.readFileSync('./ssl/444cf.cn_public.crt', 'utf8')
-// };
+
+const options = {
+    key: fs.readFileSync('./ssl/444cf.cn.key', 'utf8'),
+    ca:fs.readFileSync('./ssl/444cf.cn_chain.crt', 'utf8'),
+    cert: fs.readFileSync('./ssl/444cf.cn_public.crt', 'utf8')
+};
 
 app.listen(3000);
 
-// https.createServer(options
-//     ,  app.callback()).listen(443, (err) => {  
-//         if (err) {
-//         console.log('server error: ', err);
-//         } else {
-//         console.log('server at' + 443);
-//         } 
-//     }
-// );
+https.createServer(options
+    ,  app.callback()).listen(443, (err) => {  
+        if (err) {
+        console.log('server error: ', err);
+        } else {
+        console.log('server at' + 443);
+        } 
+    }
+);
 
 
 // 创建服务器，启动服务器，设置监听端口号
