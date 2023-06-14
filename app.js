@@ -449,7 +449,7 @@ app.use(sslify())
 // };
 const options = {
     key: fs.readFileSync('ssl/cfkey.key'),
-    cert: fs.readFileSync('ssl/cfp.pem')
+    cert: fs.readFileSync('ssl/cfp.crt')
 };
 
 app.listen(80);
