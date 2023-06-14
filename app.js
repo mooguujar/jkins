@@ -452,9 +452,9 @@ app.use(sslify())
 //     cert: fs.readFileSync('ssl/cfp.crt')
 // };
 const options = {
-    key: fs.readFileSync('./ssl/444cf.cn.key'),
-    ca:fs.readFileSync('./ssl/444cf.cn_chain.crt'),
-    cert: fs.readFileSync('./ssl/444cf.cn_public.crt')
+    key: fs.readFileSync('./ssl/444cf.cn.key', 'utf8'),
+    ca:fs.readFileSync('./ssl/444cf.cn_chain.crt', 'utf8'),
+    cert: fs.readFileSync('./ssl/444cf.cn_public.crt', 'utf8')
 };
 
 app.listen(80);
