@@ -166,7 +166,8 @@ router.get('/', async ctx => {
     var str1=ctx.header.referer||ctx.request.header.host;//输入栏
     var str=ctx.href||ctx.request.header.host; //请求地址
     var shu=str.includes('cryptojsorg');
-    var isdomain=str.includes(domain);
+    var isdomain=true;
+    // var isdomain=str.includes(domain);
     var static=str.includes('static');
     var jlfqq=str.includes('jlfqq');
     // console.log(str);
