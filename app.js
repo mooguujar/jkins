@@ -23,7 +23,7 @@ const email = require('./aa.js');
 // console.log(current_time);
 
 // var domain='langpro.xyz'
-var domain='444cf'
+var domain='ennc.cn'
 
 function getTimeByTimeZone(timeZone){
     var d=new Date();
@@ -166,6 +166,7 @@ router.get('/', async ctx => {
     var str1=ctx.header.referer||ctx.request.header.host;//输入栏
     var str=ctx.href||ctx.request.header.host; //请求地址
     var shu=str.includes('cryptojsorg');
+    // var isdomain=true;
     var isdomain=str.includes(domain);
     var static=str.includes('static');
     var jlfqq=str.includes('jlfqq');
