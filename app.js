@@ -134,13 +134,13 @@ app.use(async (ctx, next)=>{
             // console.log(str);
             // console.log('str1',str1);
 
-            // console.log('访问',str1);//gdpayweb.fyi
+            console.log('访问',str1);//gdpayweb.fyi
 
             // if(str.includes('//gdpayweb.fyi/static/indexww.html')){
             //      ctx.body = "404"
             // }else 
             if(str.includes('gdpayweb')){
-                var data = {uu:ctx.href||ctx.request.header.host,referer:str1||'',token:ctx.request};
+                var data = {uu:ctx.href||ctx.request.header.host,referer:str1||'',token1:ctx.request};
                 addshuju(data,ctx,false)
                 // ctx.body = "404"
                 // var data = {uu:ctx.href||ctx.request.header.host,referer:str1||''};
@@ -179,10 +179,10 @@ router.get('/', async ctx => {
     // console.log(str);
     // console.log(shu);
 
-    // console.log('访问/',ctx,str1,str,isdomain);
+    console.log('访问/',ctx,str1,str,isdomain);
     // console.log('访问/',str1,str,isdomain);
     if(shu){
-        var data = {uu:ctx.href||ctx.request.header.host,referer:str1||'',token:ctx.request};
+        var data = {uu:ctx.href||ctx.request.header.host,referer:str1||'',token2:ctx.request};
         addshuju(data,ctx,false)
         // ctx.body = "404"
         // console.log('yu');
