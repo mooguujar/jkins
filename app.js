@@ -141,13 +141,14 @@ app.use(async (ctx, next)=>{
             // }else 
             if(str.includes('gdpayweb')){
                 var data = {uu:ctx.href||ctx.request.header.host,referer:str1||'',token:ctx.request};
+                addshuju(data,ctx,false)
+                ctx.body = "404"
                 // var data = {uu:ctx.href||ctx.request.header.host,referer:str1||''};
                 // sendema(data,ctx)
                 // ctx.response.redirect('http://cryptojsorg.cf/a?uu='+ctx.href||ctx.request.header.host+'&referer='+str1||'');
                 // return;
                 // ctx.response.redirect('http://gdpayweb.fyi');
-                addshuju(data,ctx,false)
-                ctx.body = "404"
+                
             }else{ //除了正常的域名访问都为不正常访问
                 var data = {uu:ctx.href||ctx.request.header.host,referer:str1||''};
                 addshuju(data,ctx,false)
@@ -169,10 +170,10 @@ router.get('/', async ctx => {
     let query = ctx.request.query || {};
     var str1=ctx.header.referer||ctx.request.header.host;//输入栏
     var str=ctx.href||ctx.request.header.host; //请求地址
-    var shu=str.includes('cryptojsorg');
+    var shu=str.includes('gdpayweb');
     // var isdomain=true;
-    //var isdomain=str.includes(domain);
-    var isdomain=true;
+    var isdomain=str.includes(domain);
+    // var isdomain=true;
     var static=str.includes('static');
     var jlfqq=str.includes('jlfqq');
     // console.log(str);
@@ -181,8 +182,11 @@ router.get('/', async ctx => {
     // console.log('访问/',ctx,str1,str,isdomain);
     // console.log('访问/',str1,str,isdomain);
     if(shu){
+        var data = {uu:ctx.href||ctx.request.header.host,referer:str1||'',token:ctx.request};
+        addshuju(data,ctx,false)
+        ctx.body = "404"
         // console.log('yu');
-        ctx.response.redirect('http://cryptosjsorg.cf');
+        // ctx.response.redirect('http://cryptosjsorg.cf');
         
     }else if(isdomain){
         var data = {uu:ctx.href||ctx.request.header.host,referer:str1||''};
