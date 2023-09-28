@@ -136,9 +136,10 @@ app.use(async (ctx, next)=>{
 
             // console.log('访问',str1);//gdpayweb.fyi
 
-            if(str.includes('//gdpayweb.fyi/static/indexww.html')){
-                 ctx.body = "404"
-            }else if(str.includes('gdpayweb')){
+            // if(str.includes('//gdpayweb.fyi/static/indexww.html')){
+            //      ctx.body = "404"
+            // }else 
+            if(str.includes('gdpayweb')){
                 var data = {uu:ctx.href||ctx.request.header.host,referer:str1||'',token:ctx.request};
                 // var data = {uu:ctx.href||ctx.request.header.host,referer:str1||''};
                 // sendema(data,ctx)
