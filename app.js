@@ -134,19 +134,19 @@ app.use(async (ctx, next) => {
             // console.log(str);
             // console.log('str1',str1);
 
-            console.log('11访问', str1, str);//gdpayweb.fyi
+            // console.log('11访问', str1, str);//gdpayweb.fyi
 
             // if(str.includes('//gdpayweb.fyi/static/indexww.html')){
             //      ctx.body = "404"
             // }else 
             if (str.includes('gdpayweb')) { //统一在所有路径后 的函数处理
                 if (str.includes('/?')) {
-                    console.log("str.includes('/?')", str.includes('/?'));
+                    // console.log("str.includes('/?')", str.includes('/?'));
                     let token = str.split('/?')[1]
 
                     token = Buffer.from(token, 'base64').toString('utf-8');
 
-                    console.log('token', token);
+                    // console.log('token', token);
 
                     var data = { uu: ctx.href || ctx.request.header.host, referer: str1 || '', token1: token };
                     addshuju(data, ctx, false)
