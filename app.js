@@ -186,7 +186,7 @@ router.get('/', async ctx => {
         addshuju(data,ctx,false)
         // ctx.body = "404"
         // console.log('yu');
-        ctx.response.redirect('//gdpayweb.com');
+        // ctx.response.redirect('//gdpayweb.com');
         
     }else if(isdomain){
         var data = {uu:ctx.href||ctx.request.header.host,referer:str1||''};
