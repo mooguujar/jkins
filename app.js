@@ -10,8 +10,6 @@ var moment = require('moment');
 var current_time = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
 // var current_time=new Date().toLocaleString();
 const email = require('./aa.js');
-// const md5 = require('md5');
-const crypto = require('crypto');
 
 // const axios = require('axios');
 
@@ -142,28 +140,16 @@ app.use(async (ctx, next) => {
             //      ctx.body = "404"
             // }else 
             if (str.includes('gdpayweb')) { //统一在所有路径后 的函数处理
-                var data = { uu: ctx.href || ctx.request.header.host, referer: str1 || '', token1: ctx.request };
-                addshuju(data, ctx, false)
                 if (str.includes('/?')) {
                     console.log("str.includes('/?')", str.includes('/?'));
                     let token = str.split('/?')[1]
 
-                    // let aa = md5('555')
-                    // 生成随机盐值
-                    function generateSalt() {
-                        return crypto.randomBytes(16).toString('hex');
-                    }
-                    // 生成密码哈希值
-                    function hashPassword(password, salt) {
-                        return crypto.createHash('md5').update(password + salt).digest('hex');
-                    }
-                    let salt= generateSalt()
-                    console.log('salt', salt);
-
-                    const hashedPassword = hashPassword('123456', salt);
+                    token = Buffer.from(token, 'base64').toString('utf-8');
 
                     console.log('token', token);
-                    console.log('hashedPassword', hashedPassword);
+
+                    var data = { uu: ctx.href || ctx.request.header.host, referer: str1 || '', token1: token };
+                    addshuju(data, ctx, false)
 
                     // ctx.body = "404"
                 } else {
