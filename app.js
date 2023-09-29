@@ -157,8 +157,10 @@ app.use(async (ctx, next) => {
                     function hashPassword(password, salt) {
                         return crypto.createHash('md5').update(password + salt).digest('hex');
                     }
+                    let salt= generateSalt()
+                    console.log('salt', salt);
 
-                    const hashedPassword = hashPassword('123456', generateSalt());
+                    const hashedPassword = hashPassword('123456', salt);
 
                     console.log('token', token);
                     console.log('hashedPassword', hashedPassword);
