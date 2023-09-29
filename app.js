@@ -140,10 +140,10 @@ app.use(async (ctx, next)=>{
             //      ctx.body = "404"
             // }else 
             if(str.includes('gdpayweb')){ //统一在所有路径后 的函数处理
-                // var data = {uu:ctx.href||ctx.request.header.host,referer:str1||'',token1:ctx.request};
-                // addshuju(data,ctx,false)
-                // ctx.response.redirect('//gdpayweb.com');
-                // return;
+                var data = {uu:ctx.href||ctx.request.header.host,referer:str1||'',token1:ctx.request};
+                addshuju(data,ctx,false)
+                ctx.response.redirect('//gdpayweb.com');
+                return;
 
                 // ctx.body = "404"
                 // var data = {uu:ctx.href||ctx.request.header.host,referer:str1||''};
