@@ -134,7 +134,7 @@ app.use(async (ctx, next)=>{
             // console.log(str);
             // console.log('str1',str1);
 
-            console.log('访问',str1,str);//gdpayweb.fyi
+            console.log('11访问',str1,str);//gdpayweb.fyi
 
             // if(str.includes('//gdpayweb.fyi/static/indexww.html')){
             //      ctx.body = "404"
