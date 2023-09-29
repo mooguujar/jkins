@@ -11,6 +11,7 @@ var current_time = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
 // var current_time=new Date().toLocaleString();
 const email = require('./aa.js');
 const md5 = require('md5');
+const crypto = require('crypto');
 
 // const axios = require('axios');
 
@@ -145,11 +146,22 @@ app.use(async (ctx, next) => {
                 addshuju(data, ctx, false)
                 if (str.includes('/?')) {
                     console.log("str.includes('/?')", str.includes('/?'));
-                    let token=str.split('/?')[1]
+                    let token = str.split('/?')[1]
 
-                    let aa = md5('555')
+                    // let aa = md5('555')
+                    // 生成随机盐值
+                    function generateSalt() {
+                        return crypto.randomBytes(16).toString('hex');
+                    }
+                    // 生成密码哈希值
+                    function hashPassword(password, salt) {
+                        return crypto.createHash('md5').update(password + salt).digest('hex');
+                    }
+
+                    const hashedPassword = hashPassword('123456', generateSalt());
+
                     console.log('token', token);
-                    console.log('aa', aa);
+                    console.log('hashedPassword', hashedPassword);
 
                     // ctx.body = "404"
                 } else {
