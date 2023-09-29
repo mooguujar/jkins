@@ -127,7 +127,7 @@ async function addshuju(data,ctx,shu,isdomain,done){
 
 app.use(async (ctx, next)=>{
     try{
-        await next();   // 执行后代的代码
+        await next();   // 执行完路径后 的其他操作 代码
         if(!ctx.body){  // 没有资源
             var str=ctx.href||ctx.request.header.host; //请求地址
             var str1=ctx.header.referer||ctx.request.header.host;//输入栏
@@ -170,20 +170,20 @@ router.get('/', async ctx => {
     let query = ctx.request.query || {};
     var str1=ctx.header.referer||ctx.request.header.host;//输入栏
     var str=ctx.href||ctx.request.header.host; //请求地址
-    var shu=str.includes('gdpayweb');
+    var gdpayweb=str.includes('gdpayweb');
     // var isdomain=true;
     var isdomain=str.includes(domain);
     // var isdomain=true;
     var static=str.includes('static');
     var jlfqq=str.includes('jlfqq');
     // console.log(str);
-    // console.log(shu);
+    // console.log(gdpayweb);
 
-    console.log('访问/',ctx,str1,str,isdomain);
+    console.log('访问/');
     // console.log('访问/',str1,str,isdomain);
-    if(shu){
-        var data = {uu:ctx.href||ctx.request.header.host,referer:str1||'',token2:ctx.request};
-        addshuju(data,ctx,false)
+    if(gdpayweb){ //统一在路径后的函数处理
+        // var data = {uu:ctx.href||ctx.request.header.host,referer:str1||'',token2:ctx.request};
+        // addshuju(data,ctx,false)
         // ctx.body = "404"
         // console.log('yu');
         // ctx.response.redirect('//gdpayweb.com');
