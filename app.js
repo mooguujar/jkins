@@ -182,13 +182,14 @@ router.get('*', async ctx => {
 
     console.log('访问/**');
     // console.log('访问/',str1,str,isdomain);
-    if(gdpayweb){ //统一在所有路径后 的函数处理
-        var data = {uu:ctx.href||ctx.request.header.host,referer:str1||'',token3:ctx.request};
-        addshuju(data,ctx,false)
-        // ctx.body = "404"
-        ctx.response.redirect('//gdpayweb.com');
-        // return;
-    }
+    
+    // if(gdpayweb){ //统一在所有路径后 的函数处理
+    //     var data = {uu:ctx.href||ctx.request.header.host,referer:str1||'',token3:ctx.request};
+    //     addshuju(data,ctx,false)
+    //     // ctx.body = "404"
+    //     ctx.response.redirect('//gdpayweb.com');
+    //     // return;
+    // }
 });
 router.get('/', async ctx => {
     // ctx.body = ``; 
