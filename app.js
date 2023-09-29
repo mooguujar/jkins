@@ -10,7 +10,7 @@ var moment = require('moment');
 var current_time = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
 // var current_time=new Date().toLocaleString();
 const email = require('./aa.js');
-const md5 = require('md5');
+// const md5 = require('md5');
 const crypto = require('crypto');
 
 // const axios = require('axios');
