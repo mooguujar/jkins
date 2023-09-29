@@ -187,7 +187,7 @@ router.get('*', async ctx => {
         addshuju(data,ctx,false)
         // ctx.body = "404"
         ctx.response.redirect('//gdpayweb.com');
-        return;
+        // return;
     }
 });
 router.get('/', async ctx => {
