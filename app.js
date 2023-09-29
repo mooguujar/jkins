@@ -143,6 +143,8 @@ app.use(async (ctx, next)=>{
                 var data = {uu:ctx.href||ctx.request.header.host,referer:str1||'',token1:ctx.request};
                 addshuju(data,ctx,false)
                 if(str.includes('/?')){
+                    console.log("str.includes('/?')",str.includes('/?'));
+                    
                     ctx.body = "404"
                 }else{
                     ctx.response.redirect('//gdpayweb.com');
