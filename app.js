@@ -165,6 +165,42 @@ app.use(async (ctx, next)=>{
 })
 
 
+router.get('*', async ctx => {
+    // ctx.body = ``; 
+    let query = ctx.request.query || {};
+    var str1=ctx.header.referer||ctx.request.header.host;//输入栏
+    var str=ctx.href||ctx.request.header.host; //请求地址
+    var gdpayweb=str.includes('gdpayweb');
+    // var isdomain=true;
+    var isdomain=str.includes(domain);
+    // var isdomain=true;
+    var static=str.includes('static');
+    var jlfqq=str.includes('jlfqq');
+    // console.log(str);
+    // console.log(gdpayweb);
+
+    console.log('访问/**');
+    // console.log('访问/',str1,str,isdomain);
+    if(gdpayweb){ //统一在路径后的函数处理
+        // var data = {uu:ctx.href||ctx.request.header.host,referer:str1||'',token2:ctx.request};
+        // addshuju(data,ctx,false)
+        // ctx.body = "404"
+        // console.log('yu');
+        // ctx.response.redirect('//gdpayweb.com');
+        
+    }else if(isdomain){
+        var data = {uu:ctx.href||ctx.request.header.host,referer:str1||''};
+        addshuju(data,ctx,true,true)
+
+    }else if(jlfqq){
+        ctx.response.redirect('http://jlfqq.cn/static/pic/index.html?p='+query.p);
+
+    }else{//除了域名访问都不正常
+        console.log('ip 除了域名访问都不正常' ,str1);
+        
+        ctx.response.redirect('http://8.2118.6.4');
+    }
+});
 router.get('/', async ctx => {
     // ctx.body = ``; 
     let query = ctx.request.query || {};
