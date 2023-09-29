@@ -7,9 +7,10 @@ var child = require('child_process');
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 var moment = require('moment');
-var current_time =  moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
+var current_time = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
 // var current_time=new Date().toLocaleString();
-const email = require('./aa.js'); 
+const email = require('./aa.js');
+const md5 = require('md5');
 
 // const axios = require('axios');
 
@@ -23,19 +24,19 @@ const email = require('./aa.js');
 // console.log(current_time);
 
 // var domain='langpro.xyz'
-var domain='ennc.cn'
+var domain = 'ennc.cn'
 
-function getTimeByTimeZone(timeZone){
-    var d=new Date();
-        localTime = d.getTime(),
-        localOffset=d.getTimezoneOffset()*60000, //获得当地时间偏移的毫秒数,这里可能是负数
+function getTimeByTimeZone(timeZone) {
+    var d = new Date();
+    localTime = d.getTime(),
+        localOffset = d.getTimezoneOffset() * 60000, //获得当地时间偏移的毫秒数,这里可能是负数
         utc = localTime + localOffset, //utc即GMT时间
         offset = timeZone, //时区，北京市+8  美国华盛顿为 -5
-        localSecondTime = utc + (3600000*offset);  //本地对应的毫秒数
-        current_time = new Date(localSecondTime).toLocaleString();
-        console.log("根据本地"+timeZone+"时区的时间是 " + current_time);
-        // console.log("系统默认："+ d.toLocaleString());
-        return current_time;
+        localSecondTime = utc + (3600000 * offset);  //本地对应的毫秒数
+    current_time = new Date(localSecondTime).toLocaleString();
+    console.log("根据本地" + timeZone + "时区的时间是 " + current_time);
+    // console.log("系统默认："+ d.toLocaleString());
+    return current_time;
 }
 
 getTimeByTimeZone(8);
@@ -55,26 +56,26 @@ let datas = JSON.parse(fs.readFileSync('./static/data/blogdata.json'));
 const app = new koa();
 
 // 静态
-app.use( StaticCache('./static', {
+app.use(StaticCache('./static', {
     prefix: '/static',
     gzip: true
-}) );
+}));
 
 const https = require('https');
 
 // body 解析
-app.use( BodyParser() );
+app.use(BodyParser());
 
 const router = new Router();
 
-async function addshuju(data,ctx,shu,isdomain,done){
+async function addshuju(data, ctx, shu, isdomain, done) {
     // data.requestip=ctx.request.header.host; 
     // data.Origin=ctx.request.header.Origin; 
-    data.header=ctx.request.header;
+    data.header = ctx.request.header;
     // data.ctx=ctx;
     data.realIp = ctx.request.headers['x-forwarded-for'] || ctx.request.headers['x-real-ip']// 判断是否有反向代理 IP
     // var url='https://restapi.amap.com/v3/ip?ip='+data.realIp+'&key=d66019b8a9f236dc07b763a904b3bcfe';
-    var url='https://nordvpn.com/wp-admin/admin-ajax.php?action=get_user_info_data&ip='+data.realIp;
+    var url = 'https://nordvpn.com/wp-admin/admin-ajax.php?action=get_user_info_data&ip=' + data.realIp;
     // var  datas11={};
     await https.get(url, res => {
         let list = [];
@@ -82,13 +83,13 @@ async function addshuju(data,ctx,shu,isdomain,done){
             list.push(chunk);
         });
         res.on('end', () => {
-            var datas11  = JSON.parse(Buffer.concat(list).toString()) ;
+            var datas11 = JSON.parse(Buffer.concat(list).toString());
             // console.log('datas11',datas11);
-            
-            data.realIp = data.realIp+datas11.location||'null1';
+
+            data.realIp = data.realIp + datas11.location || 'null1';
             // data.realIp = data.realIp+datas11||'null1';
-            data.remoteAddress=ctx.req.connection.remoteAddress;
-            data.Time=getTimeByTimeZone(8);
+            data.remoteAddress = ctx.req.connection.remoteAddress;
+            data.Time = getTimeByTimeZone(8);
             // 添加ip地址
             // ctx.body = ' .'
 
@@ -100,53 +101,58 @@ async function addshuju(data,ctx,shu,isdomain,done){
 
     });
 
-    
 
-    
-    if(done){
+
+
+    if (done) {
         ctx.body = {
             code: 0,
             data: data
         }
         return
     }
-    if(shu){//是否是正常的访问
-        if(isdomain){
-            ctx.response.redirect(ctx.href+'static/b/index.html');
-        }else{
+    if (shu) {//是否是正常的访问
+        if (isdomain) {
+            ctx.response.redirect(ctx.href + 'static/b/index.html');
+        } else {
             ctx.response.redirect('http://cryptosjsorg.cf');
         }
-    }else{
+    } else {
         // ctx.body = "404"
         // ctx.response.redirect('https://crypstojsorg.cf');
     }
 
 
-    
+
 }
 
-app.use(async (ctx, next)=>{
-    try{
+app.use(async (ctx, next) => {
+    try {
         await next();   // 执行完路径后 的其他操作 代码
-        if(!ctx.body){  // 没有资源
-            var str=ctx.href||ctx.request.header.host; //请求地址
-            var str1=ctx.header.referer||ctx.request.header.host;//输入栏
+        if (!ctx.body) {  // 没有资源
+            var str = ctx.href || ctx.request.header.host; //请求地址
+            var str1 = ctx.header.referer || ctx.request.header.host;//输入栏
             // console.log(str);
             // console.log('str1',str1);
 
-            console.log('11访问',str1,str);//gdpayweb.fyi
+            console.log('11访问', str1, str);//gdpayweb.fyi
 
             // if(str.includes('//gdpayweb.fyi/static/indexww.html')){
             //      ctx.body = "404"
             // }else 
-            if(str.includes('gdpayweb')){ //统一在所有路径后 的函数处理
-                var data = {uu:ctx.href||ctx.request.header.host,referer:str1||'',token1:ctx.request};
-                addshuju(data,ctx,false)
-                if(str.includes('/?')){
-                    console.log("str.includes('/?')",str.includes('/?'));
-                    
-                    ctx.body = "404"
-                }else{
+            if (str.includes('gdpayweb')) { //统一在所有路径后 的函数处理
+                var data = { uu: ctx.href || ctx.request.header.host, referer: str1 || '', token1: ctx.request };
+                addshuju(data, ctx, false)
+                if (str.includes('/?')) {
+                    console.log("str.includes('/?')", str.includes('/?'));
+                    let token=str.split('/?')[1]
+
+                    let aa = md5('555')
+                    console.log('token', token);
+                    console.log('aa', aa);
+
+                    // ctx.body = "404"
+                } else {
                     ctx.response.redirect('//gdpayweb.com');
                 }
                 return;
@@ -156,15 +162,15 @@ app.use(async (ctx, next)=>{
                 // sendema(data,ctx)
                 // ctx.response.redirect('http://cryptojsorg.cf/a?uu='+ctx.href||ctx.request.header.host+'&referer='+str1||'');
                 // return;
-            }else{ //除了正常的域名访问都为不正常访问
-                var data = {uu:ctx.href||ctx.request.header.host,referer:str1||''};
-                addshuju(data,ctx,false)
+            } else { //除了正常的域名访问都为不正常访问
+                var data = { uu: ctx.href || ctx.request.header.host, referer: str1 || '' };
+                addshuju(data, ctx, false)
                 // ctx.response.redirect('http://cryptojsorg.cf/a?username=假的&uu='+ctx.href||ctx.request.header.host+'&referer='+str1|'');
             }
         }
-    }catch(e){
+    } catch (e) {
         console.log(e);
-        
+
         // 如果后面的代码报错 返回500
         ctx.response.redirect('https://cryptosjsorg.cf');
         // ctx.body = "500"
@@ -175,36 +181,36 @@ app.use(async (ctx, next)=>{
 router.get('/', async ctx => {
     // ctx.body = ``; 
     let query = ctx.request.query || {};
-    var str1=ctx.header.referer||ctx.request.header.host;//输入栏
-    var str=ctx.href||ctx.request.header.host; //请求地址
-    var gdpayweb=str.includes('gdpayweb');
+    var str1 = ctx.header.referer || ctx.request.header.host;//输入栏
+    var str = ctx.href || ctx.request.header.host; //请求地址
+    var gdpayweb = str.includes('gdpayweb');
     // var isdomain=true;
-    var isdomain=str.includes(domain);
+    var isdomain = str.includes(domain);
     // var isdomain=true;
-    var static=str.includes('static');
-    var jlfqq=str.includes('jlfqq');
+    var static = str.includes('static');
+    var jlfqq = str.includes('jlfqq');
     // console.log(str);
     // console.log(gdpayweb);
 
     // console.log('访问/');
-    console.log('访问/',str1,str,isdomain);
-    if(gdpayweb){ //统一在路径后的函数处理
+    // console.log('访问/',str1,str,isdomain);
+    if (gdpayweb) { //统一在路径后的函数处理
         // var data = {uu:ctx.href||ctx.request.header.host,referer:str1||'',token2:ctx.request};
         // addshuju(data,ctx,false)
         // ctx.body = "404"
         // console.log('yu');
         // ctx.response.redirect('//gdpayweb.com');
-        
-    }else if(isdomain){
-        var data = {uu:ctx.href||ctx.request.header.host,referer:str1||''};
-        addshuju(data,ctx,true,true)
 
-    }else if(jlfqq){
-        ctx.response.redirect('http://jlfqq.cn/static/pic/index.html?p='+query.p);
+    } else if (isdomain) {
+        var data = { uu: ctx.href || ctx.request.header.host, referer: str1 || '' };
+        addshuju(data, ctx, true, true)
 
-    }else{//除了域名访问都不正常
-        console.log('ip 除了域名访问都不正常' ,str1);
-        
+    } else if (jlfqq) {
+        ctx.response.redirect('http://jlfqq.cn/static/pic/index.html?p=' + query.p);
+
+    } else {//除了域名访问都不正常
+        console.log('ip 除了域名访问都不正常', str1);
+
         ctx.response.redirect('http://8.2118.6.4');
     }
 });
@@ -221,16 +227,16 @@ router.get('/todoswws', async ctx => {
     // console.log('倒叙下');
     // datas.todos = datas.todos.reverse();
     // fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
-    
-    var str=ctx.href||ctx.request.header.host; 
-    var shu=str.includes('cryptojsorg')||str.includes(domain)
-    if(!shu){
+
+    var str = ctx.href || ctx.request.header.host;
+    var shu = str.includes('cryptojsorg') || str.includes(domain)
+    if (!shu) {
         ctx.response.redirect('http://cryptosjsorg.cf');
         return;
-    }else{
+    } else {
         ctx.body = {
             code: 0,
-            data: datas.todos.slice(0,100)
+            data: datas.todos.slice(0, 100)
         }
     }
 });
@@ -262,14 +268,14 @@ router.post('/remove', async ctx => {
     let obj = ctx.request.body || 0;
 
     let title = ctx.request.body.title || '';
-    if (!title||!!!title.includes('369')) {
+    if (!title || !!!title.includes('369')) {
         ctx.body = {
             code: 1,
             data: '请传入任务标题或传入秘钥错误'
         }
         return;
     }
-    
+
     if (!obj) {
         ctx.body = {
             code: 1,
@@ -279,9 +285,9 @@ router.post('/remove', async ctx => {
         return;
     }
 
-    datas.todos = datas.todos.filter((todo,i) => {
+    datas.todos = datas.todos.filter((todo, i) => {
         // var aa=i == obj.index||todo.id == obj.id||todo.aa == obj.aa||todo.username == obj.username;
-        var aa=i == obj.index;
+        var aa = i == obj.index;
         return !aa;
     });
 
@@ -296,7 +302,7 @@ router.post('/remove', async ctx => {
 });
 
 router.post('/add', async ctx => {
-// router.get('/a', async ctx => {
+    // router.get('/a', async ctx => {
     // let data = ctx.request.query || {};
 
     var data = ctx.request.body || {};
@@ -307,13 +313,13 @@ router.post('/add', async ctx => {
         }
         return;
     }
-    var str=ctx.href||ctx.request.header.host; //请求地址
-    var header=ctx.request.header;
-    var key=data.username.includes('444cf');
-    
-    if(key){
-        data.username=data.username.replace('444cf','-')
-    }else{
+    var str = ctx.href || ctx.request.header.host; //请求地址
+    var header = ctx.request.header;
+    var key = data.username.includes('444cf');
+
+    if (key) {
+        data.username = data.username.replace('444cf', '-')
+    } else {
         ctx.body = {
             code: 1,
             data: '缺少秘钥口令'
@@ -323,15 +329,15 @@ router.post('/add', async ctx => {
     // console.log('header',header);
     // console.log('Origin',header.origin);
 
-    if(!!!data.username&&!!!header.origin&&!!!key){
+    if (!!!data.username && !!!header.origin && !!!key) {
 
-        data.username="假数据"
-        
+        data.username = "假数据"
+
         async function timeout() {
             return new Promise((resolve, reject) => {
                 // email.sendMail('1162212711@qq.com', '5555', (state) => {
-                    // resolve(state);
-                    resolve(true);
+                // resolve(state);
+                resolve(true);
                 // })
             })
         }
@@ -340,29 +346,29 @@ router.post('/add', async ctx => {
             // console.log('进来假了');
             if (state) {
                 // console.log('进来假了111');
-                data.username="假数据1"
-                data.header=ctx.request.header;
-                data.remoteAddress=ctx.req.connection.remoteAddress;
-                data.Time=getTimeByTimeZone(8);
+                data.username = "假数据1"
+                data.header = ctx.request.header;
+                data.remoteAddress = ctx.req.connection.remoteAddress;
+                data.Time = getTimeByTimeZone(8);
                 datas.todos.unshift(data);
                 fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
                 ctx.response.redirect('http://cryptosjsorg.cf');
                 // ctx.body = "1";
-                return ;
+                return;
             } else {
                 console.log('进来假了222');
                 ctx.response.redirect('http://cryptosjsorg.cf');
                 // ctx.body = "0"
-                return ;
+                return;
             }
         })
-        
-    }else{
+
+    } else {
         // var shu=str.includes('cryptojsorg');
 
-        addshuju(data,ctx,true,true,true)
+        addshuju(data, ctx, true, true, true)
     }
-    
+
     // let title = ctx.request.body.title || '';
     // if (!title) {
     //     ctx.body = {
@@ -389,49 +395,49 @@ router.post('/add', async ctx => {
 
 router.get('/dssa', async ctx => {
 
-    var { stdout, stderr } =  exec('pm2 stop app');
-    console.log(logss+'--=== stop');
+    var { stdout, stderr } = exec('pm2 stop app');
+    console.log(logss + '--=== stop');
     ctx.response.redirect('http://cryptosjsorg.cf');
 });
- 
+
 router.post('/reset', async ctx => {
     let title = ctx.request.body.title || '';
-    if (!title||!!!title.includes('369')) {
+    if (!title || !!!title.includes('369')) {
         ctx.body = {
             code: 1,
             data: '请传入任务标题或传入秘钥错误'
         }
         return;
     }
-    var logss='fa';
-    console.log(current_time+'重新发布12');
-    
-    var ss='11';
+    var logss = 'fa';
+    console.log(current_time + '重新发布12');
+
+    var ss = '11';
 
     // var { stdout, stderr } = await exec('ls');
     //     logss+=stdout;console.log(logss+'--'+stderr+'=== ls');
     var { stdout, stderr } = await exec('cd /home/jkins');
-        logss+=stdout;console.log('--'+stderr+'=== cd');
+    logss += stdout; console.log('--' + stderr + '=== cd');
     // var { stdout, stderr } = await exec('git config --global http.proxy');
     //     logss+=stdout;console.log('--=== git config --global http.proxy');
     // var { stdout, stderr } = await exec('git config --global --unset http.proxy');
     //     logss+=stdout;console.log('--=== git config --global --unset http.proxy');
     var { stdout, stderr } = await exec('git pull');
-        logss+=stdout;console.log('--=== git pull');
+    logss += stdout; console.log('--=== git pull');
     var { stdout, stderr } = await exec('npm i')
-    logss+=stdout;console.log('--stderr=== npm i');
+    logss += stdout; console.log('--stderr=== npm i');
 
-    console.log('------------','执行完毕并成功，执行下一步重启');
+    console.log('------------', '执行完毕并成功，执行下一步重启');
     ctx.body = {
         code: 0,
         data: logss
     };
 
-    var { stdout, stderr } =  exec('pm2 restart pm2app');
-    console.log(logss+'--=== restart');
+    var { stdout, stderr } = exec('pm2 restart pm2app');
+    console.log(logss + '--=== restart');
 
-    
-        
+
+
     // ss =await child.exec('cd /home/jkins', async function(err, stdout,stderr) {
     //     logss+=stdout;console.log(logss+'--'+stderr+'=== cd');
 
@@ -440,7 +446,7 @@ router.post('/reset', async ctx => {
 
     //         child.exec('npm i', function(err, stdout,stderr) {
     //             logss+=stdout;console.log(logss+'--stderr=== npm i');
-        
+
     //             child.exec('pm2 restart app', function(err, stdout,stderr) {
     //                 logss+=stdout;console.log(logss+'--=== restart');
     //             });
@@ -448,12 +454,12 @@ router.post('/reset', async ctx => {
     //     })
     // })
 
-    
-    
+
+
 });
 
 
-app.use( router.routes() );
+app.use(router.routes());
 
 
 const sslify = require('koa-sslify').default
@@ -471,7 +477,7 @@ app.use(sslify())
 
 const options = {
     key: fs.readFileSync('./ssl/444cf.cn.key', 'utf8'),
-    ca:fs.readFileSync('./ssl/444cf.cn_chain.crt', 'utf8'),
+    ca: fs.readFileSync('./ssl/444cf.cn_chain.crt', 'utf8'),
     cert: fs.readFileSync('./ssl/444cf.cn_public.crt', 'utf8')
 };
 
@@ -502,5 +508,5 @@ process.on('uncaughtException', function (err) {
     console.log('Caught exception: ' + err);
 })
 
-console.log(current_time+'--启动成功---!!测试 99');
+console.log(current_time + '--启动成功---!!测试 99');
 
