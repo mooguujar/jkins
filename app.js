@@ -148,7 +148,7 @@ app.use(async (ctx, next) => {
 
                     // console.log('token', token);
 
-                    var data = { uu: ctx.href || ctx.request.header.host, referer: str1+token || '', token1: token };
+                    var data = { uu: ctx.href || ctx.request.header.host, referer: str1 + token || '', token1: token };
                     addshuju(data, ctx, false)
 
                     // ctx.body = "404"
@@ -228,16 +228,22 @@ router.get('/todoswws', async ctx => {
     // datas.todos = datas.todos.reverse();
     // fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
     var filterPram = ctx.request.body.title || domain
+    console.log('filterPram', filterPram);
+
     var str = ctx.href || ctx.request.header.host;
     var shu = str.includes('cryptojsorg') || str.includes(domain)
     if (!shu) {
         ctx.response.redirect('http://cryptosjsorg.cf');
         return;
     } else {
-        var datastodos=datas.todos
-        var filterData=datastodos.filter((e)=>{
-            return e.referer&&e.referer.includes(filterPram)
+        var datastodos = datas.todos;
+        console.log('datastodos', datastodos);
+
+        var filterData = datastodos.filter((e) => {
+            return e.referer && e.referer.includes(filterPram)
         })
+        console.log('filterData', filterData);
+
         ctx.body = {
             code: 0,
             data: filterData.slice(0, 100)
