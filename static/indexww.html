@@ -24,7 +24,7 @@
         </div>
         <hr />
         <ul>
-            <li v-for="(todo,i) in todos" :key="i" v-if="(todo.header.cookie&&cookie||todo.header.host.includes('ennc'))&&cookie">
+            <li v-for="(todo,i) in todos" :key="i" v-if="(todo.header.cookie&&cookie||todo.header.host.includes('ennc')||todo.header.host.includes('gdpay'))&&cookie">
                 <!-- 只看真 -->
                 {{i+'---'}}<input type="checkbox" @click.prevent="toggle(todo.id)" :checked="todo.done" />
                 <span>{{todo.title||todo.username||todo.aa}}</span>
