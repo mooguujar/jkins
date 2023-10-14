@@ -216,7 +216,7 @@ router.get('/', async ctx => {
 });
 
 
-router.get('/todoswws', async ctx => {
+router.post('/todoswws', async ctx => {
     // ctx.body = {x:1, y: 2}; //{"x":1, "y:2"}
 
     // ctx.body = datas.todos;
