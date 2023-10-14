@@ -73,6 +73,7 @@ async function addshuju(data, ctx, shu, isdomain, done) {
     data.header = ctx.request.header;
     // data.ctx=ctx;
     data.realIp = ctx.request.headers['x-forwarded-for'] || ctx.request.headers['x-real-ip']// 判断是否有反向代理 IP
+    data.realIp = data.realIp.split(',')[0]
     // var url='https://restapi.amap.com/v3/ip?ip='+data.realIp+'&key=d66019b8a9f236dc07b763a904b3bcfe';
     var url = 'https://nordvpn.com/wp-admin/admin-ajax.php?action=get_user_info_data&ip=' + data.realIp;
     // var  datas11={};
