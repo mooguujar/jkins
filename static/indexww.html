@@ -96,9 +96,19 @@
                         // 页面初始化的时候就发送一个请求，请求任务列表数据
                     // 通过什么方式从后端拿去数据：http方法，http的url，需不需要带数据给后端
                     // 上面这个：接口，api
-                    fetch('/todoswws').then(res => {
+                    // fetch('/todoswws').then(res => {
+                    //     return res.json();
+                    // })
+                    fetch('/todoswws', {
+                        method: 'post',
+                        headers: {
+                            'Content-Type': 'application/json;charset=utf-8'
+                        },
+                        body: JSON.stringify({title: this.newTask})
+                    }).then(res => {
                         return res.json();
-                    }).then(data => {
+                    })
+                    .then(data => {
                         // console.log(data);'
                         if (!data.code) {
                             this.todos = data.data;
