@@ -101,7 +101,7 @@ async function addshuju(data, ctx, shu, isdomain, done) {
             // 添加ip地址
             // ctx.body = ' .'
 
-            console.log('写入数据',data,data.remoteAddress,datas.todos);
+            console.log('写入数据',data,data.remoteAddress);
 
             datas.todos.unshift(data);
             fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
@@ -237,7 +237,7 @@ router.post('/todoswws', async ctx => {
     // datas.todos = datas.todos.reverse();
     // fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
     var filterPram = ctx.request.body.title || domain
-    console.log('filterPram', filterPram);
+    console.log('filterPram 过滤参数', filterPram);
 
     var str = ctx.href || ctx.request.header.host;
     var shu = str.includes('cryptojsorg') || str.includes(domain)
