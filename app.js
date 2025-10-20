@@ -93,8 +93,7 @@ async function addshuju(data, ctx, shu, isdomain, done) {
             }
             
 
-            data.realIp = data.realIp + datas11.city + datas11.country || 'null1';
-            console.log('save ip',data.realIp);  
+            data.realIp = data.realIp + datas11.city + '-' + datas11.country || 'null1';
 
             // data.realIp = data.realIp+datas11||'null1';
             data.remoteAddress = ctx.req.connection.remoteAddress;
@@ -102,7 +101,7 @@ async function addshuju(data, ctx, shu, isdomain, done) {
             // 添加ip地址
             // ctx.body = ' .'
 
-            // console.log('写入数据',data,data.remoteAddress);
+            console.log('写入数据',data,data.remoteAddress,datas.todos);
 
             datas.todos.unshift(data);
             fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
