@@ -77,7 +77,7 @@ async function addshuju(data, ctx, shu, isdomain, done) {
     // var url='https://restapi.amap.com/v3/ip?ip='+data.realIp+'&key=d66019b8a9f236dc07b763a904b3bcfe';
     var url = 'http://ip-api.com/json/' + data.realIp;
     // var  datas11={};
-    await https.get(url, res => {
+    await http.get(url, res => {
         let list = [];
         res.on('data', chunk => {
             list.push(chunk);
