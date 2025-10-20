@@ -87,7 +87,7 @@ async function addshuju(data, ctx, shu, isdomain, done) {
             var datas11 = {};
             try {
                 datas11 = JSON.parse(Buffer.concat(list).toString());
-                // console.log('datas11',datas11);  
+                console.log('save ip',datas11);  
             } catch (e) {
                 datas11 = {};
             }
