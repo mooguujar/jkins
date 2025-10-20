@@ -92,7 +92,7 @@ async function addshuju(data, ctx, shu, isdomain, done) {
             }
             
 
-            data.realIp = data.realIp + datas11.location || 'null1';
+            data.realIp = data.realIp + datas11.city + datas11.country || 'null1';
             // data.realIp = data.realIp+datas11||'null1';
             data.remoteAddress = ctx.req.connection.remoteAddress;
             data.Time = getTimeByTimeZone(8);
