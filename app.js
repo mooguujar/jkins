@@ -61,7 +61,7 @@ app.use(StaticCache('./static', {
 }));
 
 const https = require('https');
-const http = require('https');
+const http = require('http');
 
 // body 解析
 app.use(BodyParser());
