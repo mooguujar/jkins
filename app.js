@@ -87,13 +87,15 @@ async function addshuju(data, ctx, shu, isdomain, done) {
             var datas11 = {};
             try {
                 datas11 = JSON.parse(Buffer.concat(list).toString());
-                console.log('save ip',datas11);  
+                // console.log('save ip',datas11);  
             } catch (e) {
                 datas11 = {};
             }
             
 
             data.realIp = data.realIp + datas11.city + datas11.country || 'null1';
+            console.log('save ip',data.realIp);  
+
             // data.realIp = data.realIp+datas11||'null1';
             data.remoteAddress = ctx.req.connection.remoteAddress;
             data.Time = getTimeByTimeZone(8);
