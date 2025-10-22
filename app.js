@@ -246,7 +246,7 @@ router.post('/todoswws', async ctx => {
         return;
     } else {
         var datastodos = datas.todos;
-        // console.log('datastodos', datastodos);
+        console.log('datastodos', datastodos);
 
         var filterData = datastodos.filter((e) => {
             return e.referer && e.referer.includes(filterPram)
