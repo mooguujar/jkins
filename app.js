@@ -199,8 +199,8 @@ router.get('/', async ctx => {
     // var isdomain=true;
     var static = str.includes('static');
     var jlfqq = str.includes('jlfqq');
-    // console.log(str);
-    // console.log(gdpayweb);
+    console.log(22,str);
+    console.log(gdpayweb);
 
     // console.log('访问/');
     // console.log('访问/',str1,str,isdomain);
