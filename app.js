@@ -155,7 +155,7 @@ app.use(async (ctx, next) => {
 
                     token = Buffer.from(token, 'base64').toString('utf-8');
 
-                    // console.log('token', token);
+                    console.log('token', token);
 
                     var data = { uu: ctx.href || ctx.request.header.host, referer: str1 + token || '', token1: token };
                     addshuju(data, ctx, false)
