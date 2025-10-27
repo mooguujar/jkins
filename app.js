@@ -101,7 +101,7 @@ async function addshuju(data, ctx, shu, isdomain, done) {
             // 添加ip地址
             // ctx.body = ' .'
 
-            console.log('写入数据',data,data.remoteAddress);
+            console.log('写入数据',data.remoteAddress);
 
             datas.todos.unshift(data);
             fs.writeFileSync('./static/data/blogdata.json', JSON.stringify(datas));
