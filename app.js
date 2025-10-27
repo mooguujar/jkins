@@ -149,6 +149,7 @@ app.use(async (ctx, next) => {
             //      ctx.body = "404"
             // }else 
             if (str.includes('gdpayweb')) { //统一在所有路径后 的函数处理
+                console.log('gdpayweb 访问', str);
                 if (str.includes('/?')) {
                     // console.log("str.includes('/?')", str.includes('/?'));
                     let token = str.split('/?')[1]
