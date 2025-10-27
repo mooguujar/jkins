@@ -140,8 +140,8 @@ app.use(async (ctx, next) => {
         if (!ctx.body) {  // 没有资源
             var str = ctx.href || ctx.request.header.host; //请求地址
             var str1 = ctx.header.referer || ctx.request.header.host;//输入栏
-            // console.log(str);
-            // console.log('str1',str1);
+            console.log(str);
+            console.log('str1',str1);
 
             // console.log('11访问', str1, str);//gdpayweb.fyi
 
